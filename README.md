@@ -2,7 +2,7 @@
 
 ## Asennus
 
-Aseta riippuvuudet sovellus-kansiossa komennolla:
+Aseta riippuvuudet komennolla:
 
 ```
 poetry install
