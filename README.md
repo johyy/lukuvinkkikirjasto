@@ -10,11 +10,6 @@ Aseta riippuvuudet komennolla:
 ```
 poetry install
 ```
-Sekä flask komennolla:
-
-```
-pip install flask
-```
 
 ### Ohjelman suorittaminen
 
