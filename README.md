@@ -22,3 +22,15 @@ Ohjelman pystyy suorittamaan komennolla:
 ```
 poetry run flask run
 ```
+
+## Definition of Done
+
+User Story katsotaan valmistuneeksi, kun:
+
+- User Storylle kirjatut taskit on tehty
+- Testikattavuus on yli 80 %
+- Kaikki testit menevät läpi
+- Koodin staattinen analyysi on kunnossa, Pylint arvo > 8
+- Robot frameworkia on käytetty
+- Koodi on puskettu tuotantoympäristöön
+- Koodi on integroitu aikaisempaan työhön ja kokonaisuus on toimiva
