@@ -18,10 +18,13 @@ class UserRepository:
             return False
 
     def get_user(self, username):
-        sql = "SELECT * FROM users WHERE username=:username"
-        result = db.session.execute(sql, {"username": username})
-        user = result.fetchone()
-        if not user:
+        try:
+            sql = "SELECT * FROM users WHERE username=:username"
+            result = db.session.execute(sql, {"username": username})
+            user = result.fetchone()
+            if not user:
+                return False
+            else:
+                return user
+        except Exception:
             return False
-        else:
-            return user
