@@ -1,7 +1,7 @@
 class UserService:
     """ Class responsible for user logic."""
 
-    def __init__():
+    def __init__(self):
         """ Class constructor. Creates a new user service.
         Args:"""
 
