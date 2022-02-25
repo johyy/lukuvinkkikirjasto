@@ -1,3 +1,5 @@
+from entities.user import User
+
 class UserService:
     """ Class responsible for user logic."""
 
@@ -21,6 +23,13 @@ class UserService:
         Args:
             username: [String] The name of the user.
         """
+    def login(self, username, password):
+        if username != User.get_username():
+            return False, "Käyttäjää ei ole olemassa"
+        if password != User.get_password():
+            return False, "Väärä salasana"
+        else:
+            return True, ""
 
 	
         user = User(username)
