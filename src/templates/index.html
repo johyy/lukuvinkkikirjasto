@@ -4,7 +4,8 @@
 <div class="container">
 <h1>Tervetuloa</h1>
 {% if session.user_id %}
-<b>Kirjautuneena:</b> {{ session.user_name }}
+<b>Kirjautuneena:</b>
+<class="text-success"> {{ session.user_name }}
 {% else %}
 Kirjautuneena käyttäjänä voit lisätä lisätä lukuvinnkejä ja tallettaa omat suosikit.
 {% endif %}

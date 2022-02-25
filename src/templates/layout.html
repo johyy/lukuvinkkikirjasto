@@ -11,11 +11,9 @@
 <ul class="navbar-nav">
 {% if not session.user_id %}
 <li class="nav-item"><a class="nav-link" href="/login">Kirjaudu sisään</a></li>
-<li class="nav-item"><a class="nav-link" href="/sign_up">Luo uusi tunnus</a></li>
+<li class="nav-item"><a class="nav-link" href="/register">Luo uusi tunnus</a></li>
 {% else %}
 <li class="nav-item"><a class="nav-link" href="">Lisää lukuvinkki</a></li>
-<li class="nav-item"><a class="nav-link" href="">jotain muuta</a></li>
-<li class="nav-item"><a class="nav-link" href="">jotain muuta</a></li>
 <li class="nav-item"><a class="nav-link" href="">Omat lukuvinkit</a></li>
 <li class="nav-item"><a class="nav-link" href="/logout">Kirjaudu ulos</a></li>
 {% endif %}

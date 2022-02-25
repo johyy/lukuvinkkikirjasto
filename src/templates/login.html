@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<div class="container">
+<div class="row">
+<div class="col-10">
+
+<h5>Kirjaudu sisään</h5>
+
+{% if  error %}
+<p class="text-danger">{{ error }}</p>
+{% endif %}
+
+<form action="/login" method="post">
+<div class="form-group col-6">
+<label for="name"> Tunnus: </label>
+<input type="text" class="form-control" id="name" name="name">
+</div>
+
+<div class="form-group col-6">
+<label for="password">Salasana: </label>
+<input type="password" class="form-control" id="password" name="password">
+</div>
+
+<div class="col-6">
+<input type="submit" class="btn btn-primary" value="Kirjaudu sisään">
+</div>
+</form>
+</div>
+</div>
+</div>
+
+{% endblock %}
