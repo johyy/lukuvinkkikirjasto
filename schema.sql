@@ -6,14 +6,15 @@ CREATE TABLE users (
 );
 
 CREATE TABLE recommendations (
-    id SERIAL PRIMARY KEY, 
+    id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users,
-    media INTEGER, 
-    header TEXT, 
+    media TEXT,
+    header TEXT,
     author TEXT,
-    description TEXT, 
+    description TEXT,
     url_link TEXT,
-    ISBN TEXT
+    ISBN TEXT,
+    creation_time TIMESTAMP
 );
 
 CREATE TABLE tags (
@@ -55,12 +56,13 @@ CREATE TABLE tests.users (
 CREATE TABLE tests.recommendations (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users,
-    media INTEGER,
+    media TEXT,
     header TEXT,
     author TEXT,
     description TEXT,
     url_link TEXT,
-    ISBN TEXT
+    ISBN TEXT,
+    creation_time TIMESTAMP
 );
 
 CREATE TABLE tests.tags (
