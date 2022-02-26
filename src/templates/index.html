@@ -10,6 +10,8 @@
     {% endif %}
 <p>
 
+{%if recommendations_list%}
+
 <div class="row">
 <div class="col-10">
     <form action="{{url_for('sort_by', sort_option=sort_option)}}"  method="POST"> 
@@ -42,13 +44,19 @@
                 <td>{{tips.header}}</td>
                 <td>{{tips.author}}</td>
                 <td>{{tips.username}}</td>
-                <td>{{tips.creation_time.strftime("%H:%M:%S [%d/%m/%y]")}}</td>
+                {% if tips.creation_time %}
+                    <td>{{tips.creation_time.strftime("%H:%M:%S [%d/%m/%y]")}}</td>
+                {% endif %}
               </tr>
             {%endfor%}
         </tbody>
     </table>    
 </div>
 
-
+{% else %}
+    <div>
+        <h3> No recommendations yet :(!</h3>
+    </div>
+{% endif %}
 {% endblock %}
 

@@ -33,8 +33,8 @@ class TipRepository:
         return order_by
 
     def fetch_all_tips(self, sort_option):
-        sql = "SELECT U.username, R.header, R.author, R.description, R.creation_time"\
-              " FROM users U LEFT JOIN recommendations R ON U.id = R.user_id" 
+        sql = "SELECT R.header, R.author, R.description, R.creation_time, U.username"\
+              " FROM recommendations R LEFT JOIN users U ON R.user_id=U.id"
         
         sql += " " + self.order_by(self, sort_option); 
 
