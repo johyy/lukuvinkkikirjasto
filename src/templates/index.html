@@ -3,25 +3,52 @@
 
 <div class="container">
 <h1>Tervetuloa</h1>
-{% if session.user_id %}
-<b>Kirjautuneena:</b>
-<class="text-success"> {{ session.user_name }}
-{% else %}
-Kirjautuneena käyttäjänä voit lisätä lisätä lukuvinnkejä ja tallettaa omat suosikit.
-{% endif %}
+    {% if session.user_id %}
+        <b>Kirjautuneena:</b> <class="text-success"> {{ session.user_name }}
+    {% else %}
+        Kirjautuneena käyttäjänä voit lisätä lisätä lukuvinnkejä ja tallettaa omat suosikit.
+    {% endif %}
 <p>
 
 <div class="row">
-<div class="col-5">
-<h5>Uusimmat vinkit</h5>
+<div class="col-10">
+    <form action="{{url_for('sort_by', sort_option=sort_option)}}"  method="POST"> 
+        <input type="radio" name="sort_option" value="1" {%if sort_option=="1"%} checked {%endif%} onchange =this.form.submit() > Newest           
+        <input type="radio" name="sort_option" value="2" {%if sort_option=="2"%} checked {%endif%} onchange =this.form.submit() > Oldest         
+        <input type="radio" name="sort_option" value="3" {%if sort_option=="3"%} checked {%endif%} onchange =this.form.submit() > Header A-Z
+        <input type="radio" name="sort_option" value="4" {%if sort_option=="4"%} checked {%endif%} onchange =this.form.submit() > Header Z-A
+        <input type="radio" name="sort_option" value="5" {%if sort_option=="5"%} checked {%endif%} onchange =this.form.submit() > Author A-Z
+        <input type="radio" name="sort_option" value="6" {%if sort_option=="6"%} checked {%endif%} onchange =this.form.submit() > Author Z-A
+        <input type="radio" name="sort_option" value="7" {%if sort_option=="7"%} checked {%endif%} onchange =this.form.submit() > Username A-Z
+        <input type="radio" name="sort_option" value="8" {%if sort_option=="8"%} checked {%endif%} onchange =this.form.submit() > Username Z-A
+    </form>   
 </div>
 
-<div class="col-5">
-<h5>Tykätyimmät vinkit</h5>
+<div class="col-10">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Header</th>
+              <th scope="col">Author</th>
+              <th scope="col">Posted By</th>
+              <th scope="col">Posted At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for tips in recommendations_list%}
+              <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{tips.header}}</td>
+                <td>{{tips.author}}</td>
+                <td>{{tips.username}}</td>
+                <td>{{tips.creation_time.strftime("%H:%M:%S [%d/%m/%y]")}}</td>
+              </tr>
+            {%endfor%}
+        </tbody>
+    </table>    
 </div>
 
-</div>
 
-</div>
 {% endblock %}
 

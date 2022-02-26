@@ -1,12 +1,22 @@
 from app import app
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, url_for
 from services.user_service import UserService as user_service
 from services.recommendation_service import RecommendationService as recommendation_service
+from repositories.tip_repository import TipRepository as tip_repository
 
+@app.route("/sort_by", methods = ["POST"])
+def sort_by():
+    sort_option = request.form["sort_option"]
+    return redirect(url_for("index", sort_option=sort_option))
 
-@app.route("/")
-def index():
-    return render_template("index.html")
+@app.route("/<sort_option>")
+def index(sort_option):
+    
+    print(sort_option)
+    # tip_repository.add_new_tip(tip_repository, 2, "Book", "Third Book", "Jones", "It's a book", "google.com", "0000")
+    recommendations_list = tip_repository.fetch_all_tips(tip_repository, sort_option)
+
+    return render_template("index.html", sort_option=sort_option, recommendations_list=recommendations_list)
 
 
 @app.route("/login", methods=["get", "post"])
@@ -61,3 +71,4 @@ def register():
         if valid:
             return redirect("/")
         return render_template("register.html", error=error)
+
