@@ -1,4 +1,5 @@
 from entities.user import User
+from repositories.user_repository import UserRepository
 
 class UserService:
     """ Class responsible for user logic."""
