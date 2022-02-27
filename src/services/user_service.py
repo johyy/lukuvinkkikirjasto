@@ -30,7 +30,8 @@ class UserService:
             if check_password_hash(user[1], password):
                 self._current_user = User(user[0], user[1])
                 return True, ""
-        else:
-            return False, "Käyttäjänimi tai salasana virheellinen"
+            else:
+                return False, "Käyttäjänimi tai salasana virheellinen"
+        return False, "Käyttäjänimi tai salasana virheellinen"
 
 user_service = UserService()
