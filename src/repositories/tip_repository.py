@@ -1,4 +1,4 @@
-from db import db
+import db
 
 class TipRepository:
     """Class that handles database queries for tips"""
