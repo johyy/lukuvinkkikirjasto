@@ -1,9 +1,9 @@
 import unittest
-from entities import user
+from entities.user import User
 
 class TestUser(unittest.TestCase):
     def setUp(self):
-        self.user = user.User("testi", "salasana")
+        self.user = User("testi", "salasana")
 
     def test_create_user(self):
         self.assertEqual(self.user.get_username(), "testi")

@@ -1,5 +1,3 @@
-from repositories.user_repository import UserRepository
-
 class User:
     """ Class that represents a single user. """
 
@@ -12,7 +10,6 @@ class User:
 
         self._username = username
         self._password = password
-        self.user_repository = UserRepository
 
     ## Get
     def get_username(self):
@@ -38,5 +35,5 @@ class User:
 
         self._password = password
     
-    def get_user_db(self, username):
-        return self.user_repository.get_user(username)
+#    def get_user_db(self, username):
+#        return self.user_repository.get_user(username)
