@@ -1,12 +1,13 @@
-from entities.user import User
+from entities import user
 from werkzeug.security import check_password_hash
-from repositories.user_repository import UserRepository
+from repositories import user_repository
 
 class UserService:
     """ Class responsible for user logic."""
 
     def __init__(self):
-        self.user_repository = UserRepository
+        self.user_repository = user_repository
+        self.user = user
         """ Class constructor. Creates a new user service.
         Args:"""
 
@@ -30,7 +31,7 @@ class UserService:
         user = self.user_repository.get_user(username)
         if user != False:
             if check_password_hash(user[1], password):
-                self._current_user = User(user[0], user[1])
+                self._current_user = self.user(user[0], user[1])
                 return True, ""
             else:
                 return False, "Käyttäjänimi tai salasana virheellinen"
