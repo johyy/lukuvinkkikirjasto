@@ -7,8 +7,9 @@ from repositories.tip_repository import TipRepository as tip_repository
 
 @app.route("/")
 def index():
-    recommendations_list = tip_repository.fetch_all_tips(tip_repository, 2)
-    return render_template("index.html", sort_option=2, recommendations_list=recommendations_list)
+    recommendations_list = tip_repository.fetch_all_tips(tip_repository)
+
+    return render_template("index.html", sort_option="1", recommendations_list=recommendations_list)
 
 @app.route("/sort_by", methods = ["POST"])
 def sort_by():
@@ -17,11 +18,8 @@ def sort_by():
 
 @app.route("/<sort_option>")
 def index_sorted(sort_option):
-    
-    print(sort_option)
-    # tip_repository.add_new_tip(tip_repository, 2, "Book", "Third Book", "Jones", "It's a book", "google.com", "0000")
-    recommendations_list = tip_repository.fetch_all_tips(tip_repository, sort_option)
 
+    recommendations_list = tip_repository.fetch_all_tips(tip_repository, sort_option)
     return render_template("index.html", sort_option=sort_option, recommendations_list=recommendations_list)
 
 
