@@ -1,6 +1,8 @@
+from flask import session
 from werkzeug.security import check_password_hash
 from repositories.user_repository import UserRepository
 from entities.user import User_account
+from services.user_service import UserService
 
 class AppService:
     """ Class responsible for app logic."""
@@ -9,8 +11,9 @@ class AppService:
         """ Class constructor. Creates a new app service.
         Args:"""
 
-        self.user_repository = UserRepository()
+        self.user_repository = UserRepository
         self._current_user = None
+        self.user_service = UserService
 
     def login(self, username, password):
         """ Log in user.
@@ -28,6 +31,7 @@ class AppService:
         if new_user is not False:
             if check_password_hash(new_user[2], password):
                 self.user = User_account(username=username, password=new_user[2])
+                session["csrf_token"] = self.user_service.check_csrf()
                 return True, ""
         return False, "Käyttäjänimi tai salasana virheellinen"
 
@@ -50,13 +54,20 @@ class AppService:
 
         self._current_user = user
 
-    def register(self, username, password):
+    def register(self, username, password, password_confirmation):
+        """ Registers a new user."""
 
         if len(username) >= 3 and len(password) >= 8 and any(not c.isalpha() for c in password):
-            user = User_account(username=username, password=password, admin=False)
+            if not password == password_confirmation:
+                message = "Salasanat eivät täsmää"
+                return None, message
+            user = User_account(username=username, password=password)
             if self.user_repository.add_a_new_user(user):
                 self.set_current_user(user)
-                return user
-        return None
+                return user, message
+            message = "Tunnus on jo olemassa."
+        else:
+            message = "Tunnuksessa oltava vähintään 3 merkkiä ja salasanassa vähintään 8 merkkiä ja vähintään yksi numero tai erikoismerkki."
+        return None, message
 
 app_service = AppService()
