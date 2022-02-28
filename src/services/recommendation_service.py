@@ -6,10 +6,12 @@ class RecommendationService:
         Args:"""
 
     def method1(self):
-        pass
+        """ Does something. """
+
 
     def method2(self):
-        pass
+        """ This too. """
+
 
 
 resommendation_service = RecommendationService()

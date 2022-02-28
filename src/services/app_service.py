@@ -1,6 +1,8 @@
+from flask import session
 from werkzeug.security import check_password_hash
 from repositories.user_repository import UserRepository
 from entities.user import User
+from services.user_service import UserService
 
 class AppService:
     """ Class responsible for app logic."""
@@ -11,6 +13,7 @@ class AppService:
 
         self.user_repository = UserRepository()
         self._current_user = None
+        self.user_service = UserService()
 
     def login(self, username, password):
         """ Log in user.
@@ -27,7 +30,8 @@ class AppService:
         new_user = self.user_repository.get_user(username)
         if new_user is not False:
             if check_password_hash(new_user[1], password):
-                self._user = User(new_user[0], new_user[1])
+                self._current_user = User(new_user[0], new_user[1])
+                session["csrf_token"] = self.user_service.check_csrf()
                 return True, ""
         return False, "Käyttäjänimi tai salasana virheellinen"
 
