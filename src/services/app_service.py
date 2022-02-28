@@ -1,11 +1,16 @@
+from repositories.user_repository import UserRepository
+from entities.user import User
+from werkzeug.security import check_password_hash
+
 class AppService:
     """ Class responsible for app logic."""
 
-    def __init__(user_repository):
+    def __init__(self):
         """ Class constructor. Creates a new app service.
         Args:"""
         
-        self.user_repository = user_repository
+        self._user_repository = UserRepository
+        self._user = None
 
     def login(self, username, password):
         """ Log in user.
@@ -18,15 +23,14 @@ class AppService:
             InvalidCredentialsError:
                 Invalid username and/or password.
         """
-
-        user_list = self._user_repository.find_by_username(username)
-        if not user_list or user_list[0][1] != password:
-            return False
-
-        user = self.create_user_entity_from_db(user_list[0])
-        self._user = user
-
-        return user
+        new_user = self._user_repository.get_user(username)
+        if new_user != False:
+            if check_password_hash(new_user[1], password):
+                self._user = User(new_user[0], new_user[1])
+                return True, ""
+            else:
+                return False, "Käyttäjänimi tai salasana virheellinen"
+        return False, "Käyttäjänimi tai salasana virheellinen"
 
     def logout(self):
         """ Sets the current user as None.
