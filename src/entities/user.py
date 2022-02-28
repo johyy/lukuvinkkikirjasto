@@ -1,5 +1,3 @@
-from repositories import user_repository
-
 class User:
     """ Class that represents a single user. """
 
@@ -9,7 +7,6 @@ class User:
             _username: [String] Unique identifier of the user.
             _password: [String] Password of the user profile.
         """
-        self.user_repository = user_repository
         self._username = username
         self._password = password
 
