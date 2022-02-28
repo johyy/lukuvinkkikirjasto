@@ -6,13 +6,13 @@ class TipRepository:
     def __init__(self):
         """Class constructor"""
 
-    def add_new_tip(self, user_id, media, header, author, description, url_link, isbn):
+    def add_new_tip(self, user_id, recommendation):
         try:
             sql = "INSERT INTO recommendations (user_id, media, header, author, " \
                 "description, url_link, isbn, creation_time) VALUES (:user_id, :media, :header, :author, :description," \
                 ":url_link, :isbn, NOW())"
-            db.session.execute(sql, {"user_id": user_id, "media": media, "header": header, "author": author,
-                                          "description": description, "url_link": url_link, "isbn": isbn})
+            db.session.execute(sql, {"user_id": user_id, "media": recommendation.get_media()), "header": recommendation.get_title(), "author": recommendation.get_author(),
+                                          "description": recommendation.get_description()), "url_link": recommendation.get_link()), "isbn": recommendation.get_isbn())})
             db.session.commit()
             return True
         except Exception:

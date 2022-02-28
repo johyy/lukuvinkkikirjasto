@@ -10,6 +10,10 @@ class Recommendation:
 
         self._title = title
         self._link = link
+        self._media = None
+        self._author = None
+        self._description = None
+        self._isbn = None
 
     def get_title(self):
         """ Gets the title of the recommendation."""
@@ -36,3 +40,35 @@ class Recommendation:
         """
 
         self._link = link
+
+    def set_media(self, media):
+        """ Sets the media type.
+        Args:
+            media: [String] The media type to be set.
+        """
+
+        self._media = media
+
+    def set_author(self, author):
+        """ Sets the author.
+        Args:
+            author: [String] The author to be set.
+        """
+
+        self._author = author
+
+    def set_description(self, description):
+        """ Sets the description.
+        Args:
+            description: [String] The description to be set.
+        """
+
+        self._description = description
+
+    def set_isbn(self, isbn):
+        """ Sets the isbn.
+        Args:
+            isbn: [String] The isbn to be set.
+        """
+
+        self._isbn = isbn
