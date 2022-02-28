@@ -1,6 +1,7 @@
 from entities.user import User
 from entities.recommendation import Recommendation
 
+
 class UserService:
     """ Class responsible for user logic."""
 
@@ -16,7 +17,6 @@ class UserService:
         """ Returns the current user.
         Returns:
             current user
-
         """
 
         return self._current_user
@@ -27,6 +27,7 @@ class UserService:
         self._current_user = user
 
     def create_user(self, username, password):
+
         if len(username) >= 3 and len(password) >= 8:
             if any(not c.isalpha() for c in password):
                 user = User(username, password)
@@ -40,3 +41,4 @@ class UserService:
             recommendation = Recommendation(title, link)
             self._current_user.add_recommendation(recommendation)
             self.recommendation_repository.add_new_tip(self._current_user.get_id(), recommendation)
+
