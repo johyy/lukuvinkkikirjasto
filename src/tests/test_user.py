@@ -7,6 +7,7 @@ class TestUser(unittest.TestCase):
 
 
 
+
     def test_create_user(self):
         self.assertEqual(self.user.get_username(), "testi")
         self.assertEqual(self.user.get_password(), "salasana")

@@ -1,4 +1,4 @@
-import db
+from db import db
 from werkzeug.security import generate_password_hash
 import secrets
 
