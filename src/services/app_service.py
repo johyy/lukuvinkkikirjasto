@@ -12,9 +12,9 @@ class AppService:
         """ Class constructor. Creates a new app service.
         Args:"""
 
-        self.user_repository = UserRepository()
+        self.user_repository = UserRepository
         self._current_user = None
-        self.user_service = UserService()
+        self.user_service = UserService
 
     def login(self, username, password):
         """ Log in user.
@@ -56,6 +56,7 @@ class AppService:
         self._current_user = user
 
     def register(self, username, password, password_confirmation):
+        "Registers a new user"
         message = ""
         if len(username) >= 3 and len(password) >= 8:
             if not password == password_confirmation:
@@ -66,7 +67,8 @@ class AppService:
                     self.set_current_user(user)
                     return user, message
                 message = "Tunnus on jo olemassa."
-            message = "Tunnuksessa oltava yli 3 merkkiä ja salasanassa yli 8 merkkiä ja vähintään yksi numero"
+            message = """Tunnuksessa oltava yli 3 merkkiä ja salasanassa
+            yli 8 merkkiä ja vähintään yksi numero"""
         return None, message
 
 
