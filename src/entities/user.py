@@ -1,8 +1,15 @@
+# pylint: disable=no-member
 import uuid
+from app import db
 
-class User:
+class User_account(db.Model):
     """ Class that represents a single user. """
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(30), nullable=False)
+    password = db.Column(db.String(50), nullable=False)
+    admin = db.Column(db.Boolean, default=False, nullable=False)
 
+    '''
     def __init__(self, username, password):
         """ Class constructor. Creates a new user.
         Attributes:
@@ -14,21 +21,22 @@ class User:
         self._username = username
         self._password = password
         self.recommendations = []
+    '''
 
     def get_id(self):
         """ Gets the id of the user."""
 
-        return self._id
+        return self.id
 
     def get_username(self):
         """ Gets the name of the user."""
 
-        return self._username
+        return self.username
 
     def get_password(self):
         """ Gets the password of the user."""
 
-        return self._password
+        return self.password
 
     def set_username(self, username):
         """ Sets username.
@@ -36,7 +44,7 @@ class User:
             username: [String] The username to be set.
         """
 
-        self._username = username
+        self.username = username
 
     def set_password(self, password):
         """ Sets user's password.
@@ -44,7 +52,15 @@ class User:
             password: [String] The password to be set.
         """
 
-        self._password = password
+        self.password = password
+
+    def set_admin(self, boolean):
+        """ Sets user's admin status.
+        Args:
+            admin: [boolean] The admin status to be set.
+        """
+
+        self.admin = boolean
 
     def add_recommendation(self, recommendation):
         """ Adds a recommendation to the user."""
@@ -61,3 +77,8 @@ class User:
         """ Returns user's recommendations."""
 
         return self.recommendations
+
+    def is_admin(self):
+        if self.admin == None:
+            return False
+        return self.admin

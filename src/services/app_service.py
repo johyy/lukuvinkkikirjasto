@@ -1,6 +1,6 @@
 from werkzeug.security import check_password_hash
 from repositories.user_repository import UserRepository
-from entities.user import User
+from entities.user import User_account
 
 class AppService:
     """ Class responsible for app logic."""
@@ -26,8 +26,8 @@ class AppService:
 
         new_user = self.user_repository.get_user(username)
         if new_user is not False:
-            if check_password_hash(new_user[1], password):
-                self._user = User(new_user[0], new_user[1])
+            if check_password_hash(new_user[2], password):
+                self.user = User_account(username=username, password=new_user[2])
                 return True, ""
         return False, "Käyttäjänimi tai salasana virheellinen"
 
@@ -52,12 +52,11 @@ class AppService:
 
     def register(self, username, password):
 
-        if len(username) >= 3 and len(password) >= 8:
-            if any(not c.isalpha() for c in password):
-                user = User(username, password)
-                if self.user_repository.add_a_new_user(user, False):
-                    self.set_current_user(user)
-                    return user
+        if len(username) >= 3 and len(password) >= 8 and any(not c.isalpha() for c in password):
+            user = User_account(username=username, password=password, admin=False)
+            if self.user_repository.add_a_new_user(user):
+                self.set_current_user(user)
+                return user
         return None
 
 app_service = AppService()

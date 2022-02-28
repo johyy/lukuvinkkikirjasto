@@ -1,6 +1,5 @@
 from entities.recommendation import Recommendation
 
-
 class UserService:
     """ Class responsible for user logic."""
 
@@ -15,6 +14,6 @@ class UserService:
     def add_recommendation(self, title, link):
         """ Adds a recommendation to the current user."""
         if title != "" and link != "":
-            recommendation = Recommendation(title, link)
+            recommendation = Recommendation(title=title, link=link)
             self._current_user.add_recommendation(recommendation)
             self.recommendation_repository.add_new_tip(self._current_user.get_id(), recommendation)
