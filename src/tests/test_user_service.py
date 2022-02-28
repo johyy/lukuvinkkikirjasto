@@ -6,8 +6,9 @@ from entities.user import User
 class TestUserService(unittest.TestCase):
     def setUp(self):
         user_repo_mock = Mock()
-        self.user = User("nimi", "salasana")
-        self.us = UserService(user_repo_mock, self.user)
+        recommendation_repo_mock = Mock()
+        self.user = User("nimi1", "salasana456")
+        self.us = UserService(user_repo_mock, recommendation_repo_mock, self.user)
 
     def test_create_user(self):
         user = self.us.create_user("nimi", "salasana123")
