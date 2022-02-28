@@ -25,6 +25,26 @@ class Recommendation:
 
         return self._link
 
+    def get_media(self):
+        """ Gets the media type of the recommendation."""
+
+        return self._media
+
+    def get_author(self):
+        """ Gets the author of the recommendation."""
+
+        return self._author
+
+    def get_description(self):
+        """ Gets the description of the recommendation."""
+
+        return self._description
+
+    def get_isbn(self):
+        """ Gets the isbn of the recommendation."""
+
+        return self._isbn
+
     def set_title(self, title):
         """ Sets the title.
         Args:

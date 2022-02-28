@@ -10,23 +10,6 @@ class TestUserService(unittest.TestCase):
         self.user = User("nimi1", "salasana456")
         self.us = UserService(user_repo_mock, recommendation_repo_mock, self.user)
 
-    def test_create_user(self):
-        user = self.us.create_user("nimi", "salasana123")
-        self.assertEqual(user.get_username(), "nimi")
-        self.assertEqual(user.get_password(), "salasana123")
-
-    def test_create_user_with_too_short_username(self):
-        user = self.us.create_user("ni", "salasana123")
-        self.assertEqual(user, None)
-
-    def test_create_user_with_too_short_password(self):
-        user = self.us.create_user("nimi", "s123")
-        self.assertEqual(user, None)
-
-    def test_create_user_with_password_missing_special_case(self):
-        user = self.us.create_user("nimi", "salasana")
-        self.assertEqual(user, None)
-
     def test_user_adds_recommendation(self):
         self.us.add_recommendation("Otsake", "linkki")
         self.assertEqual(self.user.get_recommendations()[0].get_title(), "Otsake")
