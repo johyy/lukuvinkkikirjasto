@@ -2,6 +2,7 @@ from werkzeug.security import check_password_hash
 from repositories.user_repository import UserRepository
 from entities.user import User
 
+
 class AppService:
     """ Class responsible for app logic."""
 
@@ -50,14 +51,19 @@ class AppService:
 
         self._current_user = user
 
-    def register(self, username, password):
-
+    def register(self, username, password, password_confirmation):
+        message = ""
         if len(username) >= 3 and len(password) >= 8:
+            if not password == password_confirmation:
+                message = "Salasanat eivät täsmää"
             if any(not c.isalpha() for c in password):
                 user = User(username, password)
                 if self.user_repository.add_a_new_user(user, False):
                     self.set_current_user(user)
-                    return user
-        return None
+                    return user, message
+                message = "Tunnus on jo olemassa."
+            message = "Tunnuksessa oltava yli 3 merkkiä ja salasanassa yli 8 merkkiä ja vähintään yksi numero"
+        return None, message
+
 
 app_service = AppService()
