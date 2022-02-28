@@ -3,9 +3,9 @@ from flask import Flask
 from db import db
 
 app = Flask(__name__)
-db.init_app(app)
 app.secret_key = getenv("SECRET_KEY")
 app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+db.init_app(app)
 
 import routes
