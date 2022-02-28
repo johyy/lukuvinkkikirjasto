@@ -14,7 +14,8 @@ class UserRepository:
             sql = "INSERT INTO users (username,password, is_admin) VALUES (:username,:password, :admin)"
             db.session.execute(sql, {"username": user.get_username(), "password": hash_value, "admin": admin})
             db.session.commit()
-        except Exception:
+        except Exception as e:
+            print(e)
             return False
 
     def get_user(self, username):
