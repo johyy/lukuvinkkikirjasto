@@ -9,8 +9,8 @@ class User:
         """
         self._username = username
         self._password = password
+        self.recommendations = []
 
-    ## Get
     def get_username(self):
         """ Gets the name of the user."""
 
@@ -21,7 +21,6 @@ class User:
 
         return self._password
 
-    ## Set
     def set_username(self, username):
         """ Sets username.
         Args:
@@ -37,3 +36,19 @@ class User:
         """
 
         self._password = password
+
+    def add_recommendation(self, recommendation):
+        """ Adds a recommendation to the user."""
+
+        self.recommendations.append(recommendation)
+
+    def remove_recommendation(self, recommendation):
+        """ Removes a recommendation to the user."""
+
+        if recommendation in self.recommendations:
+            self.recommendations.remove(recommendation)
+
+    def get_recommendations(self):
+        """ Returns user's recommendations."""
+
+        return self.recommendations
