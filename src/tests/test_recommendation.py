@@ -16,3 +16,19 @@ class TestRecommendation(unittest.TestCase):
     def test_set_link(self):
         self.recommendation.set_link("https://www.ärdetfredag.se/")
         self.assertEqual(self.recommendation.get_link(), "https://www.ärdetfredag.se/")
+
+    def test_set_media(self):
+        self.recommendation.set_media("Kirja")
+        self.assertEqual(self.recommendation.get_media(), "Kirja")
+
+    def test_set_author(self):
+        self.recommendation.set_author("Kirjailija")
+        self.assertEqual(self.recommendation.get_author(), "Kirjailija")
+
+    def test_set_description(self):
+        self.recommendation.set_description("Kuvaus")
+        self.assertEqual(self.recommendation.get_description(), "Kuvaus")
+
+    def test_set_isbn(self):
+        self.recommendation.set_isbn("1100")
+        self.assertEqual(self.recommendation.get_isbn(), "1100")
