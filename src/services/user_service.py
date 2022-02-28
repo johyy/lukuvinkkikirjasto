@@ -1,5 +1,3 @@
-from entities.user import User
-
 class UserService:
     """ Class responsible for user logic."""
 
@@ -8,11 +6,12 @@ class UserService:
         Args:"""
 
         self.user = None
+        self._current_user = None
 
     def get_current_user(self):
         """ Returns the current user.
         Returns:
-            
+
         """
 
         return self._current_user
@@ -25,6 +24,6 @@ class UserService:
         Args:
             username: [String] The name of the user.
         """
-    
+
 
 user_service = UserService()

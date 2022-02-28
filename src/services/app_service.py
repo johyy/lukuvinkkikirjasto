@@ -8,7 +8,7 @@ class AppService:
     def __init__(self):
         """ Class constructor. Creates a new app service.
         Args:"""
-        
+
         self._user_repository = UserRepository
         self._user = None
 
@@ -24,12 +24,11 @@ class AppService:
                 Invalid username and/or password.
         """
         new_user = self._user_repository.get_user(username)
-        if new_user != False:
+        if new_user is not False:
             if check_password_hash(new_user[1], password):
                 self._user = User(new_user[0], new_user[1])
                 return True, ""
-            else:
-                return False, "Käyttäjänimi tai salasana virheellinen"
+            return False, "Käyttäjänimi tai salasana virheellinen"
         return False, "Käyttäjänimi tai salasana virheellinen"
 
     def logout(self):
