@@ -1,5 +1,4 @@
 from app import app
-#from services.user_service import UserService as user_service
 from flask import render_template, request, redirect, url_for
 from services.recommendation_service import RecommendationService as recommendation_service
 from repositories.tip_repository import TipRepository as tip_repository

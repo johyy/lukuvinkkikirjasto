@@ -1,6 +1,8 @@
+
+from repositories import user_repository
 from entities import user
 from werkzeug.security import check_password_hash
-from repositories import user_repository
+
 
 
 class UserService:
