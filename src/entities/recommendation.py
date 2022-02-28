@@ -9,16 +9,18 @@ class Recommendation:
         """
 
         self._title = title
-        self._link  = link
+        self._link = link
 
-    ## Get
     def get_title(self):
+        """ Gets the title of the recommendation."""
+
         return self._title
 
     def get_link(self):
+        """ Gets the link to the recommendation."""
+
         return self._link
 
-    ## Set
     def set_title(self, title):
         """ Sets the title.
         Args:

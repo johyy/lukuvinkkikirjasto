@@ -1,5 +1,3 @@
-from repositories import user_repository
-
 class User:
     """ Class that represents a single user. """
 
@@ -9,15 +7,18 @@ class User:
             _username: [String] Unique identifier of the user.
             _password: [String] Password of the user profile.
         """
-        self.user_repository = user_repository
         self._username = username
         self._password = password
 
     ## Get
     def get_username(self):
+        """ Gets the name of the user."""
+
         return self._username
 
     def get_password(self):
+        """ Gets the password of the user."""
+
         return self._password
 
     ## Set
@@ -36,6 +37,3 @@ class User:
         """
 
         self._password = password
-    
-#    def get_user_db(self, username):
-#        return self.user_repository.get_user(username)

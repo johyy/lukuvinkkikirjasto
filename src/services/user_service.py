@@ -6,10 +6,11 @@ class UserService:
     """ Class responsible for user logic."""
 
     def __init__(self):
-        self.user_repository = user_repository
-        self.user = user
         """ Class constructor. Creates a new user service.
         Args:"""
+
+        self.user_repository = user_repository
+        self.user = user
 
     def get_current_user(self):
         """ Returns the current user.
