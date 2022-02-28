@@ -28,10 +28,10 @@ class UserService:
             username: [String] The name of the user.
         """
     def login(self, username, password):
-        user = self.user_repository.get_user(username)
-        if user != False:
-            if check_password_hash(user[1], password):
-                self._current_user = self.user(user[0], user[1])
+        new_user = self.user.get_user_db(username)
+        if new_user != False:
+            if check_password_hash(new_user[1], password):
+                self._current_user = self.user(new_user[0], new_user[1])
                 return True, ""
             else:
                 return False, "Käyttäjänimi tai salasana virheellinen"
