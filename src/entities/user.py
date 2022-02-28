@@ -15,9 +15,13 @@ class User:
 
     ## Get
     def get_username(self):
+        """ Gets the name of the user."""
+
         return self._username
 
     def get_password(self):
+        """ Gets the password of the user."""
+
         return self._password
 
     ## Set
@@ -36,6 +40,3 @@ class User:
         """
 
         self._password = password
-    
-#    def get_user_db(self, username):
-#        return self.user_repository.get_user(username)
