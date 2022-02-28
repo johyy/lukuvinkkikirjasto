@@ -1,9 +1,9 @@
 from app import app
 from flask import render_template, request, redirect, url_for
-from services.user_service import UserService as user_service
 from services.recommendation_service import RecommendationService as recommendation_service
 from services.app_service import AppService as app_service
 from repositories.tip_repository import TipRepository as tip_repository
+from services.user_service import UserService as user_service
 
 
 @app.route("/")
