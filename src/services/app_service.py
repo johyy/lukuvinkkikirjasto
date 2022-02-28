@@ -1,6 +1,7 @@
 from flask import session
 from werkzeug.security import check_password_hash
 from repositories.user_repository import UserRepository
+from repositories.tip_repository import TipRepository
 from entities.user import User_account
 from services.user_service import UserService
 
@@ -11,9 +12,10 @@ class AppService:
         """ Class constructor. Creates a new app service.
         Args:"""
 
-        self.user_repository = UserRepository
+        self.user_repository = UserRepository()
+        self.recommendation_repository = TipRepository()
+        self.user_service = UserService(self.user_repository, self.recommendation_repository)
         self._current_user = None
-        self.user_service = UserService
 
     def login(self, username, password):
         """ Log in user.
@@ -64,7 +66,7 @@ class AppService:
             user = User_account(username=username, password=password)
             if self.user_repository.add_a_new_user(user):
                 self.set_current_user(user)
-                return user, message
+                return user
             message = "Tunnus on jo olemassa."
         else:
             message = "Tunnuksessa oltava vähintään 3 merkkiä ja salasanassa vähintään 8 merkkiä ja vähintään yksi numero tai erikoismerkki."
