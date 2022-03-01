@@ -1,34 +1,33 @@
-from entities.user import User
-from repositories.user_repository import UserRepository
+import os
+from entities.recommendation import Recommendation
 
 class UserService:
     """ Class responsible for user logic."""
 
-    def __init__(self):
-        self.user_repository = UserRepository
+    def __init__(self, user_repository, recommendation_repository, user=None):
         """ Class constructor. Creates a new user service.
         Args:"""
 
-    def get_current_user(self):
-        """ Returns the current user.
-        Returns:
-            
-        """
-
-        return self._current_user
-
-    def set_current_user(self, user):
+        self.user_repository = user_repository
+        self.recommendation_repository = recommendation_repository
         self._current_user = user
+        self.user_token = None
 
-    def create_user(self, username, password):
-        """ Creates a new user.
-        Args:
-            username: [String] The name of the user.
-        """
-    def login(self, username, password):
-        if self.user_repository.login(username, password):
-            return True
+    def add_recommendation(self, title, link):
+        """ Adds a recommendation to the current user."""
+        if title != "" and link != "":
+            recommendation = Recommendation(title=title, link=link)
+            self._current_user.add_recommendation(recommendation)
+            self.recommendation_repository.add_new_tip(self._current_user.get_id(), recommendation)
 
-        return False
+    def create_csrf_token(self):
+        """ Creates new CSRF token. """
+        self.user_token = os.urandom(16).hex()
+        return self.user_token
 
-user_service = UserService()
+    def check_csrf(self, token):
+        """ Checks CSRF token. """
+        if self.user_token != token:
+            return False
+        return True
+    
