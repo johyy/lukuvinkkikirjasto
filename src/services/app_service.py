@@ -1,9 +1,10 @@
 from flask import session
 from werkzeug.security import check_password_hash
-from repositories.user_repository import UserRepository
-from repositories.tip_repository import TipRepository
+from repositories.user_repository import UserRepository as user_repository
+from repositories.tip_repository import TipRepository as tip_repository
 from entities.user import User_account
 from services.user_service import UserService
+
 
 class AppService:
     """ Class responsible for app logic."""
@@ -12,9 +13,7 @@ class AppService:
         """ Class constructor. Creates a new app service.
         Args:"""
 
-        self.user_repository = UserRepository
-        self.recommendation_repository = TipRepository
-        self.user_service = UserService(self.user_repository, self.recommendation_repository)
+        self.user_service = UserService(user_repository, tip_repository)
         self._current_user = None
 
     def login(self, username, password):
@@ -29,11 +28,14 @@ class AppService:
                 Invalid username and/or password.
         """
 
-        new_user = self.user_repository.get_user(self.user_repository, username)
+        new_user = user_repository.get_user(user_repository, username)
         if new_user is not False:
-            if check_password_hash(new_user[2], password):
-                self.user = User_account(username=username, password=new_user[2])
-                session["csrf_token"] = self.user_service.check_csrf()
+            if new_user[1] == password:
+                self.current_user = User_account(
+                    username=username, password=new_user[1])
+                #session["csrf_token"] = self.user_service.check_csrf()
+                session["user_id"] = new_user[3]
+                session["user_name"] = username
                 return True, ""
         return False, "Käyttäjänimi tai salasana virheellinen"
 
@@ -42,6 +44,8 @@ class AppService:
         """
 
         self._current_user = None
+        del session["user_id"]
+        del session["user_name"]
 
     def get_current_user(self):
         """ Returns the current user.
@@ -64,12 +68,12 @@ class AppService:
                 message = "Salasanat eivät täsmää"
                 return None, message
             user = User_account(username=username, password=password)
-            if self.user_repository.add_a_new_user(self.user_repository, user):
-                self.set_current_user(user)
-                return user
+            if user_repository.add_a_new_user(user_repository, user):
+                return True, ""
             message = "Tunnus on jo olemassa."
         else:
             message = "Tunnuksessa oltava vähintään 3 merkkiä ja salasanassa vähintään 8 merkkiä ja vähintään yksi numero tai erikoismerkki."
-        return None, message
+        return False, message
+
 
 app_service = AppService()

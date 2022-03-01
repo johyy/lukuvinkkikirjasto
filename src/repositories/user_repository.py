@@ -22,3 +22,5 @@ class UserRepository:
             return False
 
         return user
+
+user_repository = UserRepository()
