@@ -32,5 +32,4 @@ class User:
         Args:
             password: [String] The password to be set.
         """
-
         self._password = password

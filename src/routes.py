@@ -8,7 +8,6 @@ from repositories.tip_repository import TipRepository as tip_repository
 @app.route("/")
 def index():
     recommendations_list = tip_repository.fetch_all_tips(tip_repository)
-
     return render_template("index.html", sort_option="1", recommendations_list=recommendations_list)
 
 @app.route("/sort_by", methods = ["POST"])
