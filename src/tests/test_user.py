@@ -1,11 +1,11 @@
 import unittest
-from entities.user import User
+from entities.user import User_account
 from entities.recommendation import Recommendation
 
 class TestUser(unittest.TestCase):
     def setUp(self):
-        self.user = User("testi", "salasana")
-        self.recommendation = Recommendation("Otsake", "linkki")
+        self.user = User_account(username="testi", password="salasana")
+        self.recommendation = Recommendation(title="Otsake", link="linkki")
 
 
     def test_create_user(self):
@@ -31,5 +31,13 @@ class TestUser(unittest.TestCase):
 
     def test_remove_nonexisting_recommendation(self):
         self.user.add_recommendation(self.recommendation)
-        self.user.remove_recommendation(Recommendation("toinen", "linkki"))
+        self.user.remove_recommendation(Recommendation(title="toinen", link="linkki"))
         self.assertEqual(self.user.get_recommendations()[0], self.recommendation)
+
+    def test_is_user_admin_if_not(self):
+        self.assertEqual(self.user.is_admin(), False)
+
+    def test_is_user_admin_if_is(self):
+        self.user.set_admin(True)
+        self.assertEqual(self.user.is_admin(), True)
+

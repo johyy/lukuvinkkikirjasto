@@ -17,10 +17,10 @@ class TipRepository:
             return True
         except Exception:
             return False
-    
+
     def order_by(self, sort_option):
         order_by = ""
-        
+
         if sort_option=="1": order_by += " ORDER BY R.creation_time DESC"
         if sort_option=="2": order_by += " ORDER BY R.creation_time ASC"
         if sort_option=="3": order_by += " ORDER BY R.header ASC"
@@ -36,10 +36,9 @@ class TipRepository:
         sql = "SELECT R.header, R.author, R.description, R.creation_time, U.username"\
               " FROM recommendations R LEFT JOIN users U ON R.user_id=U.id"
 
-        sql += " " + self.order_by(self, sort_option); 
+        sql += " " + self.order_by(self, sort_option);
 
         result = db.session.execute(sql)
         return result.fetchall()
 
-tip_repository = TipRepository() 
-
+tip_repository = TipRepository()

@@ -1,6 +1,20 @@
-class Recommendation:
-    """ Class that represents a single reading recommendation. """
+# pylint: disable=no-member
+from app import db
 
+class Recommendation(db.Model):
+    """ Class that represents a single reading recommendation. """
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(80), nullable = False)
+    link = db.Column(db.String(80), nullable = False)
+    media = db.Column(db.String(80), nullable = True)
+    author = db.Column(db.String(80), nullable = True)
+    description = db.Column(db.String(80), nullable = True)
+    isbn = db.Column(db.String(80), nullable = True)
+    
+    user_id = db.Column(db.Integer, db.ForeignKey('user_account.id'), nullable=False)
+    user_account = db.relationship('User_account', backref=db.backref('recommendations', lazy=True))
+
+    '''
     def __init__(self, title, link):
         """ Class constructor. Creates a new reading recommendation.
         Attributes:
@@ -14,36 +28,37 @@ class Recommendation:
         self._author = None
         self._description = None
         self._isbn = None
+    '''
 
     def get_title(self):
         """ Gets the title of the recommendation."""
 
-        return self._title
+        return self.title
 
     def get_link(self):
         """ Gets the link to the recommendation."""
 
-        return self._link
+        return self.link
 
     def get_media(self):
         """ Gets the media type of the recommendation."""
 
-        return self._media
+        return self.media
 
     def get_author(self):
         """ Gets the author of the recommendation."""
 
-        return self._author
+        return self.author
 
     def get_description(self):
         """ Gets the description of the recommendation."""
 
-        return self._description
+        return self.description
 
     def get_isbn(self):
         """ Gets the isbn of the recommendation."""
 
-        return self._isbn
+        return self.isbn
 
     def set_title(self, title):
         """ Sets the title.
@@ -51,7 +66,7 @@ class Recommendation:
             title: [String] The title to be set.
         """
 
-        self._title = title
+        self.title = title
 
     def set_link(self, link):
         """ Sets the link.
@@ -59,7 +74,7 @@ class Recommendation:
             link: [String] The link to be set.
         """
 
-        self._link = link
+        self.link = link
 
     def set_media(self, media):
         """ Sets the media type.
@@ -67,7 +82,7 @@ class Recommendation:
             media: [String] The media type to be set.
         """
 
-        self._media = media
+        self.media = media
 
     def set_author(self, author):
         """ Sets the author.
@@ -75,7 +90,7 @@ class Recommendation:
             author: [String] The author to be set.
         """
 
-        self._author = author
+        self.author = author
 
     def set_description(self, description):
         """ Sets the description.
@@ -83,7 +98,7 @@ class Recommendation:
             description: [String] The description to be set.
         """
 
-        self._description = description
+        self.description = description
 
     def set_isbn(self, isbn):
         """ Sets the isbn.
@@ -91,4 +106,4 @@ class Recommendation:
             isbn: [String] The isbn to be set.
         """
 
-        self._isbn = isbn
+        self.isbn = isbn

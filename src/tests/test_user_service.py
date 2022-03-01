@@ -1,13 +1,13 @@
 import unittest
 from unittest.mock import Mock, ANY
 from services.user_service import UserService
-from entities.user import User
+from entities.user import User_account
 
 class TestUserService(unittest.TestCase):
     def setUp(self):
         user_repo_mock = Mock()
         recommendation_repo_mock = Mock()
-        self.user = User("nimi1", "salasana456")
+        self.user = User_account(username="nimi1", password="salasana456")
         self.us = UserService(user_repo_mock, recommendation_repo_mock, self.user)
 
     def test_user_adds_recommendation(self):
