@@ -51,9 +51,6 @@ class User_account(db.Model):
         Args:
             password: [String] The password to be set.
         """
-<<<<<<< HEAD
-        self._password = password
-=======
 
         self.password = password
 
@@ -85,4 +82,3 @@ class User_account(db.Model):
         if self.admin == None:
             return False
         return self.admin
->>>>>>> 274ba995a20627652e1a4091a3f80f2c06b9b11e
