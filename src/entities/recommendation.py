@@ -1,5 +1,5 @@
 # pylint: disable=no-member
-from app import db
+from db import db
 
 class Recommendation(db.Model):
     """ Class that represents a single reading recommendation. """
@@ -10,7 +10,7 @@ class Recommendation(db.Model):
     author = db.Column(db.String(80), nullable = True)
     description = db.Column(db.String(80), nullable = True)
     isbn = db.Column(db.String(80), nullable = True)
-    
+
     user_id = db.Column(db.Integer, db.ForeignKey('user_account.id'), nullable=False)
     user_account = db.relationship('User_account', backref=db.backref('recommendations', lazy=True))
 

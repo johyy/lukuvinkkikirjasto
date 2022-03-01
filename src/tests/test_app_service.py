@@ -1,10 +1,19 @@
 import unittest
 from services.app_service import AppService
 from entities.user import User_account
+from create_application import create_app
+from db import db
 
 
 class TestAppService(unittest.TestCase):
     def setUp(self):
+        app = create_app()
+        app.app_context().push()
+        with app.app_context():
+            from entities.user import User_account
+            from entities.recommendation import Recommendation
+            db.create_all()
+            db.session.commit()
         self.user = User_account(username="nimi", password="salasana456")
         self.apps = AppService()
 

@@ -1,4 +1,4 @@
-from app import db
+from db import db
 from werkzeug.security import generate_password_hash
 
 class UserRepository:
@@ -22,3 +22,5 @@ class UserRepository:
             return False
 
         return user
+
+user_repository = UserRepository()

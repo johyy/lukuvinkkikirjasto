@@ -1,6 +1,7 @@
 import os
 from entities.recommendation import Recommendation
 
+
 class UserService:
     """ Class responsible for user logic."""
 
@@ -18,7 +19,8 @@ class UserService:
         if title != "" and link != "":
             recommendation = Recommendation(title=title, link=link)
             self._current_user.add_recommendation(recommendation)
-            self.recommendation_repository.add_new_tip(self._current_user.get_id(), recommendation)
+            self.recommendation_repository.add_new_tip(
+                self._current_user.get_id(), recommendation)
 
     def create_csrf_token(self):
         """ Creates new CSRF token. """
@@ -30,4 +32,3 @@ class UserService:
         if self.user_token != token:
             return False
         return True
-    
