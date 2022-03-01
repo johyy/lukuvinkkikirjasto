@@ -2,6 +2,7 @@ import unittest
 from services.app_service import AppService
 from entities.user import User_account
 
+
 class TestAppService(unittest.TestCase):
     def setUp(self):
         self.user = User_account(username="nimi", password="salasana456")
@@ -27,3 +28,11 @@ class TestAppService(unittest.TestCase):
     def test_register_with_nonmatchin_passwords(self):
         user = self.apps.register("nimi3", "salasana333", "salasana334")
         self.assertEqual(user[0], None)
+    
+    def test_login_with_incorrect_user(self):
+        self.assertEqual(self.apps.login("nimi", "salasana456"), (False, 'Käyttäjänimi tai salasana virheellinen'))
+    
+#    def test_login_with_correct_user(self):
+#        self.apps.register("nimi1", "salasana123", "salasana123")
+#        self.assertEqual(self.apps.login("nimi1", "salasana456"), (True, ''))
+
