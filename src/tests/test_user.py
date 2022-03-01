@@ -1,3 +1,4 @@
+
 import unittest
 from entities.user import User_account
 from entities.recommendation import Recommendation
@@ -40,4 +41,3 @@ class TestUser(unittest.TestCase):
     def test_is_user_admin_if_is(self):
         self.user.set_admin(True)
         self.assertEqual(self.user.is_admin(), True)
-
