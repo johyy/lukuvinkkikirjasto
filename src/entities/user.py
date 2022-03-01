@@ -16,7 +16,6 @@ class User_account(db.Model):
             _username: [String] Unique identifier of the user.
             _password: [String] Password of the user profile.
         """
-
         self._id = uuid.uuid1()
         self._username = username
         self._password = password
@@ -81,4 +80,4 @@ class User_account(db.Model):
     def is_admin(self):
         if self.admin == None:
             return False
-        return self.admin
+        return self.
