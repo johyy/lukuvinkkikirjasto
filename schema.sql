@@ -55,7 +55,7 @@ CREATE TABLE tests.users (
 
 CREATE TABLE tests.recommendations (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users,
+    user_id INTEGER REFERENCES tests.users,
     media TEXT,
     header TEXT,
     author TEXT,
@@ -67,27 +67,27 @@ CREATE TABLE tests.recommendations (
 
 CREATE TABLE tests.tags (
     id SERIAL PRIMARY KEY,
-    recommendations_id INTEGER REFERENCES recommendations,
+    recommendations_id INTEGER REFERENCES tests.recommendations,
     tag TEXT
 );
 
 CREATE TABLE tests.courses (
     id SERIAL PRIMARY KEY,
-    recommendations_id INTEGER REFERENCES recommendations,
+    recommendations_id INTEGER REFERENCES tests.recommendations,
     course_header TEXT,
     course_id TEXT
 );
 
 CREATE TABLE tests.favorites (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users,
-    recommendations_id INTEGER REFERENCES recommendations,
+    user_id INTEGER REFERENCES tests.users,
+    recommendations_id INTEGER REFERENCES tests.recommendations,
     done_reading BOOLEAN
 );
 
 CREATE TABLE tests.likes (
     result INTEGER,
 	creation_time TIMESTAMP,
-    recommendations_id INTEGER REFERENCES recommendations,
-    user_id INTEGER REFERENCES users
+    recommendations_id INTEGER REFERENCES tests.recommendations,
+    user_id INTEGER REFERENCES tests.users
 );
