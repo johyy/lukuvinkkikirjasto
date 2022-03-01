@@ -1,21 +1,20 @@
 import secrets
 from werkzeug.security import generate_password_hash
 from db import db
-
 class StubUserRepository:
     """Class that handles database queries for users"""
 
     def __init__(self):
         """Class constructor"""
 
-    def add_a_new_user(self, user, admin):
+    def add_a_new_user(self, username, password, admin):
         """Adds a new user."""
-        hash_value = generate_password_hash(user.get_password())
+        #hash_value = generate_password_hash(user.get_password())
         try:
-            sql = """INSERT INTO tests.users (username,password, is_admin)
+            sql = """INSERT INTO tests.users (username, password, is_admin)
             VALUES (:username,:password, :admin)"""
-            db.session.execute(sql, {"username": user.get_username(),
-            "password": hash_value, "admin": admin})
+            db.session.execute(sql, {"username": username,
+            "password": password, "admin": admin})
             db.session.commit()
             return True
         except Exception:
