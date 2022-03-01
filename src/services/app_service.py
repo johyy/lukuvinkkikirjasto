@@ -1,10 +1,8 @@
 from flask import session
-from werkzeug.security import check_password_hash
 from repositories.user_repository import UserRepository as user_repository
 from repositories.tip_repository import TipRepository as tip_repository
 from entities.user import User_account
 from services.user_service import UserService
-
 
 class AppService:
     """ Class responsible for app logic."""
@@ -17,21 +15,12 @@ class AppService:
         self._current_user = None
 
     def login(self, username, password):
-        """ Log in user.
-        Args:
-            username: [String] Username of the user.
-            password: [String] Password of the user.
-        Returns:
-            [User] User entity that is logged in.
-        Raises:
-            InvalidCredentialsError:
-                Invalid username and/or password.
-        """
+        """ Log in user."""
 
         new_user = user_repository.get_user(user_repository, username)
         if new_user is not False:
             if new_user[1] == password:
-                self.current_user = User_account(
+                self._current_user = User_account(
                     username=username, password=new_user[1])
                 #session["csrf_token"] = self.user_service.check_csrf()
                 session["user_id"] = new_user[3]

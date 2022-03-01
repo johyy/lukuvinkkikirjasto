@@ -15,3 +15,4 @@ with app.app_context():
     from entities.recommendation import Recommendation
     db.create_all()
     db.session.commit()
+    

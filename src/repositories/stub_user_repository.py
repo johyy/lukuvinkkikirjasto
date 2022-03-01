@@ -1,6 +1,5 @@
-import secrets
-from werkzeug.security import generate_password_hash
 from db import db
+
 class StubUserRepository:
     """Class that handles database queries for users"""
 

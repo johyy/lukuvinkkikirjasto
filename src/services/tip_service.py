@@ -1,8 +1,9 @@
-from entities.user import User
+from entities.user import User_account
 from repositories.tip_repository import TipRepository
 
 class TipService:
+    """Tip Service """
 
     def __init__(self):
-        pass
-
+        self.user = User_account
+        self.tips = TipRepository
