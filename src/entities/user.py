@@ -2,6 +2,13 @@
 import uuid
 from app import db
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> adaa85b92896fbb40d3028391038f1b1049365d4
+>>>>>>> Stashed changes
 class User_account(db.Model):
     """ Class that represents a single user. """
     id = db.Column(db.Integer, primary_key=True)
@@ -80,4 +87,12 @@ class User_account(db.Model):
     def is_admin(self):
         if self.admin == None:
             return False
+<<<<<<< Updated upstream
         return self.
+=======
+<<<<<<< HEAD
+        return self.
+=======
+        return self.admin
+>>>>>>> adaa85b92896fbb40d3028391038f1b1049365d4
+>>>>>>> Stashed changes
