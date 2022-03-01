@@ -1,5 +1,5 @@
 # pylint: disable=no-member
-from app import db
+from db import db
 
 class Recommendation(db.Model):
     """ Class that represents a single reading recommendation. """

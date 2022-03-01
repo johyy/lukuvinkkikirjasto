@@ -1,6 +1,6 @@
 # pylint: disable=no-member
 import uuid
-from app import db
+from db import db
 
 class User_account(db.Model):
     """ Class that represents a single user. """

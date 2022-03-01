@@ -9,7 +9,6 @@ from services.user_service import UserService as user_service
 @app.route("/")
 def index():
     recommendations_list = tip_repository.fetch_all_tips(tip_repository)
-
     return render_template("index.html", sort_option="1", recommendations_list=recommendations_list)
 
 
@@ -55,7 +54,7 @@ def register():
         return render_template("register.html")
 
     if request.method == "POST":
-        name = request.form["name"]
+        name = request.form["username"]
         password = request.form["password"]
         password_again = request.form["password_again"]
 
