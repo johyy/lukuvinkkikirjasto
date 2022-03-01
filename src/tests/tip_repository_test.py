@@ -1,6 +1,6 @@
 import unittest
-from repositories.tip_repository import TipRepository
-from entities.recommendation import Recommendation
+#from repositories.tip_repository import TipRepository
+#from entities.recommendation import Recommendation
 
 
 class TestTipRepository(unittest.TestCase):
