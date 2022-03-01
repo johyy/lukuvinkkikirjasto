@@ -20,4 +20,5 @@ class UserRepository:
         user = result.fetchone()
         if not user:
             return False
+
         return user
