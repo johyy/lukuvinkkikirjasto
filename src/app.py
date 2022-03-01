@@ -1,6 +1,6 @@
-from entities.recommendation import Recommendation
-from entities.user import User_account
-import routes
+#from entities.recommendation import Recommendation
+#from entities.user import User_account
+#import routes
 from os import getenv
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -14,3 +14,5 @@ db = SQLAlchemy(app)
 
 db.create_all()
 db.session.commit()
+
+import routes

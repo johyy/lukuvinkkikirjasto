@@ -36,7 +36,7 @@ def login():
         name = request.form["name"]
         password = request.form["password"]
 
-        success, error = app_service.login(name, password)
+        success, error = app_service.login(app_service, name, password)
         if not success:
             return render_template("login.html", error=error)
         return redirect("/")
@@ -44,7 +44,7 @@ def login():
 
 @app.route("/logout")
 def logout():
-    app_service.logout()
+    app_service.logout(app_service)
     return redirect("/")
 
 
@@ -59,8 +59,9 @@ def register():
         password = request.form["password"]
         password_again = request.form["password_again"]
 
-        user, error = app_service.register(name, password, password_again)
-        if user == None:
+        valid, error = app_service.register(
+            app_service, name, password, password_again)
+        if not valid:
             return render_template("register.html", error=error)
-        app_service.login(name, password)
+        app_service.login(app_service, name, password)
         return redirect("/")
