@@ -8,7 +8,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///tuukkapuonti"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
-
+import routes
 from entities.user import User_account
 from entities.recommendation import Recommendation
 
