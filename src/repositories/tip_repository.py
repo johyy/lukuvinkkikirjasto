@@ -7,16 +7,9 @@ class TipRepository:
         """Class constructor"""
 
     def add_new_tip(self, user_id, recommendation):
-        try:
-            sql = "INSERT INTO recommendations (user_id, media, header, author, " \
-                "description, url_link, isbn, creation_time) VALUES (:user_id, :media, :header, :author, :description," \
-                ":url_link, :isbn, NOW())"
-            db.session.execute(sql, {"user_id": user_id, "media": recommendation.get_media(), "header": recommendation.get_title(), "author": recommendation.get_author(),
-                                          "description": recommendation.get_description(), "url_link": recommendation.get_link(), "isbn": recommendation.get_isbn()})
-            db.session.commit()
-            return True
-        except Exception:
-            return False
+        db.session.add(recommendation)
+        db.session.commit()
+        return True
 
     def order_by(self, sort_option):
         order_by = ""
@@ -33,12 +26,16 @@ class TipRepository:
         return order_by
 
     def fetch_all_tips(self, sort_option="1"):
+        return []
+    """
         sql = "SELECT R.header, R.author, R.description, R.creation_time, U.username"\
-              " FROM recommendations R LEFT JOIN users U ON R.user_id=U.id"
+              " FROM recommendation R LEFT JOIN user U ON R.user_id=U.id"
 
         sql += " " + self.order_by(self, sort_option);
 
         result = db.session.execute(sql)
-        return result.fetchall()
+        
+        return result.fetchall()"""
+        
 
 tip_repository = TipRepository()
