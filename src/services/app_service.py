@@ -12,8 +12,8 @@ class AppService:
         """ Class constructor. Creates a new app service.
         Args:"""
 
-        self.user_repository = UserRepository()
-        self.recommendation_repository = TipRepository()
+        self.user_repository = UserRepository
+        self.recommendation_repository = TipRepository
         self.user_service = UserService(self.user_repository, self.recommendation_repository)
         self._current_user = None
 
@@ -29,7 +29,7 @@ class AppService:
                 Invalid username and/or password.
         """
 
-        new_user = self.user_repository.get_user(username)
+        new_user = self.user_repository.get_user(self.user_repository, username)
         if new_user is not False:
             if check_password_hash(new_user[2], password):
                 self.user = User_account(username=username, password=new_user[2])
@@ -64,7 +64,7 @@ class AppService:
                 message = "Salasanat eivät täsmää"
                 return None, message
             user = User_account(username=username, password=password)
-            if self.user_repository.add_a_new_user(user):
+            if self.user_repository.add_a_new_user(self.user_repository, user):
                 self.set_current_user(user)
                 return user
             message = "Tunnus on jo olemassa."
