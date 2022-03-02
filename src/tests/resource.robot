@@ -7,7 +7,7 @@ Library  ../AppLibrary.py
 ${SERVER}  localhost:5000
 ${BROWSER}  chrome
 ${DELAY}  0.5 seconds
-${HOME URL}  http://${SERVER}
+${HOME URL}  http://${SERVER}/
 ${LOGIN URL}  http://${SERVER}/login
 ${REGISTER URL}  http://${SERVER}/register
 

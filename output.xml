@@ -1,208 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.1.3 (Python 3.8.10 on linux)" generated="20220301 18:22:29.333" rpa="false" schemaversion="2">
-<suite id="s1" name="Tests" source="/home/katjaker/Miniprojekti/lukuvinkkikirjasto/src/tests">
-<suite id="s1-s1" name="Index" source="/home/katjaker/Miniprojekti/lukuvinkkikirjasto/src/tests/index.robot">
+<robot generator="Robot 4.1.3 (Python 3.8.10 on linux)" generated="20220302 10:16:03.528" rpa="false" schemaversion="2">
+<suite id="s1" name="Register" source="/home/katjaker/Miniprojekti/lukuvinkkikirjasto/src/tests/register.robot">
 <kw name="Open And Configure Browser" library="resource" type="SETUP">
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>browser=${BROWSER}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20220301 18:22:29.474" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
-<status status="PASS" starttime="20220301 18:22:29.474" endtime="20220301 18:22:30.305"/>
+<msg timestamp="20220302 10:16:03.672" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<status status="PASS" starttime="20220302 10:16:03.672" endtime="20220302 10:16:04.491"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20220301 18:22:30.305" endtime="20220301 18:22:30.428"/>
+<status status="PASS" starttime="20220302 10:16:04.492" endtime="20220302 10:16:04.642"/>
 </kw>
 <kw name="Set Selenium Speed" library="SeleniumLibrary">
 <arg>${DELAY}</arg>
 <doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" starttime="20220301 18:22:30.428" endtime="20220301 18:22:30.429"/>
+<status status="PASS" starttime="20220302 10:16:04.642" endtime="20220302 10:16:04.644"/>
 </kw>
-<status status="PASS" starttime="20220301 18:22:29.473" endtime="20220301 18:22:30.429"/>
+<status status="PASS" starttime="20220302 10:16:03.671" endtime="20220302 10:16:04.644"/>
 </kw>
-<test id="s1-s1-t1" name="Click Login Link">
-<kw name="Home Page Should Be Open" library="resource" type="SETUP">
-<kw name="Title Should Be" library="SeleniumLibrary">
-<arg>Home</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<msg timestamp="20220301 18:22:31.631" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-24.png"&gt;&lt;img src="selenium-screenshot-24.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20220301 18:22:31.636" level="FAIL">Title should have been 'Home' but was ''.</msg>
-<status status="FAIL" starttime="20220301 18:22:30.430" endtime="20220301 18:22:31.636"/>
-</kw>
-<status status="FAIL" starttime="20220301 18:22:30.430" endtime="20220301 18:22:31.638"/>
-</kw>
-<status status="FAIL" starttime="20220301 18:22:30.429" endtime="20220301 18:22:31.639">Setup failed:
-Title should have been 'Home' but was ''.</status>
-</test>
-<test id="s1-s1-t2" name="Click Register Link">
-<kw name="Home Page Should Be Open" library="resource" type="SETUP">
-<kw name="Title Should Be" library="SeleniumLibrary">
-<arg>Home</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<msg timestamp="20220301 18:22:32.825" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-25.png"&gt;&lt;img src="selenium-screenshot-25.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20220301 18:22:32.827" level="FAIL">Title should have been 'Home' but was ''.</msg>
-<status status="FAIL" starttime="20220301 18:22:31.645" endtime="20220301 18:22:32.827"/>
-</kw>
-<status status="FAIL" starttime="20220301 18:22:31.643" endtime="20220301 18:22:32.829"/>
-</kw>
-<status status="FAIL" starttime="20220301 18:22:31.641" endtime="20220301 18:22:32.830">Setup failed:
-Title should have been 'Home' but was ''.</status>
-</test>
-<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
-<doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20220301 18:22:32.833" endtime="20220301 18:22:33.397"/>
-</kw>
-<status status="FAIL" starttime="20220301 18:22:29.349" endtime="20220301 18:22:33.398"/>
-</suite>
-<suite id="s1-s2" name="Login" source="/home/katjaker/Miniprojekti/lukuvinkkikirjasto/src/tests/login.robot">
-<kw name="Open And Configure Browser" library="resource" type="SETUP">
-<kw name="Open Browser" library="SeleniumLibrary">
-<arg>browser=${BROWSER}</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20220301 18:22:33.419" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
-<status status="PASS" starttime="20220301 18:22:33.418" endtime="20220301 18:22:34.251"/>
-</kw>
-<kw name="Maximize Browser Window" library="SeleniumLibrary">
-<doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20220301 18:22:34.251" endtime="20220301 18:22:34.906"/>
-</kw>
-<kw name="Set Selenium Speed" library="SeleniumLibrary">
-<arg>${DELAY}</arg>
-<doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" starttime="20220301 18:22:34.906" endtime="20220301 18:22:34.908"/>
-</kw>
-<status status="PASS" starttime="20220301 18:22:33.417" endtime="20220301 18:22:34.909"/>
-</kw>
-<test id="s1-s2-t1" name="Login With Correct Credentials">
-<kw name="Create User And Go To Login Page" type="SETUP">
-<kw name="Create User" library="AppLibrary">
-<arg>kurpitsa</arg>
-<arg>salasana1234</arg>
-<status status="PASS" starttime="20220301 18:22:34.913" endtime="20220301 18:22:34.935"/>
-</kw>
-<kw name="Go To Login Page" library="resource">
-<kw name="Go To" library="SeleniumLibrary">
-<arg>${LOGIN URL}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<msg timestamp="20220301 18:22:34.937" level="INFO">Opening url 'http://localhost:5000/login'</msg>
-<status status="PASS" starttime="20220301 18:22:34.936" endtime="20220301 18:22:35.696"/>
-</kw>
-<status status="PASS" starttime="20220301 18:22:34.935" endtime="20220301 18:22:35.697"/>
-</kw>
-<kw name="Login Page Should Be Open" library="resource">
-<kw name="Title Should Be" library="SeleniumLibrary">
-<arg>Login</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<msg timestamp="20220301 18:22:36.888" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-26.png"&gt;&lt;img src="selenium-screenshot-26.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20220301 18:22:36.890" level="FAIL">Title should have been 'Login' but was 'Lukuvinkkikirjasto'.</msg>
-<status status="FAIL" starttime="20220301 18:22:35.698" endtime="20220301 18:22:36.890"/>
-</kw>
-<status status="FAIL" starttime="20220301 18:22:35.697" endtime="20220301 18:22:36.893"/>
-</kw>
-<status status="FAIL" starttime="20220301 18:22:34.911" endtime="20220301 18:22:36.895"/>
-</kw>
-<status status="FAIL" starttime="20220301 18:22:34.909" endtime="20220301 18:22:36.896">Setup failed:
-Title should have been 'Login' but was 'Lukuvinkkikirjasto'.</status>
-</test>
-<test id="s1-s2-t2" name="Login With Incorrect Password">
-<kw name="Create User And Go To Login Page" type="SETUP">
-<kw name="Create User" library="AppLibrary">
-<arg>kurpitsa</arg>
-<arg>salasana1234</arg>
-<status status="PASS" starttime="20220301 18:22:36.900" endtime="20220301 18:22:36.923"/>
-</kw>
-<kw name="Go To Login Page" library="resource">
-<kw name="Go To" library="SeleniumLibrary">
-<arg>${LOGIN URL}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<msg timestamp="20220301 18:22:36.925" level="INFO">Opening url 'http://localhost:5000/login'</msg>
-<status status="PASS" starttime="20220301 18:22:36.924" endtime="20220301 18:22:37.468"/>
-</kw>
-<status status="PASS" starttime="20220301 18:22:36.923" endtime="20220301 18:22:37.468"/>
-</kw>
-<kw name="Login Page Should Be Open" library="resource">
-<kw name="Title Should Be" library="SeleniumLibrary">
-<arg>Login</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<msg timestamp="20220301 18:22:38.654" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-27.png"&gt;&lt;img src="selenium-screenshot-27.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20220301 18:22:38.656" level="FAIL">Title should have been 'Login' but was 'Lukuvinkkikirjasto'.</msg>
-<status status="FAIL" starttime="20220301 18:22:37.470" endtime="20220301 18:22:38.656"/>
-</kw>
-<status status="FAIL" starttime="20220301 18:22:37.469" endtime="20220301 18:22:38.658"/>
-</kw>
-<status status="FAIL" starttime="20220301 18:22:36.899" endtime="20220301 18:22:38.659"/>
-</kw>
-<status status="FAIL" starttime="20220301 18:22:36.897" endtime="20220301 18:22:38.660">Setup failed:
-Title should have been 'Login' but was 'Lukuvinkkikirjasto'.</status>
-</test>
-<test id="s1-s2-t3" name="Login With Nonexistent Username">
-<kw name="Create User And Go To Login Page" type="SETUP">
-<kw name="Create User" library="AppLibrary">
-<arg>kurpitsa</arg>
-<arg>salasana1234</arg>
-<status status="PASS" starttime="20220301 18:22:38.661" endtime="20220301 18:22:38.670"/>
-</kw>
-<kw name="Go To Login Page" library="resource">
-<kw name="Go To" library="SeleniumLibrary">
-<arg>${LOGIN URL}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<msg timestamp="20220301 18:22:38.671" level="INFO">Opening url 'http://localhost:5000/login'</msg>
-<status status="PASS" starttime="20220301 18:22:38.671" endtime="20220301 18:22:39.199"/>
-</kw>
-<status status="PASS" starttime="20220301 18:22:38.670" endtime="20220301 18:22:39.200"/>
-</kw>
-<kw name="Login Page Should Be Open" library="resource">
-<kw name="Title Should Be" library="SeleniumLibrary">
-<arg>Login</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<msg timestamp="20220301 18:22:40.408" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-28.png"&gt;&lt;img src="selenium-screenshot-28.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20220301 18:22:40.410" level="FAIL">Title should have been 'Login' but was 'Lukuvinkkikirjasto'.</msg>
-<status status="FAIL" starttime="20220301 18:22:39.202" endtime="20220301 18:22:40.410"/>
-</kw>
-<status status="FAIL" starttime="20220301 18:22:39.201" endtime="20220301 18:22:40.412"/>
-</kw>
-<status status="FAIL" starttime="20220301 18:22:38.661" endtime="20220301 18:22:40.412"/>
-</kw>
-<status status="FAIL" starttime="20220301 18:22:38.660" endtime="20220301 18:22:40.413">Setup failed:
-Title should have been 'Login' but was 'Lukuvinkkikirjasto'.</status>
-</test>
-<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
-<doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20220301 18:22:40.414" endtime="20220301 18:22:40.974"/>
-</kw>
-<status status="FAIL" starttime="20220301 18:22:33.402" endtime="20220301 18:22:40.974"/>
-</suite>
-<suite id="s1-s3" name="Register" source="/home/katjaker/Miniprojekti/lukuvinkkikirjasto/src/tests/register.robot">
-<kw name="Open And Configure Browser" library="resource" type="SETUP">
-<kw name="Open Browser" library="SeleniumLibrary">
-<arg>browser=${BROWSER}</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20220301 18:22:41.001" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
-<status status="PASS" starttime="20220301 18:22:41.000" endtime="20220301 18:22:41.802"/>
-</kw>
-<kw name="Maximize Browser Window" library="SeleniumLibrary">
-<doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20220301 18:22:41.802" endtime="20220301 18:22:42.458"/>
-</kw>
-<kw name="Set Selenium Speed" library="SeleniumLibrary">
-<arg>${DELAY}</arg>
-<doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" starttime="20220301 18:22:42.459" endtime="20220301 18:22:42.461"/>
-</kw>
-<status status="PASS" starttime="20220301 18:22:40.998" endtime="20220301 18:22:42.462"/>
-</kw>
-<test id="s1-s3-t1" name="Register With Valid Username And Password">
+<test id="s1-t1" name="Login After Failed Registration">
 <kw name="Go To Register Page" type="SETUP">
 <kw name="Go to Registering Page" library="resource">
 <kw name="Go To" library="SeleniumLibrary">
 <arg>${REGISTER URL}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<msg timestamp="20220301 18:22:42.465" level="INFO">Opening url 'http://localhost:5000/register'</msg>
-<status status="PASS" starttime="20220301 18:22:42.464" endtime="20220301 18:22:43.189"/>
+<msg timestamp="20220302 10:16:04.653" level="INFO">Opening url 'http://localhost:5000/register'</msg>
+<status status="PASS" starttime="20220302 10:16:04.650" endtime="20220302 10:16:05.378"/>
 </kw>
-<status status="PASS" starttime="20220301 18:22:42.464" endtime="20220301 18:22:43.190"/>
+<status status="PASS" starttime="20220302 10:16:04.649" endtime="20220302 10:16:05.379"/>
 </kw>
-<status status="PASS" starttime="20220301 18:22:42.463" endtime="20220301 18:22:43.190"/>
+<status status="PASS" starttime="20220302 10:16:04.648" endtime="20220302 10:16:05.379"/>
 </kw>
 <kw name="Set Username">
 <arg>kurpitsa</arg>
@@ -210,10 +38,10 @@ Title should have been 'Login' but was 'Lukuvinkkikirjasto'.</status>
 <arg>username</arg>
 <arg>${username}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220301 18:22:43.195" level="INFO">Typing text 'kurpitsa' into text field 'username'.</msg>
-<status status="PASS" starttime="20220301 18:22:43.193" endtime="20220301 18:22:44.951"/>
+<msg timestamp="20220302 10:16:05.383" level="INFO">Typing text 'kurpitsa' into text field 'username'.</msg>
+<status status="PASS" starttime="20220302 10:16:05.382" endtime="20220302 10:16:07.038"/>
 </kw>
-<status status="PASS" starttime="20220301 18:22:43.191" endtime="20220301 18:22:44.952"/>
+<status status="PASS" starttime="20220302 10:16:05.380" endtime="20220302 10:16:07.039"/>
 </kw>
 <kw name="Set Password">
 <arg>salasana1234</arg>
@@ -221,814 +49,123 @@ Title should have been 'Login' but was 'Lukuvinkkikirjasto'.</status>
 <arg>password</arg>
 <arg>${password}</arg>
 <doc>Types the given password into the text field identified by ``locator``.</doc>
-<msg timestamp="20220301 18:22:44.955" level="INFO">Typing password into text field 'password'.</msg>
-<msg timestamp="20220301 18:22:46.041" level="INFO">Temporally setting log level to: NONE</msg>
-<msg timestamp="20220301 18:22:46.645" level="INFO">Log level changed from NONE to INFO.</msg>
-<status status="PASS" starttime="20220301 18:22:44.954" endtime="20220301 18:22:46.645"/>
+<msg timestamp="20220302 10:16:07.042" level="INFO">Typing password into text field 'password'.</msg>
+<msg timestamp="20220302 10:16:08.154" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20220302 10:16:08.763" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20220302 10:16:07.041" endtime="20220302 10:16:08.763"/>
 </kw>
-<status status="PASS" starttime="20220301 18:22:44.953" endtime="20220301 18:22:46.646"/>
+<status status="PASS" starttime="20220302 10:16:07.040" endtime="20220302 10:16:08.764"/>
 </kw>
 <kw name="Set Password Confirmation">
-<arg>salasana1234</arg>
+<arg>salasana12345</arg>
 <kw name="Input Password" library="SeleniumLibrary">
-<arg>password_confirmation</arg>
+<arg>password_again</arg>
 <arg>${password_confirmation}</arg>
 <doc>Types the given password into the text field identified by ``locator``.</doc>
-<msg timestamp="20220301 18:22:46.651" level="INFO">Typing password into text field 'password_confirmation'.</msg>
-<msg timestamp="20220301 18:22:46.667" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<msg timestamp="20220301 18:22:46.669" level="FAIL">WebDriverException: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<status status="FAIL" starttime="20220301 18:22:46.649" endtime="20220301 18:22:46.669"/>
+<msg timestamp="20220302 10:16:08.767" level="INFO">Typing password into text field 'password_again'.</msg>
+<msg timestamp="20220302 10:16:09.894" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20220302 10:16:10.511" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20220302 10:16:08.765" endtime="20220302 10:16:10.511"/>
 </kw>
-<status status="FAIL" starttime="20220301 18:22:46.647" endtime="20220301 18:22:46.670"/>
+<status status="PASS" starttime="20220302 10:16:08.764" endtime="20220302 10:16:10.512"/>
 </kw>
 <kw name="Submit Register Credentials">
-<status status="NOT RUN" starttime="20220301 18:22:46.671" endtime="20220301 18:22:46.671"/>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Luo uusi tunnus</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220302 10:16:10.514" level="INFO">Clicking button 'Luo uusi tunnus'.</msg>
+<status status="PASS" starttime="20220302 10:16:10.514" endtime="20220302 10:16:12.171"/>
 </kw>
-<kw name="Register Should Succeed">
-<status status="NOT RUN" starttime="20220301 18:22:46.671" endtime="20220301 18:22:46.671"/>
+<status status="PASS" starttime="20220302 10:16:10.513" endtime="20220302 10:16:12.172"/>
 </kw>
-<status status="FAIL" starttime="20220301 18:22:42.462" endtime="20220301 18:22:46.671">WebDriverException: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</status>
-</test>
-<test id="s1-s3-t2" name="Register With Too Short Username And Valid Password">
-<kw name="Go To Register Page" type="SETUP">
-<kw name="Go to Registering Page" library="resource">
+<kw name="Go To Login Page" library="resource">
 <kw name="Go To" library="SeleniumLibrary">
-<arg>${REGISTER URL}</arg>
+<arg>${LOGIN URL}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<msg timestamp="20220301 18:22:46.673" level="INFO">Opening url 'http://localhost:5000/register'</msg>
-<msg timestamp="20220301 18:22:46.682" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<msg timestamp="20220301 18:22:46.682" level="FAIL">WebDriverException: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<status status="FAIL" starttime="20220301 18:22:46.673" endtime="20220301 18:22:46.682"/>
+<msg timestamp="20220302 10:16:12.174" level="INFO">Opening url 'http://localhost:5000/login'</msg>
+<status status="PASS" starttime="20220302 10:16:12.173" endtime="20220302 10:16:12.738"/>
 </kw>
-<status status="FAIL" starttime="20220301 18:22:46.673" endtime="20220301 18:22:46.683"/>
+<status status="PASS" starttime="20220302 10:16:12.172" endtime="20220302 10:16:12.739"/>
 </kw>
-<status status="FAIL" starttime="20220301 18:22:46.672" endtime="20220301 18:22:46.683"/>
+<kw name="Login Page Should Be Open" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Login</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20220302 10:16:13.255" level="INFO">Page title is 'Login'.</msg>
+<status status="PASS" starttime="20220302 10:16:12.740" endtime="20220302 10:16:13.255"/>
 </kw>
-<status status="FAIL" starttime="20220301 18:22:46.672" endtime="20220301 18:22:46.684">Setup failed:
-WebDriverException: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</status>
-</test>
-<test id="s1-s3-t3" name="Register With Valid Username And Too Short Password">
-<kw name="Go To Register Page" type="SETUP">
-<kw name="Go to Registering Page" library="resource">
-<kw name="Go To" library="SeleniumLibrary">
-<arg>${REGISTER URL}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<msg timestamp="20220301 18:22:46.685" level="INFO">Opening url 'http://localhost:5000/register'</msg>
-<msg timestamp="20220301 18:22:46.692" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<msg timestamp="20220301 18:22:46.692" level="FAIL">WebDriverException: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<status status="FAIL" starttime="20220301 18:22:46.685" endtime="20220301 18:22:46.692"/>
+<status status="PASS" starttime="20220302 10:16:12.739" endtime="20220302 10:16:13.256"/>
 </kw>
-<status status="FAIL" starttime="20220301 18:22:46.685" endtime="20220301 18:22:46.693"/>
+<kw name="Set Username">
+<arg>kurpitsa</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220302 10:16:13.259" level="INFO">Typing text 'kurpitsa' into text field 'username'.</msg>
+<status status="PASS" starttime="20220302 10:16:13.258" endtime="20220302 10:16:14.938"/>
 </kw>
-<status status="FAIL" starttime="20220301 18:22:46.684" endtime="20220301 18:22:46.693"/>
+<status status="PASS" starttime="20220302 10:16:13.256" endtime="20220302 10:16:14.939"/>
 </kw>
-<status status="FAIL" starttime="20220301 18:22:46.684" endtime="20220301 18:22:46.694">Setup failed:
-WebDriverException: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</status>
-</test>
-<test id="s1-s3-t4" name="Register With Valid Username And Password With No Number">
-<kw name="Go To Register Page" type="SETUP">
-<kw name="Go to Registering Page" library="resource">
-<kw name="Go To" library="SeleniumLibrary">
-<arg>${REGISTER URL}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<msg timestamp="20220301 18:22:46.695" level="INFO">Opening url 'http://localhost:5000/register'</msg>
-<msg timestamp="20220301 18:22:46.701" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<msg timestamp="20220301 18:22:46.701" level="FAIL">WebDriverException: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<status status="FAIL" starttime="20220301 18:22:46.695" endtime="20220301 18:22:46.701"/>
+<kw name="Set Password">
+<arg>salasana1239</arg>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>password</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20220302 10:16:14.941" level="INFO">Typing password into text field 'password'.</msg>
+<msg timestamp="20220302 10:16:16.002" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20220302 10:16:16.573" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20220302 10:16:14.940" endtime="20220302 10:16:16.573"/>
 </kw>
-<status status="FAIL" starttime="20220301 18:22:46.695" endtime="20220301 18:22:46.702"/>
+<status status="PASS" starttime="20220302 10:16:14.939" endtime="20220302 10:16:16.574"/>
 </kw>
-<status status="FAIL" starttime="20220301 18:22:46.694" endtime="20220301 18:22:46.702"/>
+<kw name="Submit Login Credentials">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Kirjaudu sisään</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220302 10:16:16.576" level="INFO">Clicking button 'Kirjaudu sisään'.</msg>
+<status status="PASS" starttime="20220302 10:16:16.576" endtime="20220302 10:16:18.223"/>
 </kw>
-<status status="FAIL" starttime="20220301 18:22:46.694" endtime="20220301 18:22:46.702">Setup failed:
-WebDriverException: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</status>
-</test>
-<test id="s1-s3-t5" name="Register With Nonmatching Password And Password Confirmation">
-<kw name="Go To Register Page" type="SETUP">
-<kw name="Go to Registering Page" library="resource">
-<kw name="Go To" library="SeleniumLibrary">
-<arg>${REGISTER URL}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<msg timestamp="20220301 18:22:46.704" level="INFO">Opening url 'http://localhost:5000/register'</msg>
-<msg timestamp="20220301 18:22:46.710" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<msg timestamp="20220301 18:22:46.711" level="FAIL">WebDriverException: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<status status="FAIL" starttime="20220301 18:22:46.704" endtime="20220301 18:22:46.711"/>
+<status status="PASS" starttime="20220302 10:16:16.575" endtime="20220302 10:16:18.223"/>
 </kw>
-<status status="FAIL" starttime="20220301 18:22:46.704" endtime="20220301 18:22:46.711"/>
+<kw name="Login Should Fail With Message">
+<arg>Käyttäjänimi tai salasana virheellinen</arg>
+<kw name="Login Page Should Be Open" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Login</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20220302 10:16:18.739" level="INFO">Page title is 'Login'.</msg>
+<status status="PASS" starttime="20220302 10:16:18.226" endtime="20220302 10:16:18.739"/>
 </kw>
-<status status="FAIL" starttime="20220301 18:22:46.703" endtime="20220301 18:22:46.712"/>
+<status status="PASS" starttime="20220302 10:16:18.225" endtime="20220302 10:16:18.740"/>
 </kw>
-<status status="FAIL" starttime="20220301 18:22:46.703" endtime="20220301 18:22:46.712">Setup failed:
-WebDriverException: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</status>
-</test>
-<test id="s1-s3-t6" name="Login After Successful Registration">
-<kw name="Go To Register Page" type="SETUP">
-<kw name="Go to Registering Page" library="resource">
-<kw name="Go To" library="SeleniumLibrary">
-<arg>${REGISTER URL}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<msg timestamp="20220301 18:22:46.713" level="INFO">Opening url 'http://localhost:5000/register'</msg>
-<msg timestamp="20220301 18:22:46.719" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<msg timestamp="20220301 18:22:46.720" level="FAIL">WebDriverException: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<status status="FAIL" starttime="20220301 18:22:46.713" endtime="20220301 18:22:46.720"/>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${message}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220302 10:16:19.786" level="INFO">Current page contains text 'Käyttäjänimi tai salasana virheellinen'.</msg>
+<status status="PASS" starttime="20220302 10:16:18.740" endtime="20220302 10:16:19.786"/>
 </kw>
-<status status="FAIL" starttime="20220301 18:22:46.713" endtime="20220301 18:22:46.720"/>
+<status status="PASS" starttime="20220302 10:16:18.224" endtime="20220302 10:16:19.787"/>
 </kw>
-<status status="FAIL" starttime="20220301 18:22:46.713" endtime="20220301 18:22:46.721"/>
-</kw>
-<status status="FAIL" starttime="20220301 18:22:46.712" endtime="20220301 18:22:46.721">Setup failed:
-WebDriverException: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</status>
-</test>
-<test id="s1-s3-t7" name="Login After Failed Registration">
-<kw name="Go To Register Page" type="SETUP">
-<kw name="Go to Registering Page" library="resource">
-<kw name="Go To" library="SeleniumLibrary">
-<arg>${REGISTER URL}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<msg timestamp="20220301 18:22:46.722" level="INFO">Opening url 'http://localhost:5000/register'</msg>
-<msg timestamp="20220301 18:22:46.728" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<msg timestamp="20220301 18:22:46.729" level="FAIL">WebDriverException: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<status status="FAIL" starttime="20220301 18:22:46.722" endtime="20220301 18:22:46.729"/>
-</kw>
-<status status="FAIL" starttime="20220301 18:22:46.722" endtime="20220301 18:22:46.729"/>
-</kw>
-<status status="FAIL" starttime="20220301 18:22:46.722" endtime="20220301 18:22:46.730"/>
-</kw>
-<status status="FAIL" starttime="20220301 18:22:46.721" endtime="20220301 18:22:46.730">Setup failed:
-WebDriverException: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</status>
+<status status="PASS" starttime="20220302 10:16:04.645" endtime="20220302 10:16:19.788"/>
 </test>
 <kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20220301 18:22:46.731" endtime="20220301 18:22:47.240"/>
+<status status="PASS" starttime="20220302 10:16:19.791" endtime="20220302 10:16:20.352"/>
 </kw>
-<status status="FAIL" starttime="20220301 18:22:40.981" endtime="20220301 18:22:47.240"/>
-</suite>
-<status status="FAIL" starttime="20220301 18:22:29.334" endtime="20220301 18:22:47.247"/>
+<status status="PASS" starttime="20220302 10:16:03.529" endtime="20220302 10:16:20.352"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="12" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="0" fail="12" skip="0" id="s1" name="Tests">Tests</stat>
-<stat pass="0" fail="2" skip="0" id="s1-s1" name="Index">Tests.Index</stat>
-<stat pass="0" fail="3" skip="0" id="s1-s2" name="Login">Tests.Login</stat>
-<stat pass="0" fail="7" skip="0" id="s1-s3" name="Register">Tests.Register</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Register">Register</stat>
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20220301 18:22:46.667" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<msg timestamp="20220301 18:22:46.682" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<msg timestamp="20220301 18:22:46.692" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<msg timestamp="20220301 18:22:46.701" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<msg timestamp="20220301 18:22:46.710" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<msg timestamp="20220301 18:22:46.719" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
-<msg timestamp="20220301 18:22:46.728" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
-  (Session info: chrome=98.0.4758.102)
-Stacktrace:
-#0 0x55e9b5af2093 &lt;unknown&gt;
-#1 0x55e9b55b84df &lt;unknown&gt;
-#2 0x55e9b55a70e4 &lt;unknown&gt;
-#3 0x55e9b55a7ae9 &lt;unknown&gt;
-#4 0x55e9b55a9842 &lt;unknown&gt;
-#5 0x55e9b55a1fc6 &lt;unknown&gt;
-#6 0x55e9b55b9a42 &lt;unknown&gt;
-#7 0x55e9b561f0d1 &lt;unknown&gt;
-#8 0x55e9b560c063 &lt;unknown&gt;
-#9 0x55e9b55e1cba &lt;unknown&gt;
-#10 0x55e9b55e2d85 &lt;unknown&gt;
-#11 0x55e9b5b239bd &lt;unknown&gt;
-#12 0x55e9b5b3cb8e &lt;unknown&gt;
-#13 0x55e9b5b25795 &lt;unknown&gt;
-#14 0x55e9b5b3d815 &lt;unknown&gt;
-#15 0x55e9b5b1913f &lt;unknown&gt;
-#16 0x55e9b5b59bc8 &lt;unknown&gt;
-#17 0x55e9b5b59d48 &lt;unknown&gt;
-#18 0x55e9b5b742ad &lt;unknown&gt;
-#19 0x7feae54e4609 &lt;unknown&gt;
-</msg>
 </errors>
 </robot>

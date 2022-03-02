@@ -1,4 +1,3 @@
-
 from entities.recommendation import Recommendation
 from entities.user import User_account
 from db import db

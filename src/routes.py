@@ -32,10 +32,10 @@ def login():
         return render_template("login.html")
 
     if request.method == "POST":
-        name = request.form["name"]
+        username = request.form["username"]
         password = request.form["password"]
 
-        success, error = app_service.login(app_service, name, password)
+        success, error = app_service.login(app_service, username, password)
         if not success:
             return render_template("login.html", error=error)
         return redirect("/")
@@ -54,13 +54,13 @@ def register():
         return render_template("register.html")
 
     if request.method == "POST":
-        name = request.form["username"]
+        username = request.form["username"]
         password = request.form["password"]
         password_again = request.form["password_again"]
 
         valid, error = app_service.register(
-            app_service, name, password, password_again)
+            app_service, username, password, password_again)
         if not valid:
             return render_template("register.html", error=error)
-        app_service.login(app_service, name, password)
+        app_service.login(app_service, username, password)
         return redirect("/")

@@ -13,25 +13,25 @@ Register With Valid Username And Password
     Register Should Succeed
 
 Register With Too Short Username And Valid Password
-    Set Username  ${EMPTY}
+    Set Username  k
     Set Password  salasana1234
     Set Password Confirmation  salasana1234
     Submit Register Credentials
-    Register Should Fail With Message  Tunnuksessa oltava yli 3 merkkiä ja salasanassa yli 8 merkkiä ja vähintään yksi numero"
+    Register Should Fail With Message  Tunnuksessa oltava vähintään 3 merkkiä ja salasanassa vähintään 8 merkkiä ja vähintään yksi numero tai erikoismerkki.
 
 Register With Valid Username And Too Short Password
     Set Username  kurpitsa
     Set Password  sala
     Set Password Confirmation  sala
     Submit Register Credentials
-    Register Should Fail With Message  Tunnuksessa oltava yli 3 merkkiä ja salasanassa yli 8 merkkiä ja vähintään yksi numero"
+    Register Should Fail With Message  Tunnuksessa oltava vähintään 3 merkkiä ja salasanassa vähintään 8 merkkiä ja vähintään yksi numero tai erikoismerkki.
 
 Register With Valid Username And Password With No Number
     Set Username  kurpitsa
     Set Password  salasana
     Set Password Confirmation  salasana
     Submit Register Credentials
-    Register Should Fail With Message  Tunnuksessa oltava yli 3 merkkiä ja salasanassa yli 8 merkkiä ja vähintään yksi numero
+    Register Should Fail With Message  Tunnuksessa oltava vähintään 3 merkkiä ja salasanassa vähintään 8 merkkiä ja vähintään yksi numero tai erikoismerkki.
 
 Register With Nonmatching Password And Password Confirmation
     Set Username  kurpitsa
@@ -40,30 +40,15 @@ Register With Nonmatching Password And Password Confirmation
     Submit Register Credentials
     Register Should Fail With Message  Salasanat eivät täsmää
 
-Login After Successful Registration
-    Set Username  kurpitsa
-    Set Password  salasana1234
-    Set Password Confirmation  salasana1234
-    Submit Register Credentials
-    Register Should Succeed
-    Go To Login Page
-    Login Page Should Be Open
-    Set Username  kurpitsa
-    Set Password  salasana1234
-    Submit Login Credentials
-    Login Should Succeed
-
-
 Login After Failed Registration
     Set Username  kurpitsa
     Set Password  salasana1234
     Set Password Confirmation  salasana12345
-    Submit Register Credentials
-    Register Should Fail With Message  Käyttäjänimi tai salasana virheellinen
+    Submit Register Credentials   
     Go To Login Page
     Login Page Should Be Open
     Set Username  kurpitsa
-    Set Password  salasana1234
+    Set Password  salasana1239
     Submit Login Credentials
     Login Should Fail With Message  Käyttäjänimi tai salasana virheellinen
 
@@ -81,7 +66,7 @@ Set Password
 
 Set Password Confirmation
     [Arguments]  ${password_confirmation}
-    Input Password  password_confirmation  ${password_confirmation}
+    Input Password  password_again  ${password_confirmation}
 
 Submit Register Credentials
     Click Button  Luo uusi tunnus

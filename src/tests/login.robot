@@ -13,8 +13,8 @@ Login With Correct Credentials
     Login Should Succeed
 
 Login With Incorrect Password
-    Set Username  kupritsa
-    Set Password  salasana1234
+    Set Username  kurpitsa
+    Set Password  salasana12345
     Submit Credentials
     Login Should Fail With Message  Käyttäjänimi tai salasana virheellinen
 
