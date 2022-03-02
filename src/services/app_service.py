@@ -23,7 +23,7 @@ class AppService:
                 self._current_user = User_account(
                     username=username, password=new_user[1])
                 #session["csrf_token"] = self.user_service.check_csrf()
-                session["user_id"] = new_user[3]
+                session["user_id"] = 1 # mita tahan tulee?
                 session["user_name"] = username
                 return True, ""
         return False, "Käyttäjänimi tai salasana virheellinen"

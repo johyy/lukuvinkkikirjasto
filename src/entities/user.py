@@ -1,15 +1,8 @@
 # pylint: disable=no-member
 import uuid
-from db import db
 
-class User_account(db.Model):
+class User_account():
     """ Class that represents a single user. """
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(30), nullable=False)
-    password = db.Column(db.String(50), nullable=False)
-    admin = db.Column(db.Boolean, default=False, nullable=False)
-
-    '''
     def __init__(self, username, password):
         """ Class constructor. Creates a new user.
         Attributes:
@@ -20,23 +13,23 @@ class User_account(db.Model):
         self._id = uuid.uuid1()
         self._username = username
         self._password = password
-        self.recommendations = []
-    '''
+        self._recommendations = []
+        self._admin = False
 
     def get_id(self):
         """ Gets the id of the user."""
 
-        return self.id
+        return self._id
 
     def get_username(self):
         """ Gets the name of the user."""
 
-        return self.username
+        return self._username
 
     def get_password(self):
         """ Gets the password of the user."""
 
-        return self.password
+        return self._password
 
     def set_username(self, username):
         """ Sets username.
@@ -44,7 +37,7 @@ class User_account(db.Model):
             username: [String] The username to be set.
         """
 
-        self.username = username
+        self._username = username
 
     def set_password(self, password):
         """ Sets user's password.
@@ -52,7 +45,7 @@ class User_account(db.Model):
             password: [String] The password to be set.
         """
 
-        self.password = password
+        self._password = password
 
     def set_admin(self, boolean):
         """ Sets user's admin status.
@@ -60,25 +53,25 @@ class User_account(db.Model):
             admin: [boolean] The admin status to be set.
         """
 
-        self.admin = boolean
+        self._admin = boolean
 
     def add_recommendation(self, recommendation):
         """ Adds a recommendation to the user."""
 
-        self.recommendations.append(recommendation)
+        self._recommendations.append(recommendation)
 
     def remove_recommendation(self, recommendation):
         """ Removes a recommendation to the user."""
 
-        if recommendation in self.recommendations:
-            self.recommendations.remove(recommendation)
+        if recommendation in self._recommendations:
+            self._recommendations.remove(recommendation)
 
     def get_recommendations(self):
         """ Returns user's recommendations."""
 
-        return self.recommendations
+        return self._recommendations
 
     def is_admin(self):
-        if self.admin is None:
+        if self._admin is None:
             return False
-        return self.admin
+        return self._admin

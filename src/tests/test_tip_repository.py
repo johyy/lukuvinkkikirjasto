@@ -1,4 +1,4 @@
-import unittest
+"""import unittest
 from os import getenv
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -84,4 +84,4 @@ class TestTipRepository(unittest.TestCase):
         db.session.execute(sql)
         sql = "DELETE FROM tests.users CASCADE"
         db.session.execute(sql)
-        db.session.commit()
+        db.session.commit()"""
