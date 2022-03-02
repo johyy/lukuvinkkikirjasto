@@ -79,6 +79,6 @@ class User_account(db.Model):
         return self.recommendations
 
     def is_admin(self):
-        if self.admin == None:
+        if self.admin is None:
             return False
         return self.admin

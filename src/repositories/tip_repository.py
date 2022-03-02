@@ -25,16 +25,20 @@ class TipRepository:
 
         return order_by
 
-    def fetch_all_tips(self, sort_option="1"):
-    
+    def fetch_all_tips(self, sort_option="1", testing=False):
+
         sql = "SELECT R.header, R.author, R.description, R.creation_time, U.username"\
               " FROM recommendations R LEFT JOIN users U ON R.user_id = U.id"
+
+        if (testing):
+            sql = "SELECT R.header, R.author, R.description, R.creation_time, U.username"\
+              " FROM tests.recommendations R LEFT JOIN tests.users U ON R.user_id = U.id"
 
         sql += " " + self.order_by(self, sort_option)
 
         result = db.session.execute(sql)
-        
+
         return result.fetchall()
-        
+
 
 tip_repository = TipRepository()
