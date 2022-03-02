@@ -8,6 +8,6 @@ try:
 except FileNotFoundError:
     pass
 
-DATABASE_FILENAME = os.getenv('DATABASE_FILENAME') or 'sqlite://///home/nomanoma/Documents/Kurssit/Ohtu2022/lukuvinkkikirjasto/src/database.db'
+DATABASE_FILENAME = 'sqlite:////' + str(dirname) + '/database.db'
 DATABASE_FILE_PATH = os.path.join(dirname, 'database.db')
 
