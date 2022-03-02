@@ -7,9 +7,16 @@ class TipRepository:
         """Class constructor"""
 
     def add_new_tip(self, user_id, recommendation):
-        db.session.add(recommendation)
-        db.session.commit()
-        return True
+        try:
+            sql = "INSERT INTO recommendations (user_id, media, header, author, " \
+                "description, url_link, isbn, creation_time) VALUES (:user_id, :media, :header, :author, :description," \
+                ":url_link, :isbn, NOW())"
+            db.session.execute(sql, {"user_id": user_id, "media": recommendation.get_media(), "header": recommendation.get_title(), "author": recommendation.get_author(),
+                                          "description": recommendation.get_description(), "url_link": recommendation.get_link(), "isbn": recommendation.get_isbn()})
+            db.session.commit()
+            return True
+        except Exception:
+            return False
 
     def order_by(self, sort_option):
         order_by = ""
@@ -23,11 +30,14 @@ class TipRepository:
         if sort_option=="7": order_by += "ORDER BY U.username ASC"
         if sort_option=="8": order_by += "ORDER BY U.username DESC"
 
-        return order_by
+        #return order_by
+        return ""
 
     def fetch_all_tips(self, sort_option="1", testing=False):
-
-        sql = "SELECT R.header, R.author, R.description, R.creation_time, U.username"\
+        sql = "SELECT title, author, description, link"\
+              " FROM recommendations"
+        """
+        sql = "SELECT R.title, R.author, R.description, U.username"\
               " FROM recommendations R LEFT JOIN users U ON R.user_id = U.id"
 
         if (testing):
@@ -35,7 +45,7 @@ class TipRepository:
               " FROM tests.recommendations R LEFT JOIN tests.users U ON R.user_id = U.id"
 
         sql += " " + self.order_by(self, sort_option)
-
+        """
         result = db.session.execute(sql)
 
         return result.fetchall()

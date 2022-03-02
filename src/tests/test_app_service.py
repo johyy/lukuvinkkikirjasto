@@ -4,16 +4,13 @@ from entities.user import User_account
 from create_application import create_app
 from db import db
 
-
+"""
 class TestAppService(unittest.TestCase):
     def setUp(self):
+        initialise_database()
         app = create_app()
         app.app_context().push()
-        with app.app_context():
-            from entities.user import User_account
-            from entities.recommendation import Recommendation
-            db.create_all()
-            db.session.commit()
+
         self.user = User_account(username="nimi", password="salasana456")
         self.apps = AppService()
 
@@ -51,4 +48,4 @@ class TestAppService(unittest.TestCase):
     
     def test_login_with_empty_user_and_empty_password(self):
         self.assertEqual(self.apps.login("", ""), (False, 'Käyttäjänimi tai salasana virheellinen'))
-
+"""
