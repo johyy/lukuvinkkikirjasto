@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<title>Add_recommendation</title>
+
+<div class="container">
+
+<h5>Lisää vinkki kirjastoon</h5>
+
+<form action="/choose_media" method="post">
+<div class="col-8">
+
+<label for="media"><h6>Valitse median tyyppi: </h6></label>
+<select name ="media">
+<option value="">
+<option value="Kirja">Kirja
+<option value="Video">Video
+<option value="Blogi">Blogi
+<option value="Podcast">Podcast
+</select>
+<input class="btn btn-secondary" type="submit" value="Valitse">
+</form>
+
+{% if media_error %}
+<p class="text-danger">{{ media_error }}</p>
+{% endif %}
+
+{% if media %}
+<p class="text"><h5>{{ media }}:</h5></p>
+<form action="/add_recommendation" method="post">
+<div class="form-group col-12">
+<label for="header"> Otsikko: </label>
+<p>
+<input type="text" class="form-control" id="header" name="header">
+</div>
+<p>
+<div class="form-group col-12">
+<label for="url">Linkki (URL):</label>
+<p>
+<input type="url" class="form-control" id="url" name="url">
+</div>
+<p>
+{% if media == "Kirja" %}
+<div class="form-group col-12">
+<label for="author"> Kirjoittaja: </label>
+<p>
+<input type="text" class="form-control" id="author" name="author">
+</div>
+<p>
+<div class="form-group col-12">
+<label for="isbn"> ISBN-numero: </label>
+<p>
+<input type="text" class="form-control" id="isbn" name="isbn">
+</div>
+<p>
+{% endif %}
+
+{% if input_error %}
+<p class="text-danger">{{ input_error }}</p>
+{% endif %}
+
+
+<dic class="col-6">
+<input type="submit" class="btn btn-success" value="Lisää">
+<input type="hidden"name="media" value="{{ media }}">
+
+</div>
+</form>
+
+{% endif %}
+
+{% if media_added %}
+<p class="text-succes">Vinkki lisätty kirjastoon!</p>
+{% endif %}
+
+</div>
+
+{% endblock %}

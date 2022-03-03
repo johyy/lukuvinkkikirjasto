@@ -4,7 +4,9 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from repositories.user_repository import UserRepository as user_repository
 from repositories.recommendation_repository import RecommendationRepository as recommendation_repository
 from entities.user import UserAccount
+from entities.recommendation import Recommendation
 from services.user_service import UserService
+from services.user_service import UserService as recommendation_service
 
 class AppService:
     """ Class responsible for app logic."""
@@ -14,6 +16,7 @@ class AppService:
         Args:"""
 
         self.user_service = UserService(user_repository, recommendation_repository)
+        self.recommendation_service = recommendation_service
         self._current_user = None
 
     def login(self, username, password):
@@ -70,6 +73,15 @@ class AppService:
         else:
             message = "Tunnuksessa oltava vähintään 3 merkkiä ja salasanassa vähintään 8 merkkiä ja vähintään yksi numero tai erikoismerkki."
         return False, message
+
+    def add_recommendation(self, title, link):
+        if title == None or link == None:
+            return False, "Täytä kaikki tiedot"
+        else:
+            recommendation = Recommendation(title, link)
+            return recommendation_repository.add_new_recommendation(recommendation_repository, self._current_user.get_id(), recommendation), ""
+
+    
 
 
 app_service = AppService()
