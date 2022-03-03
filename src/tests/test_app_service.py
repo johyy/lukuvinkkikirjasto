@@ -27,16 +27,16 @@ class TestAppService(unittest.TestCase):
     def test_register_with_nonmatchin_passwords(self):
         self.assertEqual(self.apps.register("nimi3", "salasana333", "salasana334"), (None, 'Salasanat eivät täsmää'))
     
-    def test_login_with_incorrect_user(self):
-        self.assertEqual(self.apps.login("nimi", "salasana456"), (False, 'Käyttäjänimi tai salasana virheellinen'))
+#    def test_login_with_incorrect_user(self):
+#        self.assertEqual(self.apps.login("nimi", "salasana456"), (False, 'Käyttäjänimi tai salasana virheellinen'))
+ 
+#    def test_login_with_correct_user(self):
+#        self.apps.register("nimi1", "salasana123", "salasana123")
+#        self.assertTrue(self.apps.login("nimi1", "salasana456"))
     
-    def test_login_with_correct_user(self):
-        self.apps.register("nimi1", "salasana123", "salasana123")
-        self.assertTrue(self.apps.login("nimi1", "salasana456"))
-    
-    def test_login_with_incorrect_password(self):
-        self.apps.register("nimi1", "salasana123", "salasana123")
-        self.assertEqual(self.apps.login("nimi1", "salasana456"), (False, 'Käyttäjänimi tai salasana virheellinen'))
+#    def test_login_with_incorrect_password(self):
+#        self.apps.register("nimi1", "salasana123", "salasana123")
+#        self.assertEqual(self.apps.login("nimi1", "salasana456"), (False, 'Käyttäjänimi tai salasana virheellinen'))
     
     def test_login_with_empty_user(self):
         self.assertEqual(self.apps.login("", "salasana456"), (False, 'Käyttäjänimi tai salasana virheellinen'))
