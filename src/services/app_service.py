@@ -18,7 +18,8 @@ class AppService:
 
     def login(self, username, password):
         """ Log in user."""
-
+        if username == "" or password == "":
+            return False, "Käyttäjänimi tai salasana virheellinen"
         new_user = user_repository.get_user(user_repository, username)
         if new_user is not False:
 
@@ -26,7 +27,7 @@ class AppService:
 
                 self._current_user = User_account(
                     username=username, password=new_user[1])
-                #session["csrf_token"] = self.user_service.check_csrf()
+                # session["csrf_token"] = self.user_service.check_csrf()
                 session["user_id"] = 1 # mita tahan tulee?
                 session["user_name"] = username
                 return True, ""
