@@ -1,6 +1,6 @@
 import unittest
 from services.app_service import AppService
-from entities.user import User_account
+from entities.user import UserAccount
 from create_application import create_app
 
 class TestAppService(unittest.TestCase):
@@ -9,7 +9,7 @@ class TestAppService(unittest.TestCase):
         app = create_app()
         app.app_context().push()
 
-        self.user = User_account(username="nimi", password="salasana456")
+        self.user = UserAccount(username="nimi", password="salasana456")
         self.apps = AppService()
 
     def test_register(self):

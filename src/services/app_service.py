@@ -2,8 +2,8 @@ from flask import session
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from repositories.user_repository import UserRepository as user_repository
-from repositories.tip_repository import TipRepository as tip_repository
-from entities.user import User_account
+from repositories.recommendation_repository import RecommendationRepository as recommendation_repository
+from entities.user import UserAccount
 from services.user_service import UserService
 
 class AppService:
@@ -13,7 +13,7 @@ class AppService:
         """ Class constructor. Creates a new app service.
         Args:"""
 
-        self.user_service = UserService(user_repository, tip_repository)
+        self.user_service = UserService(user_repository, recommendation_repository)
         self._current_user = None
 
     def login(self, username, password):
@@ -25,7 +25,7 @@ class AppService:
 
             if check_password_hash(new_user[1], password):
 
-                self._current_user = User_account(
+                self._current_user = UserAccount(
                     username=username, password=new_user[1])
                 # session["csrf_token"] = self.user_service.check_csrf()
                 session["user_id"] = 1 # mita tahan tulee?
@@ -61,9 +61,9 @@ class AppService:
             if not password == password_confirmation:
                 message = "Salasanat eivät täsmää"
                 return None, message
-            
+
             password = generate_password_hash(password)
-            user = User_account(username=username, password=password)
+            user = UserAccount(username=username, password=password)
             if user_repository.add_a_new_user(user_repository, user):
                 return True, ""
             message = "Tunnus on jo olemassa."

@@ -1,11 +1,11 @@
 
 import unittest
-from entities.user import User_account
+from entities.user import UserAccount
 from entities.recommendation import Recommendation
 
 class TestUser(unittest.TestCase):
     def setUp(self):
-        self.user = User_account(username="testi", password="salasana")
+        self.user = UserAccount(username="testi", password="salasana")
         self.recommendation = Recommendation(title="Otsake", link="linkki")
 
 
