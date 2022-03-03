@@ -1,18 +1,18 @@
 from db import db
 
-class TipRepository:
-    """Class that handles database queries for tips"""
+class RecommendationRepository:
+    """Class that handles database queries for recommendations"""
 
     def __init__(self):
         """Class constructor"""
 
-    def add_new_tip(self, user_id, recommendation):
+    def add_new_recommendation(self, user_id, recommendation):
         try:
-            sql = "INSERT INTO recommendations (user_id, media, header, author, " \
-                "description, url_link, isbn, creation_time) VALUES (:user_id, :media, :header, :author, :description," \
-                ":url_link, :isbn, NOW())"
-            db.session.execute(sql, {"user_id": user_id, "media": recommendation.get_media(), "header": recommendation.get_title(), "author": recommendation.get_author(),
-                                          "description": recommendation.get_description(), "url_link": recommendation.get_link(), "isbn": recommendation.get_isbn()})
+            sql = "INSERT INTO recommendations (user_id, media, title, author, " \
+                "description, link, isbn, creation_time) VALUES (:user_id, :media, :title, :author, :description," \
+                ":link, :isbn, NOW())"
+            db.session.execute(sql, {"user_id": user_id, "media": recommendation.get_media(), "title": recommendation.get_title(), "author": recommendation.get_author(),
+                                          "description": recommendation.get_description(), "link": recommendation.get_link(), "isbn": recommendation.get_isbn()})
             db.session.commit()
             return True
         except Exception:
@@ -23,8 +23,8 @@ class TipRepository:
 
         if sort_option=="1": order_by += "ORDER BY R.creation_time DESC"
         if sort_option=="2": order_by += "ORDER BY R.creation_time ASC"
-        if sort_option=="3": order_by += "ORDER BY R.header ASC"
-        if sort_option=="4": order_by += "ORDER BY R.header DESC"
+        if sort_option=="3": order_by += "ORDER BY R.title ASC"
+        if sort_option=="4": order_by += "ORDER BY R.title DESC"
         if sort_option=="5": order_by += "ORDER BY R.author ASC"
         if sort_option=="6": order_by += "ORDER BY R.author DESC"
         if sort_option=="7": order_by += "ORDER BY U.username ASC"
@@ -33,7 +33,7 @@ class TipRepository:
         #return order_by
         return ""
 
-    def fetch_all_tips(self, sort_option="1", testing=False):
+    def fetch_all_recommendations(self, sort_option="1", testing=False):
         sql = "SELECT title, author, description, link"\
               " FROM recommendations"
         """
@@ -41,7 +41,7 @@ class TipRepository:
               " FROM recommendations R LEFT JOIN users U ON R.user_id = U.id"
 
         if (testing):
-            sql = "SELECT R.header, R.author, R.description, R.creation_time, U.username"\
+            sql = "SELECT R.title, R.author, R.description, R.creation_time, U.username"\
               " FROM tests.recommendations R LEFT JOIN tests.users U ON R.user_id = U.id"
 
         sql += " " + self.order_by(self, sort_option)
@@ -51,4 +51,4 @@ class TipRepository:
         return result.fetchall()
 
 
-tip_repository = TipRepository()
+recommendation_repository = RecommendationRepository()

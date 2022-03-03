@@ -1,14 +1,14 @@
-from app import app
 from flask import render_template, request, redirect, url_for
+from app import app
 from services.recommendation_service import RecommendationService as recommendation_service
 from services.app_service import AppService as app_service
-from repositories.tip_repository import TipRepository as tip_repository
 from services.user_service import UserService as user_service
+from repositories.recommendation_repository import RecommendationRepository as recommendation_repository
 
 
 @app.route("/")
 def index():
-    recommendations_list = tip_repository.fetch_all_tips(tip_repository)
+    recommendations_list = recommendation_repository.fetch_all_recommendations(recommendation_repository)
     return render_template("index.html", sort_option="1", recommendations_list=recommendations_list)
 
 
@@ -21,8 +21,8 @@ def sort_by():
 @app.route("/<sort_option>")
 def index_sorted(sort_option):
 
-    recommendations_list = tip_repository.fetch_all_tips(
-        tip_repository, sort_option)
+    recommendations_list = recommendation_repository.fetch_all_recommendations(
+        recommendation_repository, sort_option)
     return render_template("index.html", sort_option=sort_option, recommendations_list=recommendations_list)
 
 

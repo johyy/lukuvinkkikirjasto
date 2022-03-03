@@ -1,7 +1,7 @@
 # pylint: disable=no-member
 import uuid
 
-class User_account():
+class UserAccount():
     """ Class that represents a single user. """
     def __init__(self, username, password):
         """ Class constructor. Creates a new user.
@@ -72,6 +72,4 @@ class User_account():
         return self._recommendations
 
     def is_admin(self):
-        if self._admin is None:
-            return False
         return self._admin

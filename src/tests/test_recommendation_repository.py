@@ -11,9 +11,9 @@ app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
-class TestTipRepository(unittest.TestCase):
+class TestRecommendationRepository(unittest.TestCase):
     
-    tip_repository = TipRepository
+    recommendation_repository = RecommendationRepository
 
     def setUpClass():
 
