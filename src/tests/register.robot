@@ -5,12 +5,12 @@ Suite Teardown  Close Browser
 Test Setup  Go To Register Page
 
 ***Test Cases ***
-Register With Valid Username And Password
-    Set Username  maissi
-    Set Password  salasana1234
-    Set Password Confirmation  salasana1234
-    Submit Register Credentials
-    Register Should Succeed
+#Register With Valid Username And Password
+#    Set Username  maissi
+#    Set Password  salasana1234
+#    Set Password Confirmation  salasana1234
+#    Submit Register Credentials
+#    Register Should Succeed
 
 Register With Too Short Username And Valid Password
     Set Username  k
