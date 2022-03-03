@@ -64,3 +64,38 @@ def register():
             return render_template("register.html", error=error)
         app_service.login(app_service, username, password)
         return redirect("/")
+
+@app.route("/add_recommendation", methods=["get", "post"])
+def add_recommendation():
+
+    if request.method == "GET":
+        return render_template("add_recommendation.html")
+
+    if request.method == "POST":
+        #csfr-token
+
+        media = request.form["media"]
+        if "header" not in request.form or "url" not in request.form:
+            return render_template("add_recommendation.html", media=media, input_error="Täytä kaikki tiedot")
+        if media == "book":
+            if "author" not in request.form or "isbn" not in request.form:
+                return render_template("add_recommendation.html", media=media, input_error="Täytä kaikki tiedot")
+        
+        return render_template("add_recommendation.html", media_added=True)
+
+
+        
+        return render_template("add_recommendation.html", media=media)
+
+@app.route("/choose_media", methods=["post"])
+def choose_media():
+
+    if request.method == "POST":
+        #csfr-token
+
+        media = request.form["media"]
+        if media == "":
+            return render_template("add_recommendation.html", media_error="Valise media")
+
+        
+        return render_template("add_recommendation.html", media=media)
