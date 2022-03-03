@@ -1,4 +1,6 @@
 from flask import session
+from werkzeug.security import check_password_hash, generate_password_hash
+
 from repositories.user_repository import UserRepository as user_repository
 from repositories.tip_repository import TipRepository as tip_repository
 from entities.user import User_account
@@ -19,7 +21,9 @@ class AppService:
 
         new_user = user_repository.get_user(user_repository, username)
         if new_user is not False:
-            if new_user[1] == password:
+
+            if check_password_hash(new_user[1], password):
+
                 self._current_user = User_account(
                     username=username, password=new_user[1])
                 #session["csrf_token"] = self.user_service.check_csrf()
@@ -56,6 +60,8 @@ class AppService:
             if not password == password_confirmation:
                 message = "Salasanat eivät täsmää"
                 return None, message
+            
+            password = generate_password_hash(password)
             user = User_account(username=username, password=password)
             if user_repository.add_a_new_user(user_repository, user):
                 return True, ""
