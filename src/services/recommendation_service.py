@@ -1,3 +1,4 @@
+
 from entities.user import UserAccount
 from repositories.recommendation_repository import RecommendationRepository
 
@@ -10,7 +11,7 @@ class RecommendationService:
         self.user = UserAccount
         self.recommendations = RecommendationRepository
 
-    def method1(self):
+    def add_recommendation(self, recommendation):
         """ Does something. """
 
 
@@ -19,4 +20,4 @@ class RecommendationService:
 
 
 
-resommendation_service = RecommendationService()
+recommendation_service = RecommendationService()

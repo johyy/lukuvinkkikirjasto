@@ -8,7 +8,8 @@ from repositories.recommendation_repository import RecommendationRepository as r
 
 @app.route("/")
 def index():
-    recommendations_list = recommendation_repository.fetch_all_recommendations(recommendation_repository)
+    recommendations_list = recommendation_repository.fetch_all_recommendations(
+        recommendation_repository)
     return render_template("index.html", sort_option="1", recommendations_list=recommendations_list)
 
 
@@ -65,6 +66,7 @@ def register():
         app_service.login(app_service, username, password)
         return redirect("/")
 
+
 @app.route("/add_recommendation", methods=["get", "post"])
 def add_recommendation():
 
@@ -72,30 +74,33 @@ def add_recommendation():
         return render_template("add_recommendation.html")
 
     if request.method == "POST":
-        #csfr-token
+        # csfr-token
 
         media = request.form["media"]
-        if "header" not in request.form or "url" not in request.form:
-            return render_template("add_recommendation.html", media=media, input_error="Täytä kaikki tiedot")
-        if media == "book":
-            if "author" not in request.form or "isbn" not in request.form:
-                return render_template("add_recommendation.html", media=media, input_error="Täytä kaikki tiedot")
-        
-        return render_template("add_recommendation.html", media_added=True)
+        title = request.form["header"]
+        link = request.form["url"]
+
+        # if media == "Kirja":
+        #    author = request.form["author"]
+        #    isbn = request.form["isbn"]
+
+        succes, error = app_service.add_recommendation(app_service, title, link)
+        if succes:
+            print("tere")
+            return render_template("add_recommendation.html", media_added=True)
+        else:
+            return render_template("add_recommendation.html", media=media, input_error=error)
 
 
-        
-        return render_template("add_recommendation.html", media=media)
 
 @app.route("/choose_media", methods=["post"])
 def choose_media():
 
     if request.method == "POST":
-        #csfr-token
+        # csfr-token
 
         media = request.form["media"]
         if media == "":
             return render_template("add_recommendation.html", media_error="Valise media")
 
-        
         return render_template("add_recommendation.html", media=media)
