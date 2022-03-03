@@ -3,12 +3,15 @@ from entities.user import User_account
 from db import db
 from create_application import create_app
 from initialise_database import initialise_database
+from os import getenv
 
 
 # Build the database if it does not exist
 initialise_database()
     
 app = create_app()
+app.secret_key = getenv("SECRET_KEY")
+
 
 
 import routes
