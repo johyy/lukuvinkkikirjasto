@@ -2,12 +2,10 @@ import unittest
 from services.app_service import AppService
 from entities.user import User_account
 from create_application import create_app
-from db import db
 
-"""
 class TestAppService(unittest.TestCase):
     def setUp(self):
-        initialise_database()
+
         app = create_app()
         app.app_context().push()
 
@@ -48,4 +46,3 @@ class TestAppService(unittest.TestCase):
     
     def test_login_with_empty_user_and_empty_password(self):
         self.assertEqual(self.apps.login("", ""), (False, 'Käyttäjänimi tai salasana virheellinen'))
-"""
