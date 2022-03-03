@@ -7,6 +7,8 @@
 
 [Projektin backlog](https://docs.google.com/spreadsheets/d/1Ku5KeGKPKRg1Zwu5qJ2XgSO0A5ig9_967XB01-ox_BI/edit#gid=792830139)
 
+[Testikattavuusraportti](https://github.com/johyy/lukuvinkkikirjasto/dokumentaatio/testikattavuus.md)
+
 ## Asennus
 
 Aseta riippuvuudet komennolla:
