@@ -8,7 +8,8 @@ from create_application import create_app
 
 
 class TestUserService(unittest.TestCase):
-    def setUp(self):   
+    def setUp(self):
+        
         app = create_app()
         app.app_context().push()
         self.us = UserService()
@@ -39,13 +40,15 @@ class TestUserService(unittest.TestCase):
 
 class TestRecommendationService(unittest.TestCase):
     def setUp(self):
+        user_repo_mock = Mock()
+        recommendation_repo_mock = Mock()
         self.user = UserAccount(username="nimi1", password="salasana456")
-        self.rs = RecommendationService()
+        self.rs = RecommendationService(recommendation_repo_mock)
 
     def test_user_adds_recommendation(self):
         self.rs.add_recommendation("Otsake", "linkki")
-    #    self.assertEqual(self.user.get_recommendations()[0].get_title(), "Otsake") IndexError: list index out of range
-    #    self.assertEqual(self.user.get_recommendations()[0].get_link(), "linkki")
+#        self.assertEqual(self.user.get_recommendations()[0].get_title(), "Otsake") IndexError: list index out of range
+#        self.assertEqual(self.user.get_recommendations()[0].get_link(), "linkki")
 
     def test_user_adds_recommendation_without_title(self):
         self.rs.add_recommendation("", "linkki")
