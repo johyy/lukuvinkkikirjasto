@@ -86,7 +86,6 @@ def add_recommendation():
 
         succes, error = app_service.add_recommendation(app_service, title, link)
         if succes:
-            print("tere")
             return render_template("add_recommendation.html", media_added=True)
         else:
             return render_template("add_recommendation.html", media=media, input_error=error)

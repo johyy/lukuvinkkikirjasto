@@ -8,6 +8,7 @@ from entities.recommendation import Recommendation
 from services.user_service import UserService
 from services.user_service import UserService as recommendation_service
 
+
 class AppService:
     """ Class responsible for app logic."""
 
@@ -15,7 +16,8 @@ class AppService:
         """ Class constructor. Creates a new app service.
         Args:"""
 
-        self.user_service = UserService(user_repository, recommendation_repository)
+        self.user_service = UserService(
+            user_repository, recommendation_repository)
         self.recommendation_service = recommendation_service
         self._current_user = None
 
@@ -31,7 +33,7 @@ class AppService:
                 self._current_user = UserAccount(
                     username=username, password=new_user[1])
                 # session["csrf_token"] = self.user_service.check_csrf()
-                session["user_id"] = 1 # mita tahan tulee?
+                session["user_id"] = 1  # mita tahan tulee?
                 session["user_name"] = username
                 return True, ""
         return False, "Käyttäjänimi tai salasana virheellinen"
@@ -79,9 +81,11 @@ class AppService:
             return False, "Täytä kaikki tiedot"
         else:
             recommendation = Recommendation(title, link)
-            return recommendation_repository.add_new_recommendation(recommendation_repository, self._current_user.get_id(), recommendation), ""
-
-    
+            if recommendation_repository.add_new_recommendation(recommendation_repository, recommendation):
+                return True, ""
+            else:
+                return False, f"{title} löytyy jo kirjastosta"
+            
 
 
 app_service = AppService()
