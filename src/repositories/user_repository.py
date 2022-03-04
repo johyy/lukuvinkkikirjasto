@@ -11,7 +11,8 @@ class UserRepository:
         """Adds a new user"""
         try:
             sql = "INSERT INTO users (username, password, admin) VALUES (:username, :password, :admin)"
-            db.session.execute(sql, {"username": user.get_username(), "password": user.get_password(), "admin": user.is_admin()})
+            db.session.execute(sql, {"username": user.get_username(
+            ), "password": user.get_password(), "admin": user.is_admin()})
             db.session.commit()
             return True
         except Exception as e:
@@ -19,7 +20,7 @@ class UserRepository:
             return False
 
     def get_user(self, username):
-        """Gets user"""
+        """Returns user"""
         sql = "SELECT username, password, admin, rowid FROM users WHERE username=:username"
         result = db.session.execute(sql, {"username": username})
         user = result.fetchone()
@@ -27,5 +28,6 @@ class UserRepository:
             return False
 
         return user
+
 
 user_repository = UserRepository()

@@ -32,21 +32,20 @@
         <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Header</th>
-              <th scope="col">Author</th>
-              <th scope="col">Posted By</th>
-              <th scope="col">Posted At</th>
+              <th scope="col">Otsikko</th>
+              <th scope="col">URL</th>
+              <th scope="col">Vinkin lisääjä</th>
+              <th scope="col">Lisätty</th>
             </tr>
         </thead>
         <tbody>
-            {%for tips in recommendations_list%}
+            {%for recommendation in recommendations_list%}
               <tr>
                 <th scope="row">{{loop.index}}</th>
-                <td>{{tips.header}}</td>
-                <td>{{tips.author}}</td>
-                <td>{{tips.username}}</td>
-                {% if tips.creation_time %}
-                    <td>{{tips.creation_time.strftime("%H:%M:%S [%d/%m/%y]")}}</td>
+                <td>{{recommendation.title}}</td>
+                <td>{{recommendation.link}}</td>
+                {% if recommendation.creation_time %}
+                    <td>{{recommendation.creation_time.strftime("%H:%M:%S [%d/%m/%y]")}}</td>
                 {% endif %}
               </tr>
             {%endfor%}
@@ -56,7 +55,7 @@
 
 {% else %}
     <div>
-        <h3> No recommendations yet :(!</h3>
+        <h3> Kirjasto on vielä tyhjä :(!</h3>
     </div>
 {% endif %}
 {% endblock %}

@@ -1,23 +1,39 @@
 
-from entities.user import UserAccount
-from repositories.recommendation_repository import RecommendationRepository
+from entities.recommendation import Recommendation
+from repositories.recommendation_repository import recommendation_repository as default_recommendation_repository
+
 
 class RecommendationService:
-    """ Class responsible for media logic."""
+    """ Class responsible for recommendation logic."""
 
-    def __init__(self):
+    def __init__(self, recommendation_repository=default_recommendation_repository):
         """ Class constructor. Creates a new recommendation service.
         Args:"""
-        self.user = UserAccount
-        self.recommendations = RecommendationRepository
+        self._recommendation = None
+        self._recommendation_repository = recommendation_repository
 
-    def add_recommendation(self, recommendation):
-        """ Does something. """
+    def list_all_recommendations(self, sort_option="1"):
+        """ Lists all recommendations."""
 
+        return self._recommendation_repository.fetch_all_recommendations(sort_option)
 
-    def method2(self):
-        """ This too. """
+    def add_recommendation(self, title, link):
+        """ Adds new recommendation."""
 
+        if title is None or link is None:
+            return False, f"Täytä kaikki tiedot"
+        else:
+            message = ""
+            self._recommendation = Recommendation(title, link)
+            if self._recommendation_repository.add_new_recommendation(self._recommendation):
+                return True, message
+            else:
+                message = f"{title} löytyy jo kirjastosta"
+                return False, message
+
+    def delete_recommendation(self, recommendation):
+        """ Deletes recommendation."""
+        pass
 
 
 recommendation_service = RecommendationService()
