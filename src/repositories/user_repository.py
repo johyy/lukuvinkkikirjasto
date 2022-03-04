@@ -20,7 +20,7 @@ class UserRepository:
 
     def get_user(self, username):
         """Gets user"""
-        sql = "SELECT username, password, admin FROM users WHERE username=:username"
+        sql = "SELECT username, password, admin, rowid FROM users WHERE username=:username"
         result = db.session.execute(sql, {"username": username})
         user = result.fetchone()
         if not user:
