@@ -20,7 +20,7 @@ class RecommendationService:
     def add_recommendation(self, title, link):
         """ Adds new recommendation."""
 
-        if title is None or link is None:
+        if title == "" or link == "":
             return False, f"Täytä kaikki tiedot"
         else:
             message = ""

@@ -74,7 +74,7 @@ def add_recommendation():
         # csfr-token
 
         media = request.form["media"]
-        title = request.form["header"]
+        title = request.form["title"]
         link = request.form["url"]
 
         # if media == "Kirja":
