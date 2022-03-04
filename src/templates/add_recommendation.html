@@ -27,15 +27,16 @@
 
 {% if media %}
 <p class="text"><h5>{{ media }}:</h5></p>
+<p class="text-info">* pakolliset tiedot</p>
 <form action="/add_recommendation" method="post">
 <div class="form-group col-12">
-<label for="header"> Otsikko: </label>
+<label for="title">* Otsikko: </label>
 <p>
-<input type="text" class="form-control" id="header" name="header">
+<input type="text" class="form-control" id="title" name="title">
 </div>
 <p>
 <div class="form-group col-12">
-<label for="url">Linkki (muodossa http:// tai https://):</label>
+<label for="url">* Linkki (muodossa http:// tai https://):</label>
 <p>
 <input type="url" class="form-control" id="url" name="url">
 </div>
