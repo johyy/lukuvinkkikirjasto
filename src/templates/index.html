@@ -47,6 +47,10 @@
                 {% if recommendation.creation_time %}
                     <td>{{recommendation.creation_time.strftime("%H:%M:%S [%d/%m/%y]")}}</td>
                 {% endif %}
+                <td>Vinkin lisääjä</td>
+                <td>Lisätty</td>
+                <td> <input type ="button" value="Tykkää"></td>
+                <td></td>
               </tr>
             {%endfor%}
         </tbody>
