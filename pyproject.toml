@@ -26,6 +26,7 @@ charset-normalizer = "^2.0.12"
 coverage = "^6.3.2"
 pytest = "^7.0.1"
 pylint = "^2.12.2"
+pytest-dotenv = "^0.5.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
