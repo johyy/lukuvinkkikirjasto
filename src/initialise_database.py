@@ -34,10 +34,17 @@ def create_tables(conn):
                                     description text
                                 );"""
 
+    sql_create_likes_table = """CREATE TABLE IF NOT EXISTS likes (
+                                result INTEGER,
+                                recommendations_id INTEGER REFERENCES recommendations,
+                                user_id INTEGER REFERENCES users
+                                );"""
+
     # Create tables
     if conn is not None:
         create_table(conn, sql_create_users_table)
         create_table(conn, sql_create_recommendations_table)
+        create_table(conn, sql_create_likes_table)
     else:
         print("Error! Cannot create the database connection.")
 
