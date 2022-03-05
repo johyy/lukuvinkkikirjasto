@@ -61,6 +61,16 @@ class RecommendationRepository:
         result = db.session.execute(sql)
 
         return result.fetchall()
+    
+    def fetch_likes_of_recommendation(self, recommendations_id):
+        sql = "SELECT result FROM likes WHERE recommendations_id:=recommendations_id"
+        result = db.session.execute(sql, {"recommendations_id": recommendations_id})
+        like = result.fetchone()
+        if not like:
+            return False
+        return like
+
+
 
 
 recommendation_repository = RecommendationRepository()

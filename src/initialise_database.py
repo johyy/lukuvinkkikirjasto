@@ -21,22 +21,26 @@ def create_tables(conn):
     """
 
     sql_create_users_table = """ CREATE TABLE IF NOT EXISTS users (
-                                        username text PRIMARY KEY,
+                                        id INTEGER PRIMARY KEY,
+                                        username text UNIQUE NOT NULL,
                                         password text NOT NULL,
                                         admin boolean NOT NULL
                                     ); """
 
     sql_create_recommendations_table = """CREATE TABLE IF NOT EXISTS recommendations (
-                                    title text PRIMARY KEY,
+                                    id INTEGER PRIMARY KEY,
+                                    title text NOT NULL,
                                     link text NOT NULL,
                                     media text,
                                     author text,
-                                    description text
+                                    description text, 
+                                    like_amount INTEGER REFERENCES likes
                                 );"""
 
     sql_create_likes_table = """CREATE TABLE IF NOT EXISTS likes (
+                                id INTEGER PRIMARY KEY,
                                 result INTEGER,
-                                recommendations_id INTEGER REFERENCES recommendations,
+                                recommendations_id INTEGER REFERENCES recommendations (i),
                                 user_id INTEGER REFERENCES users
                                 );"""
 

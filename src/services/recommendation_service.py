@@ -35,5 +35,9 @@ class RecommendationService:
         """ Deletes recommendation."""
         pass
 
+    def list_likes_of_recommendation(self, recommendation):
+
+        return self._recommendation_repository.fetch_likes_of_recommendation(recommendation)
+
 
 recommendation_service = RecommendationService()
