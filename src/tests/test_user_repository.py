@@ -1,12 +1,12 @@
 import unittest
-from repositories.user_repository import UserRepository
+from repositories.user_repository import user_repository
 from entities.user import UserAccount
-"""
+
 class TestUserRepository(unittest.TestCase):
     def setUp(self):
-        self.username = "testi"
+        self.test_user = UserAccount("jtyope", "kayttaja123")
 
     def test_insert_user_into_database(self):
-        UserRepository.add_a_new_user(self, User_account(username="testi2", password="salasana11#"))
-        user = UserRepository.get_user(self, "testi2")
-        self.assertEqual(user[0], "testi2")"""
+        user_repository.add_a_new_user(self.test_user)
+        user = user_repository.get_user(self.test_user.get_username())
+        self.assertEqual(user[0], self.test_user.get_username())
