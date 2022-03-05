@@ -99,3 +99,13 @@ def choose_media():
             return render_template("add_recommendation.html", media_error="Valise media")
 
         return render_template("add_recommendation.html", media=media)
+
+@app.route("/likes", methods=["post"])
+def add_like():
+    recommendation_id  = request.form['recommendation_id']
+    recommendation_like_amount = request.form['recommendation_like_amount']
+    print(recommendation_id + " on id")
+    total_likes = int(recommendation_like_amount) + 1
+    recommendation_service.add_like(recommendation_id, total_likes)
+    
+    return redirect('/')

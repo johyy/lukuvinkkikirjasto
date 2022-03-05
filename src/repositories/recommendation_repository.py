@@ -48,7 +48,7 @@ class RecommendationRepository:
         return ""
 
     def fetch_all_recommendations(self, sort_option="1", testing=False):
-        sql = """SELECT title, author, description, link,
+        sql = """SELECT id, title, author, description, link,
                 like_amount FROM recommendations"""
         """
         sql = "SELECT R.title, R.author, R.description, U.username"\
@@ -62,15 +62,10 @@ class RecommendationRepository:
 
         return result.fetchall()
     
-    def fetch_likes_of_recommendation(self, recommendations_id):
-        sql = "SELECT result FROM likes WHERE recommendations_id:=recommendations_id"
-        result = db.session.execute(sql, {"recommendations_id": recommendations_id})
-        like = result.fetchone()
-        if not like:
-            return False
-        return like
-
-
+    def add_like(self, id, likes):
+        sql = "UPDATE recommendations SET like_amount = :likes WHERE id = :id"
+        db.session.execute(sql, {"likes": likes, "id": id})
+        db.session.commit()
 
 
 recommendation_repository = RecommendationRepository()
