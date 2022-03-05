@@ -34,14 +34,14 @@ def create_tables(conn):
                                     media text,
                                     author text,
                                     description text, 
-                                    like_amount INTEGER REFERENCES likes
+                                    like_amount INTEGER
                                 );"""
 
     sql_create_likes_table = """CREATE TABLE IF NOT EXISTS likes (
                                 id INTEGER PRIMARY KEY,
-                                result INTEGER,
-                                recommendations_id INTEGER REFERENCES recommendations (i),
-                                user_id INTEGER REFERENCES users
+                                result INTEGER REFERENCES recommendations (like_amount),
+                                recommendations_id INTEGER REFERENCES recommendations (id),
+                                user_id INTEGER REFERENCES users (id)
                                 );"""
 
     # Create tables
