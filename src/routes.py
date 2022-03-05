@@ -104,8 +104,9 @@ def choose_media():
 def add_like():
     recommendation_id  = request.form['recommendation_id']
     recommendation_like_amount = request.form['recommendation_like_amount']
-    print(recommendation_id + " on id")
+    user_id = request.form['user_id']
     total_likes = int(recommendation_like_amount) + 1
-    recommendation_service.add_like(recommendation_id, total_likes)
+    if recommendation_service.test_like(user_id, recommendation_id):
+        recommendation_service.add_like(recommendation_id, total_likes)
     
     return redirect('/')

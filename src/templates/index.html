@@ -53,6 +53,7 @@
                 <td> <form action="/likes" method="post">
                     <input type ="hidden" value={{recommendation.id}} name="recommendation_id">
                     <input type ="hidden" value={{recommendation.like_amount}} name="recommendation_like_amount">
+                    <input type ="hidden" value={{session.user_id}} name="user_id">
                     <input type ="submit" value="Tykkää">
                 </td>
                 </form>

@@ -62,6 +62,17 @@ class RecommendationRepository:
 
         return result.fetchall()
     
+    def test_like(self, user_id, recommendation_id):
+        sql = "SELECT * FROM likes WHERE user_id =:user_id AND recommendation_id =:recommendation_id"
+        result = db.session.execute(sql, {"user_id": user_id, "recommendation_id": recommendation_id})
+        if result.fetchone() == None:
+            sql2 = "INSERT INTO likes (result, user_id, recommendation_id) VALUES (1, :user_id, :recommendation_id)"
+            db.session.execute(sql2, {"user_id": user_id, "recommendation_id": recommendation_id})
+            db.session.commit()
+            return True
+        return False
+       
+    
     def add_like(self, id, likes):
         sql = "UPDATE recommendations SET like_amount = :likes WHERE id = :id"
         db.session.execute(sql, {"likes": likes, "id": id})

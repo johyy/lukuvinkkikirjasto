@@ -1,4 +1,5 @@
 
+import re
 from entities.recommendation import Recommendation
 from repositories.recommendation_repository import recommendation_repository as default_recommendation_repository
 
@@ -34,6 +35,9 @@ class RecommendationService:
     def delete_recommendation(self, recommendation):
         """ Deletes recommendation."""
         pass
+
+    def test_like(self, user_id, recommendation_id):
+        return self._recommendation_repository.test_like(user_id, recommendation_id)
 
     def add_like(self, recommendation_id, likes):
         self._recommendation_repository.add_like(recommendation_id, likes)

@@ -39,9 +39,9 @@ def create_tables(conn):
 
     sql_create_likes_table = """CREATE TABLE IF NOT EXISTS likes (
                                 id INTEGER PRIMARY KEY,
-                                result INTEGER REFERENCES recommendations (like_amount),
-                                recommendations_id INTEGER REFERENCES recommendations (id),
-                                user_id INTEGER REFERENCES users (id)
+                                result INTEGER,
+                                recommendation_id INTEGER REFERENCES recommendations,
+                                user_id INTEGER REFERENCES users
                                 );"""
 
     # Create tables
