@@ -10,7 +10,7 @@ class TestRecommendationRepository(unittest.TestCase):
         app.app_context().push()
 
     def setUp(self):
-        self.test_recom = Recommendation(title="Harry Potter", link="http://www.harrypotter.com")
+        self.test_recom = Recommendation(title="Harry Potter", link="http://www.harrypotter.com", user_id=3)
         recommendation_repository.add_new_recommendation(self.test_recom)
     
     def test_one(self):
