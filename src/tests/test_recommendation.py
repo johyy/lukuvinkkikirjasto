@@ -3,7 +3,7 @@ from entities import recommendation
 
 class TestRecommendation(unittest.TestCase):
     def setUp(self):
-        self.recommendation = recommendation.Recommendation(title="HTML-vinkkisivu", link="https://www.jediakatemia.fi/")
+        self.recommendation = recommendation.Recommendation(title="HTML-vinkkisivu", link="https://www.jediakatemia.fi/", user_id="1")
 
     def test_create_recommendation(self):
         self.assertEqual(self.recommendation.get_title(), "HTML-vinkkisivu")

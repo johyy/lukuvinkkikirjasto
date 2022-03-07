@@ -76,12 +76,13 @@ def add_recommendation():
         media = request.form["media"]
         title = request.form["title"]
         link = request.form["url"]
+        user_id = request.form["user_id"]
 
         # if media == "Kirja":
         #    author = request.form["author"]
         #    isbn = request.form["isbn"]
 
-        succes, error = recommendation_service.add_recommendation(title, link)
+        succes, error = recommendation_service.add_recommendation(title, link, user_id)
         if succes:
             return render_template("add_recommendation.html", media_added=True)
         else:
@@ -109,4 +110,10 @@ def add_like():
     if recommendation_service.test_like(user_id, recommendation_id):
         recommendation_service.add_like(recommendation_id, total_likes)
     
+    return redirect('/')
+
+@app.route("/delete_recommendation", methods=["post"])
+def delete_recommendation():
+    recommendation_id = int(request.form['recommendation_id'])
+    recommendation_service.delete_recommendation(recommendation_id)
     return redirect('/')

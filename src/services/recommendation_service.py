@@ -11,19 +11,22 @@ class RecommendationService:
         self._recommendation = None
         self._recommendation_repository = recommendation_repository
 
+    def list_recommendations_by_user(self, user_id):
+        return self._recommendation_repository.fetch_recommendation_by_user_id(user_id)
+
     def list_all_recommendations(self, sort_option="1"):
         """ Lists all recommendations."""
 
         return self._recommendation_repository.fetch_all_recommendations(sort_option=sort_option)
 
-    def add_recommendation(self, title, link):
+    def add_recommendation(self, title, link, user_id):
         """ Adds new recommendation."""
 
         if title == "" or link == "":
             return False, "Täytä kaikki tiedot"
 
         message = ""
-        self._recommendation = Recommendation(title, link)
+        self._recommendation = Recommendation(title, link, user_id)
 
         if self._recommendation_repository.add_new_recommendation(self._recommendation):
             return True, message
@@ -31,8 +34,9 @@ class RecommendationService:
         message = f"{title} löytyy jo kirjastosta"
         return False, message
 
-    #def delete_recommendation(self, recommendation):
-    #    """ Deletes recommendation."""
+    def delete_recommendation(self, id):
+        self._recommendation_repository.delete_recommendation(id)
+        """ Deletes recommendation."""
 
     def test_like(self, user_id, recommendation_id):
         return self._recommendation_repository.test_like(user_id, recommendation_id)
