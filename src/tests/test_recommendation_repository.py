@@ -1,19 +1,22 @@
-"""import unittest
-from os import getenv
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+import unittest
+import os
+from dotenv import load_dotenv
+from db import db
+from entities import recommendation
+from repositories.recommendation_repository import recommendation_repository
 
-from repositories.tip_repository import TipRepository
+dirname = os.path.dirname(__file__)
 
-app = Flask(__name__)
-app.secret_key = getenv("SECRET_KEY")
-app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-db = SQLAlchemy(app)
+try:
+    load_dotenv(dotenv_path=os.path.join(dirname, '..', '.env'))
+except FileNotFoundError:
+    pass
+
+DATABASE_FILENAME = os.getenv('DATABASE_FILENAME')
+DATABASE_FILE_PATH = os.path.join(dirname, DATABASE_FILENAME)
+print("täällä ollaan")
 
 class TestRecommendationRepository(unittest.TestCase):
-    
-    recommendation_repository = RecommendationRepository
 
     def setUpClass():
 
@@ -48,35 +51,35 @@ class TestRecommendationRepository(unittest.TestCase):
         result = db.session.execute(sql).fetchone()
         self.assertEqual('jaakko', result[0])
     
-    def test_correct_default_order_fetch_all_tips(self): 
-        result = self.tip_repository.fetch_all_tips(self.tip_repository,testing=True)
+    def test_correct_default_order_fetch_all_recommendations(self): 
+        result = recommendation_repository.fetch_all_recommendations(recommendation_repository,testing=True)
         self.assertEqual('Harry Potter', result[0][0])
         self.assertEqual('jaakko', result[0][4])
 
-    def test_correct_header_first_fetch_all_tips(self): 
-        result = self.tip_repository.fetch_all_tips(self.tip_repository,sort_option = "3", testing=True)
+    def test_correct_header_first_fetch_all_recommendations(self): 
+        result = recommendation_repository.fetch_all_recommendations(recommendation_repository,sort_option = "3", testing=True)
         self.assertEqual('Harry Potter', result[0][0])
         self.assertEqual('jaakko', result[0][4])
 
-    def test_correct_header_last_fetch_all_tips(self): 
-        result = self.tip_repository.fetch_all_tips(self.tip_repository,sort_option = "4", testing=True)
+    def test_correct_header_last_fetch_all_recommendations(self): 
+        result = recommendation_repository.fetch_all_recommendations(recommendation_repository,sort_option = "4", testing=True)
         self.assertEqual('War And Peace', result[0][0])
         self.assertEqual('pekka', result[0][4])
 
-    def test_correct_author_first_fetch_all_tips(self): 
-        result = self.tip_repository.fetch_all_tips(self.tip_repository,sort_option = "5", testing=True)
+    def test_correct_author_first_fetch_all_recommendations(self): 
+        result = recommendation_repository.fetch_all_recommendations(recommendation_repository,sort_option = "5", testing=True)
         self.assertEqual('JK Rowling', result[0][1])
 
-    def test_correct_author_last_fetch_all_tips(self): 
-        result = self.tip_repository.fetch_all_tips(self.tip_repository,sort_option = "6", testing=True)
+    def test_correct_author_last_fetch_all_recommendations(self): 
+        result = recommendation_repository.fetch_all_recommendations(recommendation_repository,sort_option = "6", testing=True)
         self.assertEqual('Leo Tolstoi', result[0][1])
 
-    def test_correct_username_first_fetch_all_tips(self): 
-        result = self.tip_repository.fetch_all_tips(self.tip_repository,sort_option = "7", testing=True)
+    def test_correct_username_first_fetch_all_recommendations(self): 
+        result = recommendation_repository.fetch_all_recommendations(recommendation_repository,sort_option = "7", testing=True)
         self.assertEqual('jaakko', result[0][4])
 
-    def test_correct_username_last_fetch_all_tips(self): 
-        result = self.tip_repository.fetch_all_tips(self.tip_repository,sort_option = "8", testing=True)
+    def test_correct_username_last_fetch_all_recommendations(self): 
+        result = recommendation_repository.fetch_all_recommendations(recommendation_repository,sort_option = "8", testing=True)
         self.assertEqual('pekka', result[0][4])
 
     def tearDownClass():
@@ -84,4 +87,4 @@ class TestRecommendationRepository(unittest.TestCase):
         db.session.execute(sql)
         sql = "DELETE FROM tests.users CASCADE"
         db.session.execute(sql)
-        db.session.commit()"""
+        db.session.commit()
