@@ -1,20 +1,21 @@
 import unittest
-from os import getenv
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-
 from repositories.recommendation_repository import recommendation_repository
 from entities.recommendation import Recommendation
+from create_application import create_app
 
 class TestRecommendationRepository(unittest.TestCase):
-    pass    
-    # def setUp(self):
-    #     self.recom_one = Recommendation("Harry Potter", "http://www.harrypotter.com")
-    #     recommendation_repository.add_new_recommendation(self.recom_one)
 
-    # def test_one(self):
-    #     fetch_all = recommendation_repository.fetch_all_recommendations()
-    #     self.assertEqual("Harry Potter", fetch_all[0][0])
+    def setUpClass():
+        app = create_app()
+        app.app_context().push()
+
+    def setUp(self):
+        self.test_recom = Recommendation(title="Harry Potter", link="http://www.harrypotter.com")
+
+    def test_one(self):
+        recommendation_repository.add_new_recommendation(self.test_recom)
+        fetch_all = recommendation_repository.fetch_all_recommendations()
+        self.assertEqual("Harry Potter", fetch_all[0][1])
 
     """
     def setUpClass():
