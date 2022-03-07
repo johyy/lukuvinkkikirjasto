@@ -1,5 +1,3 @@
-
-import re
 from entities.recommendation import Recommendation
 from repositories.recommendation_repository import recommendation_repository as default_recommendation_repository
 
@@ -22,19 +20,19 @@ class RecommendationService:
         """ Adds new recommendation."""
 
         if title == "" or link == "":
-            return False, f"Täytä kaikki tiedot"
-        else:
-            message = ""
-            self._recommendation = Recommendation(title, link)
-            if self._recommendation_repository.add_new_recommendation(self._recommendation):
-                return True, message
-            else:
-                message = f"{title} löytyy jo kirjastosta"
-                return False, message
+            return False, "Täytä kaikki tiedot"
 
-    def delete_recommendation(self, recommendation):
-        """ Deletes recommendation."""
-        pass
+        message = ""
+        self._recommendation = Recommendation(title, link)
+
+        if self._recommendation_repository.add_new_recommendation(self._recommendation):
+            return True, message
+
+        message = f"{title} löytyy jo kirjastosta"
+        return False, message
+
+    #def delete_recommendation(self, recommendation):
+    #    """ Deletes recommendation."""
 
     def test_like(self, user_id, recommendation_id):
         return self._recommendation_repository.test_like(user_id, recommendation_id)
