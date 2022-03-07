@@ -44,7 +44,7 @@
                     <td>{{recommendation.creation_time.strftime("%H:%M:%S [%d/%m/%y]")}}</td>
                 {% endif %}
                 <td>Vinkin lisääjä</td>
-                <td>{{recommendation.time}} {{recommendation.date}}</td>    
+                <td>{{recommendation.time}} {{recommendation.date}}</td>
                 {% if session.user_id %}
                 <td> <form action="/likes" method="post">
                     <input type ="hidden" value={{recommendation.id}} name="recommendation_id">

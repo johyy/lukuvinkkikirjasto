@@ -10,7 +10,7 @@ class RecommendationRepository:
 
     def add_new_recommendation(self, recommendation):
         try:
-            sql = """INSERT INTO recommendations (title, link, like_amount, creation_time) VALUES (:title, :link, 0, DATETIME('now'))"""
+            sql = """INSERT INTO recommendations (title, link, like_amount, creation_time, visibility, user_id) VALUES (:title, :link, 0, DATETIME('now'), 1, :user_id)"""
             db.session.execute(sql, {"title": recommendation.get_title(),  "link": recommendation.get_link(
             ), "user_id": recommendation.get_user_id()})
 
@@ -70,8 +70,8 @@ class RecommendationRepository:
 
     def fetch_all_recommendations(self, sort_option="1", testing=False):
         sql = """SELECT id, title, author, description, link,
-                like_amount, datetime(creation_time), date(creation_time) as date, time(creation_time) as time
-                FROM recommendations R"""
+                like_amount, datetime(creation_time), date(creation_time) as date, time(creation_time) as time, visibility, user_id
+                FROM recommendations R WHERE visibility=1"""
 
         """
         sql = "SELECT R.title, R.author, R.description, U.username"\
