@@ -16,7 +16,7 @@ class RecommendationService:
     def list_all_recommendations(self, sort_option="1"):
         """ Lists all recommendations."""
 
-        return self._recommendation_repository.fetch_all_recommendations(sort_option)
+        return self._recommendation_repository.fetch_all_recommendations(sort_option=sort_option)
 
     def add_recommendation(self, title, link):
         """ Adds new recommendation."""

@@ -18,12 +18,8 @@
     <form action="{{url_for('sort_by', sort_option=sort_option)}}"  method="POST"> 
         <input type="radio" name="sort_option" value="1" {%if sort_option=="1"%} checked {%endif%} onchange =this.form.submit() > Newest           
         <input type="radio" name="sort_option" value="2" {%if sort_option=="2"%} checked {%endif%} onchange =this.form.submit() > Oldest         
-        <input type="radio" name="sort_option" value="3" {%if sort_option=="3"%} checked {%endif%} onchange =this.form.submit() > Header A-Z
-        <input type="radio" name="sort_option" value="4" {%if sort_option=="4"%} checked {%endif%} onchange =this.form.submit() > Header Z-A
-        <input type="radio" name="sort_option" value="5" {%if sort_option=="5"%} checked {%endif%} onchange =this.form.submit() > Author A-Z
-        <input type="radio" name="sort_option" value="6" {%if sort_option=="6"%} checked {%endif%} onchange =this.form.submit() > Author Z-A
-        <input type="radio" name="sort_option" value="7" {%if sort_option=="7"%} checked {%endif%} onchange =this.form.submit() > Username A-Z
-        <input type="radio" name="sort_option" value="8" {%if sort_option=="8"%} checked {%endif%} onchange =this.form.submit() > Username Z-A
+        <input type="radio" name="sort_option" value="3" {%if sort_option=="3"%} checked {%endif%} onchange =this.form.submit() > Most likes
+        <input type="radio" name="sort_option" value="4" {%if sort_option=="4"%} checked {%endif%} onchange =this.form.submit() > Least likes
     </form>   
 </div>
 
@@ -48,7 +44,7 @@
                     <td>{{recommendation.creation_time.strftime("%H:%M:%S [%d/%m/%y]")}}</td>
                 {% endif %}
                 <td>Vinkin lisääjä</td>
-                <td>Lisätty</td>    
+                <td>{{recommendation.time}} {{recommendation.date}}</td>    
                 {% if session.user_id %}
                 <td> <form action="/likes" method="post">
                     <input type ="hidden" value={{recommendation.id}} name="recommendation_id">

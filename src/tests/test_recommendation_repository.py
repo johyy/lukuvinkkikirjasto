@@ -1,20 +1,23 @@
-"""import unittest
-from os import getenv
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-
-from repositories.tip_repository import TipRepository
-
-app = Flask(__name__)
-app.secret_key = getenv("SECRET_KEY")
-app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-db = SQLAlchemy(app)
+import unittest
+from repositories.recommendation_repository import recommendation_repository
+from entities.recommendation import Recommendation
+from create_application import create_app
 
 class TestRecommendationRepository(unittest.TestCase):
-    
-    recommendation_repository = RecommendationRepository
 
+    def setUpClass():
+        app = create_app()
+        app.app_context().push()
+
+    def setUp(self):
+        self.test_recom = Recommendation(title="Harry Potter", link="http://www.harrypotter.com")
+
+    def test_one(self):
+        recommendation_repository.add_new_recommendation(self.test_recom)
+        fetch_all = recommendation_repository.fetch_all_recommendations()
+        self.assertEqual("Harry Potter", fetch_all[0][1])
+
+    """
     def setUpClass():
 
         # Create test users
