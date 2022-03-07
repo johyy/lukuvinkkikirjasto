@@ -1,4 +1,4 @@
-from sqlalchemy.exc import IntegrityError
+#from sqlalchemy.exc import IntegrityError
 from db import db
 
 
@@ -10,9 +10,10 @@ class RecommendationRepository:
 
     def add_new_recommendation(self, recommendation):
         try:
-            sql = """INSERT INTO recommendations (title, link, like_amount) VALUES (:title, :link, 0)"""
+            sql = """INSERT INTO recommendations (title, link, like_amount, visibility, user_id) VALUES (:title, :link, 0, 1, 
+            :user_id)"""
             db.session.execute(sql, {"title": recommendation.get_title(),  "link": recommendation.get_link(
-            )})
+            ), "user_id": recommendation.get_user_id()})
 
             # sql = "INSERT INbO recommendations (user_id, media, title, author, " \
             #    "description, link, isbn, creation_time) VALUES (:user_id, :media, :title, :author, :description," \
@@ -21,7 +22,15 @@ class RecommendationRepository:
             #                              "description": recommendation.get_description(), "link": recommendation.get_link(), "isbn": recommendation.get_isbn()})
             db.session.commit()
             return True
-        except IntegrityError:
+        except:
+            return False
+
+    def get_recommendation_by_id(self, id):
+        try:
+            sql = """SELECT * FROM recommendations WHERE id =: id"""
+            result = db.session.execute(sql, {"id":id})
+            result.fetchone()
+        except:
             return False
 
     def order_by(self, sort_option):
@@ -47,9 +56,19 @@ class RecommendationRepository:
         # return order_by
         return ""
 
+    def fetch_recommendation_by_user_id(self, user_id):
+        try:
+            sql = """SELECT id, title, author, description, link, like_amount 
+            FROM recommendations WHERE user_id =: user_id"""
+            result = db.session.execute(sql, {"user_id": user_id})
+            result.fetchall()
+        except:
+            return False
+
+
     def fetch_all_recommendations(self, sort_option="1", testing=False):
-        sql = """SELECT id, title, author, description, link,
-                like_amount FROM recommendations"""
+        result = db.session.execute("SELECT id, title, author, description, link, "
+                                   "like_amount, user_id, visibility FROM recommendations WHERE visibility = 1")
         """
         sql = "SELECT R.title, R.author, R.description, U.username"\
               " FROM recommendations R LEFT JOIN users U ON R.user_id = U.id"
@@ -58,9 +77,9 @@ class RecommendationRepository:
               " FROM tests.recommendations R LEFT JOIN tests.users U ON R.user_id = U.id"
         sql += " " + self.order_by(self, sort_option)
         """
-        result = db.session.execute(sql)
+        rec_list = result.fetchall()
 
-        return result.fetchall()
+        return rec_list
     
     def test_like(self, user_id, recommendation_id):
         sql = "SELECT * FROM likes WHERE user_id =:user_id AND recommendation_id =:recommendation_id"
@@ -76,6 +95,12 @@ class RecommendationRepository:
     def add_like(self, id, likes):
         sql = "UPDATE recommendations SET like_amount = :likes WHERE id = :id"
         db.session.execute(sql, {"likes": likes, "id": id})
+        db.session.commit()
+
+    def delete_recommendation(self, id):
+        visibility = 0
+        sql = "UPDATE recommendations SET visibility = :visibility  WHERE id = :id"
+        db.session.execute(sql, {"visibility": visibility, "id": id})
         db.session.commit()
 
 

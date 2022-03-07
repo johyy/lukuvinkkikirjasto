@@ -29,12 +29,14 @@ def create_tables(conn):
 
     sql_create_recommendations_table = """CREATE TABLE IF NOT EXISTS recommendations (
                                     id INTEGER PRIMARY KEY,
-                                    title text NOT NULL,
+                                    title text NOT NULL UNIQUE,
                                     link text NOT NULL,
                                     media text,
                                     author text,
                                     description text, 
-                                    like_amount INTEGER
+                                    like_amount INTEGER,
+                                    visibility INTEGER,
+                                    user_id  INTEGER REFERENCES users
                                 );"""
 
     sql_create_likes_table = """CREATE TABLE IF NOT EXISTS likes (
