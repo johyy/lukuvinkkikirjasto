@@ -3,3 +3,4 @@ __pycache__
 venv
 .idea/
 database.db
+test-database.db

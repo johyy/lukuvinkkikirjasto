@@ -10,8 +10,7 @@ class RecommendationRepository:
 
     def add_new_recommendation(self, recommendation):
         try:
-            sql = """INSERT INTO recommendations (title, link, like_amount, visibility, user_id) VALUES (:title, :link, 0, 1, 
-            :user_id)"""
+            sql = """INSERT INTO recommendations (title, link, like_amount, creation_time) VALUES (:title, :link, 0, DATETIME('now'))"""
             db.session.execute(sql, {"title": recommendation.get_title(),  "link": recommendation.get_link(
             ), "user_id": recommendation.get_user_id()})
 
@@ -38,12 +37,16 @@ class RecommendationRepository:
 
         if sort_option == "1":
             order_by += "ORDER BY R.creation_time DESC"
+            
         if sort_option == "2":
             order_by += "ORDER BY R.creation_time ASC"
+        
         if sort_option == "3":
-            order_by += "ORDER BY R.title ASC"
+            order_by += "ORDER BY R.like_amount DESC, R.creation_time DESC"
+
         if sort_option == "4":
-            order_by += "ORDER BY R.title DESC"
+            order_by += "ORDER BY R.like_amount ASC, R.creation_time DESC"
+
         if sort_option == "5":
             order_by += "ORDER BY R.author ASC"
         if sort_option == "6":
@@ -53,8 +56,7 @@ class RecommendationRepository:
         if sort_option == "8":
             order_by += "ORDER BY U.username DESC"
 
-        # return order_by
-        return ""
+        return order_by
 
     def fetch_recommendation_by_user_id(self, user_id):
         try:
@@ -67,8 +69,10 @@ class RecommendationRepository:
 
 
     def fetch_all_recommendations(self, sort_option="1", testing=False):
-        result = db.session.execute("SELECT id, title, author, description, link, "
-                                   "like_amount, user_id, visibility FROM recommendations WHERE visibility = 1")
+        sql = """SELECT id, title, author, description, link,
+                like_amount, datetime(creation_time), date(creation_time) as date, time(creation_time) as time
+                FROM recommendations R"""
+
         """
         sql = "SELECT R.title, R.author, R.description, U.username"\
               " FROM recommendations R LEFT JOIN users U ON R.user_id = U.id"
@@ -77,9 +81,10 @@ class RecommendationRepository:
               " FROM tests.recommendations R LEFT JOIN tests.users U ON R.user_id = U.id"
         sql += " " + self.order_by(self, sort_option)
         """
-        rec_list = result.fetchall()
 
-        return rec_list
+        sql += " " + self.order_by(sort_option)
+        result = db.session.execute(sql)
+        return result.fetchall()
     
     def test_like(self, user_id, recommendation_id):
         sql = "SELECT * FROM likes WHERE user_id =:user_id AND recommendation_id =:recommendation_id"

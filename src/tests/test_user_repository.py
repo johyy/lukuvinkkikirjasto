@@ -1,8 +1,14 @@
 import unittest
 from repositories.user_repository import user_repository
 from entities.user import UserAccount
+from create_application import create_app
 
 class TestUserRepository(unittest.TestCase):
+
+    def setUpClass():
+        app = create_app()
+        app.app_context().push()
+
     def setUp(self):
         self.test_user = UserAccount("jtyope", "kayttaja123")
 

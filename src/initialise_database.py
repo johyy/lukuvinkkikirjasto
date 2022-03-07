@@ -35,8 +35,7 @@ def create_tables(conn):
                                     author text,
                                     description text, 
                                     like_amount INTEGER,
-                                    visibility INTEGER,
-                                    user_id  INTEGER REFERENCES users
+                                    creation_time TEXT
                                 );"""
 
     sql_create_likes_table = """CREATE TABLE IF NOT EXISTS likes (
