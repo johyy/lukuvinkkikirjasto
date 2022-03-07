@@ -17,6 +17,22 @@ Aseta riippuvuudet komennolla:
 poetry install
 ```
 
+### .env-tiedoston lisäys
+
+Ohjelma tarvitsee .env tiedoston, jossa on määriteltynä tietokannan osoite ja SECRET_KEY. 
+
+Luo .env-tiedoston ensin komennolla
+```
+touch .env
+```
+
+Avaa .env-tiedosto tekstinmuokkausohjelmalla ja lisää siihen nämä rivit.
+```
+DATABASE_FILENAME='database.db'
+SECRET_KEY=TÄHÄN OMA AVAIN
+```
+Muista lisätä oma avain kohtaan "SECRET_KEY"
+
 ### Ohjelman suorittaminen
 
 Ohjelman pystyy suorittamaan komennolla:
