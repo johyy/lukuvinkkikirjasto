@@ -34,10 +34,10 @@ class RecommendationRepository:
             order_by += "ORDER BY R.creation_time ASC"
         
         if sort_option == "3":
-            order_by += "ORDER BY R.like_amount DESC"
+            order_by += "ORDER BY R.like_amount DESC, R.creation_time DESC"
 
         if sort_option == "4":
-            order_by += "ORDER BY R.like_amount ASC"
+            order_by += "ORDER BY R.like_amount ASC, R.creation_time DESC"
 
         if sort_option == "5":
             order_by += "ORDER BY R.author ASC"
