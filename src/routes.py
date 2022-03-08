@@ -85,8 +85,7 @@ def add_recommendation():
         succes, error = recommendation_service.add_recommendation(title, link, user_id)
         if succes:
             return render_template("add_recommendation.html", media_added=True)
-        else:
-            return render_template("add_recommendation.html", media=media, input_error=error)
+        return render_template("add_recommendation.html", media=media, input_error=error)
 
 
 @app.route("/choose_media", methods=["post"])
@@ -109,7 +108,7 @@ def add_like():
     total_likes = int(recommendation_like_amount) + 1
     if recommendation_service.test_like(user_id, recommendation_id):
         recommendation_service.add_like(recommendation_id, total_likes)
-    
+
     return redirect('/')
 
 @app.route("/delete_recommendation", methods=["post"])
