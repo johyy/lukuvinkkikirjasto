@@ -17,12 +17,54 @@ class TestRecommendationRepository(unittest.TestCase):
     #def tearDown(self):
     #    os.remove('src/test-database.db')
     
-    def test_one(self):
+    def test_fetch_first(self):
         self.test_recom = (Recommendation(title="Kirja", link="linkki", user_id=1))
         recommendation_repository.add_new_recommendation(self.test_recom)
         fetch_all = recommendation_repository.fetch_all_recommendations()
         self.assertEqual("Kirja", fetch_all[0][1])
+        recommendation_repository.delete_recommendation(2)
+
+    def test_fetch_multiple_order_default(self):
+        self.assertEqual([], recommendation_repository.fetch_all_recommendations())
+        recom_one = (Recommendation(title="one", link="linkki", user_id=1))
+        recom_two = (Recommendation(title="two", link="linkki", user_id=1))
+        recom_three = (Recommendation(title="three", link="linkki", user_id=1))
+        recommendation_repository.add_new_recommendation(recom_one)
+        recommendation_repository.add_new_recommendation(recom_two)
+        recommendation_repository.add_new_recommendation(recom_three)
+
+        recommendation_repository.add_like(4, 6)
+        fetch_all_default = recommendation_repository.fetch_all_recommendations()
+        self.assertEqual("two", fetch_all_default[0][1])
+        self.assertEqual("one", fetch_all_default[1][1])
+        self.assertEqual("three", fetch_all_default[2][1])
+
+        fetch_all = recommendation_repository.fetch_all_recommendations(sort_option="1")
+        self.assertEqual(fetch_all, fetch_all_default)
+
+    def test_fetch_multiple_order_likes(self):
+
+        recommendation_repository.add_like(3, 2)
+        fetch_all = recommendation_repository.fetch_all_recommendations(sort_option="2")
+        self.assertEqual("three", fetch_all[0][1])
+        self.assertEqual("one", fetch_all[1][1])
+
+        recommendation_repository.add_like(3, 6)
+        recommendation_repository.add_like(5, 6)
+
+        fetch_all = recommendation_repository.fetch_all_recommendations()
+        self.assertEqual("one", fetch_all[0][1])
+        self.assertEqual("three", fetch_all[2][1])
     
+    def test_fetch_multiple_order_time(self):
+        fetch_all_newest = recommendation_repository.fetch_all_recommendations(sort_option="3")
+        self.assertEqual("three", fetch_all_newest[2][1])
+        self.assertEqual("one", fetch_all_newest[0][1])
+        
+        fetch_all_oldest = recommendation_repository.fetch_all_recommendations(sort_option="4")
+        self.assertEqual("three", fetch_all_oldest[2][1])
+        self.assertEqual("one", fetch_all_oldest[0][1])
+
     def test_test_like_true(self):
         self.assertTrue(recommendation_repository.test_like(3, 3))
     
