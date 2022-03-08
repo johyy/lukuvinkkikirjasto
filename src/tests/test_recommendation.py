@@ -3,7 +3,7 @@ from entities import recommendation
 
 class TestRecommendation(unittest.TestCase):
     def setUp(self):
-        self.recommendation = recommendation.Recommendation(title="HTML-vinkkisivu", link="https://www.jediakatemia.fi/")
+        self.recommendation = recommendation.Recommendation(title="HTML-vinkkisivu", link="https://www.jediakatemia.fi/", user_id="1")
 
     def test_create_recommendation(self):
         self.assertEqual(self.recommendation.get_title(), "HTML-vinkkisivu")
@@ -12,6 +12,10 @@ class TestRecommendation(unittest.TestCase):
     def test_set_title(self):
         self.recommendation.set_title("Hyötysivu")
         self.assertEqual(self.recommendation.get_title(), "Hyötysivu")
+
+    def test_set_user_id(self):
+        self.recommendation.set_user_id(1)
+        self.assertEqual(self.recommendation.get_user_id(), 1)
 
     def test_set_link(self):
         self.recommendation.set_link("https://www.ärdetfredag.se/")
