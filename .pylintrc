@@ -1,6 +1,7 @@
 [MASTER]
 
 ignore=tests,index.py
+ignored-classes=SQLObject,Registrant,scoped_session
 load-plugins=pylint.extensions.mccabe
 
 [MESSAGE CONTROL]

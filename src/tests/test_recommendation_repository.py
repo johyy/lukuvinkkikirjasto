@@ -1,4 +1,5 @@
 import unittest
+import os
 from repositories.recommendation_repository import recommendation_repository
 from entities.recommendation import Recommendation
 from create_application import create_app
@@ -12,6 +13,9 @@ class TestRecommendationRepository(unittest.TestCase):
     def setUp(self):
         self.test_recom = Recommendation(title="Harry Potter", link="http://www.harrypotter.com", user_id=3)
         recommendation_repository.add_new_recommendation(self.test_recom)
+
+    #def tearDown(self):
+    #    os.remove('src/test-database.db')
     
     def test_one(self):
         self.test_recom = (Recommendation(title="Kirja", link="linkki", user_id=1))
