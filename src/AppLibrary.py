@@ -8,9 +8,8 @@ class AppLibrary:
 
         self.reset_application()
 
-   # Odottaa testitietokantaa
-   # def reset_application(self):
-   #     requests.post(f"{self._base_url}/tests/reset")
+    def reset_application(self):
+        requests.post(f"{self._base_url}/tests/reset")
 
     def create_user(self, username, password):
         data = {
@@ -19,4 +18,7 @@ class AppLibrary:
             "password_confirmation": password
         }
 
+        requests.post(f"{self._base_url}/register", data=data)
+
+    def choose_media(self, data):
         requests.post(f"{self._base_url}/register", data=data)
