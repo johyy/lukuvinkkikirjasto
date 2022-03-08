@@ -19,7 +19,7 @@ poetry install
 
 ### .env-tiedoston lisäys
 
-Ohjelma tarvitsee .env tiedoston, jossa on määriteltynä tietokannan osoite ja SECRET_KEY. 
+Ohjelma tarvitsee .env-tiedoston, jossa on määriteltynä tietokannan osoite ja SECRET_KEY. 
 
 Luo .env-tiedoston ensin komennolla
 ```
@@ -35,6 +35,7 @@ Muista lisätä oma avain kohtaan "SECRET_KEY"
 
 ### Ohjelman suorittaminen
 
+Siirry kansion ```src``` sisälle.
 Ohjelman pystyy suorittamaan komennolla:
 
 ```

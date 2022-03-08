@@ -43,17 +43,18 @@ class RecommendationRepository:
         order_by = ""
 
         if sort_option == "1":
-            order_by += "ORDER BY R.creation_time DESC"
-
-        if sort_option == "2":
-            order_by += "ORDER BY R.creation_time ASC"
-
-        if sort_option == "3":
             order_by += "ORDER BY R.like_amount DESC, R.creation_time DESC"
 
-        if sort_option == "4":
+        if sort_option == "2":
             order_by += "ORDER BY R.like_amount ASC, R.creation_time DESC"
 
+        if sort_option == "3":
+            order_by += "ORDER BY R.creation_time DESC"
+
+        if sort_option == "4":
+            order_by += "ORDER BY R.creation_time ASC"
+
+        """
         if sort_option == "5":
             order_by += "ORDER BY R.author ASC"
         if sort_option == "6":
@@ -62,6 +63,7 @@ class RecommendationRepository:
             order_by += "ORDER BY U.username ASC"
         if sort_option == "8":
             order_by += "ORDER BY U.username DESC"
+        """
 
         return order_by
 
