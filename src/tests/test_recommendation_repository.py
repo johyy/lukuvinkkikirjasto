@@ -14,8 +14,10 @@ class TestRecommendationRepository(unittest.TestCase):
         recommendation_repository.add_new_recommendation(self.test_recom)
     
     def test_one(self):
+        self.test_recom = (Recommendation(title="Kirja", link="linkki", user_id=1))
+        recommendation_repository.add_new_recommendation(self.test_recom)
         fetch_all = recommendation_repository.fetch_all_recommendations()
-        self.assertEqual("Harry Potter", fetch_all[0][1])
+        self.assertEqual("Kirja", fetch_all[0][1])
     
     def test_test_like_true(self):
         self.assertTrue(recommendation_repository.test_like(3, 3))
@@ -28,6 +30,11 @@ class TestRecommendationRepository(unittest.TestCase):
         recommendation_repository.add_like(1, 15)
         fetch_all = recommendation_repository.fetch_all_recommendations()
         self.assertEqual(15, fetch_all[0][5])
+
+    def test_delete_recommendation(self):
+        recommendation_repository.delete_recommendation(1)
+        fetch_all = recommendation_repository.fetch_all_recommendations()
+        self.assertEqual([], fetch_all)
 
     """
     def setUpClass():

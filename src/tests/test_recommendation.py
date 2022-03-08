@@ -13,6 +13,10 @@ class TestRecommendation(unittest.TestCase):
         self.recommendation.set_title("Hyötysivu")
         self.assertEqual(self.recommendation.get_title(), "Hyötysivu")
 
+    def test_set_user_id(self):
+        self.recommendation.set_user_id(1)
+        self.assertEqual(self.recommendation.get_user_id(), 1)
+
     def test_set_link(self):
         self.recommendation.set_link("https://www.ärdetfredag.se/")
         self.assertEqual(self.recommendation.get_link(), "https://www.ärdetfredag.se/")
