@@ -34,9 +34,9 @@ class RecommendationService:
         message = f"{title} löytyy jo kirjastosta"
         return False, message
 
-    def delete_recommendation(self, id):
-        self._recommendation_repository.delete_recommendation(id)
+    def delete_recommendation(self, recommendation_id):
         """ Deletes recommendation."""
+        self._recommendation_repository.delete_recommendation(recommendation_id)
 
     def test_like(self, user_id, recommendation_id):
         return self._recommendation_repository.test_like(user_id, recommendation_id)

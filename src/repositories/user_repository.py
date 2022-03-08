@@ -15,8 +15,8 @@ class UserRepository:
             ), "password": user.get_password(), "admin": user.is_admin()})
             db.session.commit()
             return True
-        except Exception as e:
-            print(e)
+        except Exception as exception:
+            print(exception)
             return False
 
     def get_user(self, username):
