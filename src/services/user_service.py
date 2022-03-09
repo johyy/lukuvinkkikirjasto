@@ -1,5 +1,5 @@
 import os
-from flask import session
+from flask import session, request
 from werkzeug.security import check_password_hash, generate_password_hash
 from repositories.user_repository import user_repository as default_user_repository
 from entities.user import UserAccount
@@ -14,7 +14,6 @@ class UserService:
 
         self._user_repository = user_repository
         self._current_user = None
-        self.user_token = None
 
     def login(self, username, password):
         """ Log in user."""
@@ -27,7 +26,7 @@ class UserService:
 
                 self._current_user = UserAccount(
                     username=username, password=new_user[1])
-                # session["csrf_token"] = self.user_service.check_csrf()
+                session["csrf_token"] = os.urandom(16).hex()
                 session["user_id"] = new_user[3]
                 session["user_name"] = username
                 return True, ""
@@ -71,14 +70,9 @@ class UserService:
             message = "Tunnuksessa oltava vähintään 3 merkkiä ja salasanassa vähintään 8 merkkiä ja vähintään yksi numero tai erikoismerkki."
         return False, message
 
-    def create_csrf_token(self):
-        """ Creates new CSRF token. """
-        self.user_token = os.urandom(16).hex()
-        return self.user_token
-
-    def check_csrf(self, token):
+    def check_csrf(self):
         """ Checks CSRF token. """
-        if self.user_token != token:
+        if session["csrf_token"] != request.form["csrf_token"]:
             return False
         return True
 

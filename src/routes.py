@@ -1,5 +1,5 @@
 import os
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, abort
 from app import app
 from services.user_service import user_service
 from services.recommendation_service import recommendation_service
@@ -72,7 +72,8 @@ def add_recommendation():
         return render_template("add_recommendation.html")
 
     if request.method == "POST":
-        # csfr-token
+        if not user_service.check_csrf():
+            abort(403)
 
         media = request.form["media"]
         title = request.form["title"]
@@ -94,7 +95,9 @@ def add_recommendation():
 def choose_media():
 
     if request.method == "POST":
-        # csfr-token
+        if not user_service.check_csrf():
+            abort(403)
+
 
         media = request.form["media"]
         if media == "":
