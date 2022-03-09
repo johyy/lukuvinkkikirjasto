@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # käynnistetään Flask-palvelin taustalle
-poetry run python3 src/create_application.py &
+cd src
+rm test-database.db
+DATABASE_FILENAME=test-database.db poetry run flask run &
 
 # odetetaan, että palvelin on valmiina ottamaan vastaan pyyntöjä
 while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:5000/ping)" != "200" ]]; 
@@ -9,7 +11,7 @@ while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:5000/ping)" != "2
 done
 
 # suoritetaan testit
-poetry run robot src/tests
+poetry run robot tests
 
 status=$?
 

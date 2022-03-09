@@ -1,3 +1,4 @@
+import os
 from flask import render_template, request, redirect, url_for
 from app import app
 from services.user_service import user_service
@@ -82,7 +83,8 @@ def add_recommendation():
         #    author = request.form["author"]
         #    isbn = request.form["isbn"]
 
-        succes, error = recommendation_service.add_recommendation(title, link, user_id)
+        succes, error = recommendation_service.add_recommendation(
+            title, link, user_id)
         if succes:
             return render_template("add_recommendation.html", media_added=True)
         return render_template("add_recommendation.html", media=media, input_error=error)
@@ -100,9 +102,10 @@ def choose_media():
 
         return render_template("add_recommendation.html", media=media)
 
+
 @app.route("/likes", methods=["post"])
 def add_like():
-    recommendation_id  = request.form['recommendation_id']
+    recommendation_id = request.form['recommendation_id']
     recommendation_like_amount = request.form['recommendation_like_amount']
     user_id = request.form['user_id']
     total_likes = int(recommendation_like_amount) + 1
@@ -110,6 +113,7 @@ def add_like():
         recommendation_service.add_like(recommendation_id, total_likes)
 
     return redirect('/')
+
 
 @app.route("/delete_recommendation", methods=["post"])
 def delete_recommendation():

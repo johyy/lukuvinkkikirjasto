@@ -5,12 +5,13 @@ Library  ../AppLibrary.py
 
 *** Variables ***
 ${SERVER}  localhost:5000
-${BROWSER}  chrome
-${DELAY}  0.2 seconds
+${BROWSER}  headlesschrome
+${DELAY}  0 seconds
 ${HOME URL}  http://${SERVER}/
 ${LOGIN URL}  http://${SERVER}/login
 ${REGISTER URL}  http://${SERVER}/register
 ${ADD URL}  http://${SERVER}/add_recommendation
+
 
 *** Keywords ***
 Open And Configure Browser
@@ -27,8 +28,8 @@ Register Page Should Be Open
 Login Page Should Be Open
     Title Should Be  Login
 
-Add Recommedantion Page Should Be Open
-    Title Should Be  add_recommendation
+Add Recommendation Page Should Be Open
+    Title Should Be  Add_recommendation
 
 Go To Login Page
     Go To  ${LOGIN URL}
@@ -39,7 +40,7 @@ Go To Starting Page
 Go to Registering Page
     Go To  ${REGISTER URL}
 
-Go To Add Recommedantion Page
-    Go To %{ADD URL}
+Go To Add Recommendation Page
+    Go To  ${ADD URL}
 
 
