@@ -19,7 +19,6 @@ def sort_by():
 
 @app.route("/<sort_option>")
 def index_sorted(sort_option):
-
     recommendations_list = recommendation_service.list_all_recommendations(
         sort_option)
     return render_template("index.html", sort_option=sort_option, recommendations_list=recommendations_list)
@@ -48,7 +47,6 @@ def logout():
 
 @app.route("/register", methods=["get", "post"])
 def register():
-
     if request.method == "GET":
         return render_template("register.html")
 
@@ -67,7 +65,6 @@ def register():
 
 @app.route("/add_recommendation", methods=["get", "post"])
 def add_recommendation():
-
     if request.method == "GET":
         return render_template("add_recommendation.html")
 
@@ -93,11 +90,9 @@ def add_recommendation():
 
 @app.route("/choose_media", methods=["post"])
 def choose_media():
-
     if request.method == "POST":
         if not user_service.check_csrf():
             abort(403)
-
 
         media = request.form["media"]
         if media == "":
