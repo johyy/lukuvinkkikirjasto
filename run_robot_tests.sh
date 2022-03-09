@@ -2,7 +2,6 @@
 
 # käynnistetään Flask-palvelin taustalle
 cd src
-rm test-database.db
 DATABASE_FILENAME=test-database.db poetry run flask run &
 
 # odetetaan, että palvelin on valmiina ottamaan vastaan pyyntöjä
