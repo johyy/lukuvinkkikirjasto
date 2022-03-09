@@ -1,4 +1,4 @@
-Testauksen haarautumakattavuus on 75%
+Testauksen haarautumakattavuus on 80%
 
 ![](./kuvat/testikattavuus.png)
 
