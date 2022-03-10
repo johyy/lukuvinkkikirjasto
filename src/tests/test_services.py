@@ -46,12 +46,12 @@ class TestRecommendationService(unittest.TestCase):
         self.rs = RecommendationService(recommendation_repo_mock)
 
     def test_user_adds_recommendation(self):
-        self.rs.add_recommendation("Otsake", "linkki", 1)
+        self.rs.add_recommendation("Otsake", "https://linkki", 1)
 #        self.assertEqual(self.user.get_recommendations()[0].get_title(), "Otsake") IndexError: list index out of range
 #        self.assertEqual(self.user.get_recommendations()[0].get_link(), "linkki")
 
     def test_user_adds_recommendation_without_title(self):
-        self.rs.add_recommendation("", "linkki", 1)
+        self.rs.add_recommendation("", "https://linkki", 1)
         self.assertEqual(self.user.get_recommendations(), [])
 
     def test_user_adds_recommendation_without_link(self):
