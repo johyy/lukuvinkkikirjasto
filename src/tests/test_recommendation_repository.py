@@ -14,16 +14,16 @@ class TestRecommendationRepository(unittest.TestCase):
 
     def test_fetch_first(self):
         self.test_recom = (Recommendation(
-            title="Kirja", link="linkki", user_id=1))
+            title="Kirja", link="https://linkki", user_id=1))
         recommendation_repository.add_new_recommendation(self.test_recom)
         fetch_all = recommendation_repository.fetch_all_recommendations()
         self.assertEqual("Kirja", fetch_all[1][1])
         recommendation_repository.delete_recommendation(2)
 
     def test_fetch_multiple_order_default(self):
-        recom_one = (Recommendation(title="one", link="linkki", user_id=1))
-        recom_two = (Recommendation(title="two", link="linkki", user_id=1))
-        recom_three = (Recommendation(title="three", link="linkki", user_id=1))
+        recom_one = (Recommendation(title="one", link="https://linkki", user_id=1))
+        recom_two = (Recommendation(title="two", link="https://linkki", user_id=1))
+        recom_three = (Recommendation(title="three", link="https://linkki", user_id=1))
         recommendation_repository.add_new_recommendation(recom_one)
         recommendation_repository.add_new_recommendation(recom_two)
         recommendation_repository.add_new_recommendation(recom_three)
@@ -39,9 +39,9 @@ class TestRecommendationRepository(unittest.TestCase):
         self.assertEqual(fetch_all, fetch_all_default)
 
     def test_fetch_multiple_order_likes(self):
-        recom_one = (Recommendation(title="one", link="linkki", user_id=1))
-        recom_two = (Recommendation(title="two", link="linkki", user_id=1))
-        recom_three = (Recommendation(title="three", link="linkki", user_id=1))
+        recom_one = (Recommendation(title="one", link="https://linkki", user_id=1))
+        recom_two = (Recommendation(title="two", link="https://linkki", user_id=1))
+        recom_three = (Recommendation(title="three", link="https://linkki", user_id=1))
         recommendation_repository.add_new_recommendation(recom_one)
         recommendation_repository.add_new_recommendation(recom_two)
         recommendation_repository.add_new_recommendation(recom_three)
@@ -58,9 +58,9 @@ class TestRecommendationRepository(unittest.TestCase):
         self.assertEqual("two", fetch_all[0][1])
 
     def test_fetch_multiple_order_time(self):
-        recom_one = (Recommendation(title="one", link="linkki", user_id=1))
-        recom_two = (Recommendation(title="two", link="linkki", user_id=1))
-        recom_three = (Recommendation(title="three", link="linkki", user_id=1))
+        recom_one = (Recommendation(title="one", link="https://linkki", user_id=1))
+        recom_two = (Recommendation(title="two", link="https://linkki", user_id=1))
+        recom_three = (Recommendation(title="three", link="https://linkki", user_id=1))
         recommendation_repository.add_new_recommendation(recom_one)
         recommendation_repository.add_new_recommendation(recom_two)
         recommendation_repository.add_new_recommendation(recom_three)
