@@ -1,4 +1,5 @@
 #from sqlalchemy.exc import IntegrityError
+from sqlalchemy import select
 from db import db
 
 
@@ -16,16 +17,6 @@ class RecommendationRepository:
 
             db.session.execute(sql, {"title": recommendation.get_title(),  "link": recommendation.get_link(
             ), "user_id": recommendation.get_user_id()})
-
-            # sql = "INSERT INbO recommendations (user_id, media, title, author, " \
-            #    "description, link, isbn, creation_time)
-            #VALUES (:user_id, :media, :title, :author, :description," \
-            #    ":link, :isbn, NOW())"
-            # db.session.execute(sql, {"user_id": user_id, "media":
-            #recommendation.get_media(), "title": recommendation.get_title(),
-            #"author": recommendation.get_author(),
-            # "description": recommendation.get_description(), "link":
-            #recommendation.get_link(), "isbn": recommendation.get_isbn()})
             db.session.commit()
             return True
         except:
@@ -68,26 +59,19 @@ class RecommendationRepository:
         return order_by
 
     def fetch_recommendation_by_user_id(self, user_id):
-        try:
-            sql = """SELECT id, title, author, description, link, like_amount
-            FROM recommendations WHERE user_id =: user_id"""
-            result = db.session.execute(sql, {"user_id": user_id})
-            result.fetchall()
-        except:
-            return False
+        user_id_sql = (user_id,)
+        print(user_id_sql)
+        sql = """SELECT id, title, author, description, link, like_amount,
+                 datetime(creation_time), date(creation_time) as date, time(creation_time) as time
+		         FROM recommendations WHERE user_id =:user_id"""
+        result = db.session.execute(sql, {"user_id": user_id})
+        return result.fetchall()
 
 
     def fetch_all_recommendations(self, sort_option="1"):
         sql = """SELECT id, title, author, description, link,
                 like_amount, datetime(creation_time), date(creation_time) as date, time(creation_time) as time, visibility, user_id
                 FROM recommendations R WHERE visibility=1"""
-
-        #sql = "SELECT R.title, R.author, R.description, U.username"\
-        #      " FROM recommendations R LEFT JOIN users U ON R.user_id = U.id"
-        #if (testing):
-        #    sql = "SELECT R.title, R.author, R.description, R.creation_time, U.username"\
-        #      " FROM tests.recommendations R LEFT JOIN tests.users U ON R.user_id = U.id"
-        #sql += " " + self.order_by(self, sort_option)
 
         sql += " " + self.order_by(sort_option)
         result = db.session.execute(sql)
@@ -110,9 +94,8 @@ class RecommendationRepository:
         db.session.commit()
 
     def delete_recommendation(self, rec_id):
-        visibility = 0
-        sql = "UPDATE recommendations SET visibility = :visibility  WHERE id = :id"
-        db.session.execute(sql, {"visibility": visibility, "id": rec_id})
+        sql = "DELETE FROM recommendations WHERE id = :id"
+        db.session.execute(sql, {"id": rec_id})
         db.session.commit()
 
 recommendation_repository = RecommendationRepository()

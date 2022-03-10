@@ -1,5 +1,5 @@
 import os
-from flask import render_template, request, redirect, url_for, abort
+from flask import render_template, request, redirect, url_for, abort, session
 from app import app
 from services.user_service import user_service
 from services.recommendation_service import recommendation_service
@@ -16,14 +16,12 @@ def sort_by():
     sort_option = request.form["sort_option"]
     return redirect(url_for("index_sorted", sort_option=sort_option))
 
-
 @app.route("/<sort_option>")
 def index_sorted(sort_option):
 
     recommendations_list = recommendation_service.list_all_recommendations(
         sort_option)
     return render_template("index.html", sort_option=sort_option, recommendations_list=recommendations_list)
-
 
 @app.route("/login", methods=["get", "post"])
 def login():
@@ -91,6 +89,12 @@ def add_recommendation():
         return render_template("add_recommendation.html", media=media, input_error=error)
 
 
+@app.route("/delete_recommendation", methods=["post"])
+def delete_recommendation():
+    recommendation_id = int(request.form['recommendation_id'])
+    recommendation_service.delete_recommendation(recommendation_id)
+    return redirect('/')
+
 @app.route("/choose_media", methods=["post"])
 def choose_media():
 
@@ -118,8 +122,8 @@ def add_like():
     return redirect('/')
 
 
-@app.route("/delete_recommendation", methods=["post"])
-def delete_recommendation():
-    recommendation_id = int(request.form['recommendation_id'])
-    recommendation_service.delete_recommendation(recommendation_id)
-    return redirect('/')
+@app.route("/own_page", methods=["get"])
+def own_page():
+    user_id = session.get("user_id")
+    recommendations = recommendation_service.list_recommendations_by_user(user_id)
+    return render_template("own_page.html", recommendations=recommendations)

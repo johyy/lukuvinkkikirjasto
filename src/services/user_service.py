@@ -24,8 +24,8 @@ class UserService:
 
             if check_password_hash(new_user[1], password):
 
-                self._current_user = UserAccount(
-                    username=username, password=new_user[1])
+                self.set_current_user(UserAccount(
+                    username=username, password=new_user[1]))
                 session["csrf_token"] = os.urandom(16).hex()
                 session["user_id"] = new_user[3]
                 session["user_name"] = username
@@ -47,6 +47,16 @@ class UserService:
         """
 
         return self._current_user
+
+    def get_current_user_id(self):
+        """ Returns the current user's row id from db.
+        Returns:
+            current user's row id
+        """
+        
+        user = self._user_repository.get_user(self._current_user.get_username())
+        user_id = user[3]
+        return user_id
 
     def set_current_user(self, user):
         """ Sets a current user."""

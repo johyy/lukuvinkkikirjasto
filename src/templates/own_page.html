@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<title>Home</title>
+<div class="container">
+<h1>Käyttäjän <class="text-success"> {{ session.user_name }} suositukset</h1>
+
+<p>
+
+{%if recommendations%}
+
+<div class="row">
+
+<div class="col-10">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Otsikko</th>
+              <th scope="col">URL</th>
+              <th scope="col">Vinkin lisääjä</th>
+              <th scope="col">Lisätty</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for recommendation in recommendations%}
+              <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{recommendation.title}}</td>
+                <td><a href="{{recommendation.link}}"> {{recommendation.link}} </a></td>
+                <td>Vinkin lisääjä</td>
+                <td>{{recommendation.time}} {{recommendation.date}}</td>
+                <td>♥ {{recommendation.like_amount}}</td>
+                    <td> <form action="/delete_recommendation" method="post">
+                        <input type ="hidden" value={{ recommendation.id }} name="recommendation_id">
+                        <input type ="submit" value="Poista">
+                    </td>
+                    </form>
+                <td></td>
+              </tr>
+            {%endfor%}
+        </tbody>
+    </table>    
+</div>
+
+{% else %}
+    <div>
+        <h3> Kirjasto on vielä tyhjä :(!</h3>
+    </div>
+{% endif %}
+{% endblock %}
+

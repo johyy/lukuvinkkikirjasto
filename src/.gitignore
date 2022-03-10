@@ -4,3 +4,4 @@ venv
 .idea/
 database.db
 test-database.db
+selenium-screenshot-1.png

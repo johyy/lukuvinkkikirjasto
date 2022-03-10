@@ -29,5 +29,15 @@ class UserRepository:
 
         return user
 
+    def get_user_by_id(self, user_id):
+        """Returns user"""
+        sql = "SELECT username, password, admin, rowid FROM users WHERE rowid=:rowid"
+        result = db.session.execute(sql, {"rowid": user_id})
+        user = result.fetchone()
+        if not user:
+            return False
+
+        return user
+
 
 user_repository = UserRepository()
