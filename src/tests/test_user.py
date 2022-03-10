@@ -6,7 +6,7 @@ from entities.recommendation import Recommendation
 class TestUser(unittest.TestCase):
     def setUp(self):
         self.user = UserAccount(username="testi", password="salasana")
-        self.recommendation = Recommendation(title="Otsake", link="linkki", user_id=1)
+        self.recommendation = Recommendation(title="Otsake", link="https://linkki", user_id=1)
 
 
     def test_create_user(self):
@@ -32,7 +32,7 @@ class TestUser(unittest.TestCase):
 
     def test_remove_nonexisting_recommendation(self):
         self.user.add_recommendation(self.recommendation)
-        self.user.remove_recommendation(Recommendation(title="toinen", link="linkki", user_id=1))
+        self.user.remove_recommendation(Recommendation(title="toinen", link="https://linkki", user_id=1))
         self.assertEqual(self.user.get_recommendations()[0], self.recommendation)
 
     def test_is_user_admin_if_not(self):

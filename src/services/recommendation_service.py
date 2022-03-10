@@ -21,12 +21,17 @@ class RecommendationService:
 
     def add_recommendation(self, title, link, user_id):
         """ Adds new recommendation."""
-
+        http = "http://"
+        https = "https://"
         if title == "" or link == "":
             return False, "Täytä kaikki tiedot"
 
         message = ""
-        self._recommendation = Recommendation(title, link, user_id)
+        if http in link:
+            fixed_link = link.replace(http, "")
+        if https in link:
+            fixed_link = link.replace(https, "")
+        self._recommendation = Recommendation(title, fixed_link, user_id)
 
         if self._recommendation_repository.add_new_recommendation(self._recommendation):
             return True, message

@@ -17,16 +17,9 @@ class RecommendationRepository:
 
             db.session.execute(sql, {"title": recommendation.get_title(),  "link": recommendation.get_link(
             ), "user_id": recommendation.get_user_id()})
+
             db.session.commit()
             return True
-        except:
-            return False
-
-    def get_recommendation_by_id(self, rec_id):
-        try:
-            sql = """SELECT * FROM recommendations WHERE id =: id"""
-            result = db.session.execute(sql, {"id":rec_id})
-            result.fetchone()
         except:
             return False
 
@@ -67,7 +60,6 @@ class RecommendationRepository:
         result = db.session.execute(sql, {"user_id": user_id})
         return result.fetchall()
 
-
     def fetch_all_recommendations(self, sort_option="1"):
         sql = """SELECT id, title, author, description, link,
                 like_amount, datetime(creation_time), date(creation_time) as date, time(creation_time) as time, visibility, user_id
@@ -79,11 +71,13 @@ class RecommendationRepository:
 
     def test_like(self, user_id, recommendation_id):
         sql = "SELECT * FROM likes WHERE user_id =:user_id AND recommendation_id =:recommendation_id"
-        result = db.session.execute(sql, {"user_id": user_id, "recommendation_id": recommendation_id})
+        result = db.session.execute(
+            sql, {"user_id": user_id, "recommendation_id": recommendation_id})
         if result.fetchone() is None:
             sql2 = """INSERT INTO likes (result, user_id, recommendation_id)
                       VALUES (1, :user_id, :recommendation_id)"""
-            db.session.execute(sql2, {"user_id": user_id, "recommendation_id": recommendation_id})
+            db.session.execute(
+                sql2, {"user_id": user_id, "recommendation_id": recommendation_id})
             db.session.commit()
             return True
         return False
@@ -97,5 +91,16 @@ class RecommendationRepository:
         sql = "DELETE FROM recommendations WHERE id = :id"
         db.session.execute(sql, {"id": rec_id})
         db.session.commit()
+
+    def delete_all_recommendations(self):
+        sql = """DELETE FROM recommendations"""
+        db.session.execute(sql)
+        db.session.commit()
+
+    def delete_all_likes(self):
+        sql = """DELETE FROM likes"""
+        db.session.execute(sql)
+        db.session.commit()
+
 
 recommendation_repository = RecommendationRepository()

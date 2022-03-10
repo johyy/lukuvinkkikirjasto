@@ -10,8 +10,8 @@ ${DELAY}  0 seconds
 ${HOME URL}  http://${SERVER}/
 ${LOGIN URL}  http://${SERVER}/login
 ${REGISTER URL}  http://${SERVER}/register
+${OWNPAGE URL}  http://${SERVER}/own_page
 ${ADD URL}  http://${SERVER}/add_recommendation
-
 
 *** Keywords ***
 Open And Configure Browser
@@ -21,6 +21,9 @@ Open And Configure Browser
 
 Home Page Should Be Open
     Title Should Be  Home
+
+Own Page Should Be Open
+    Title Should Be  Ownpage
 
 Register Page Should Be Open
     Title Should Be  Register
@@ -36,6 +39,9 @@ Go To Login Page
 
 Go To Starting Page
     Go To  ${HOME URL}
+
+Go To Own Page
+    Go To  ${OWNPAGE URL}
 
 Go to Registering Page
     Go To  ${REGISTER URL}

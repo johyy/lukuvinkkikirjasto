@@ -29,7 +29,6 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Otsikko</th>
-              <th scope="col">URL</th>
               <th scope="col">Vinkin lisääjä</th>
               <th scope="col">Lisätty</th>
             </tr>
@@ -38,8 +37,7 @@
             {%for recommendation in recommendations_list%}
               <tr>
                 <th scope="row">{{loop.index}}</th>
-                <td>{{recommendation.title}}</td>
-                <td><a href="{{recommendation.link}}"> {{recommendation.link}} </a></td>
+                  <td><a href=//{{ recommendation.link }}>{{recommendation.title}}</a></td>
                 <td>Vinkin lisääjä</td>
                 <td>{{recommendation.time}} {{recommendation.date}}</td>    
                 {% if session.user_id %}

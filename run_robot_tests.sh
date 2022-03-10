@@ -2,7 +2,7 @@
 
 # käynnistetään Flask-palvelin taustalle
 cd src
-DATABASE_FILENAME=test-database.db poetry run flask run &
+DATABASE_FILENAME=test-database.db SECRET_KEY=sk123 poetry run flask run &
 
 # odetetaan, että palvelin on valmiina ottamaan vastaan pyyntöjä
 while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:5000/ping)" != "200" ]]; 

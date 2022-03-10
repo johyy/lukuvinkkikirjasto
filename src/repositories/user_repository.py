@@ -39,5 +39,10 @@ class UserRepository:
 
         return user
 
+    def delete_all(self):
+        sql = """DELETE FROM users"""
+        db.session.execute(sql)
+        db.session.commit()
+
 
 user_repository = UserRepository()

@@ -8,7 +8,6 @@ authors = ["kerkkanen"]
 python = "^3.8"
 python-dotenv = "^0.19.2"
 Flask = "^2.0.3"
-robot = "^20071211"
 psycopg2 = "^2.9.3"
 Flask-SQLAlchemy = "^2.5.1"
 robotframework = "^4.1.3"

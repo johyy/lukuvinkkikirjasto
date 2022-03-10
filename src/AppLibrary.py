@@ -13,7 +13,3 @@ class AppLibrary:
         }
 
         requests.post(f"{self._base_url}/register", data=data)
-
-    # def choose_media(self, data):
-    #    data = {"media": data}
-    #    requests.post(f"{self._base_url}/choose_media", data=data)
