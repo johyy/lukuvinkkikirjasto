@@ -1,11 +1,16 @@
 from sqlite3 import Error
+from create_application import create_app
 from database_connection import get_database_connection
+
+app = create_app()
+app.app_context().push()
+
 
 def create_table(conn, create_table_sql):
     """ Create a table from the create_table_sql statement
     Args:
         conn: Connection object
-    	create_table_sql: a CREATE TABLE statement
+        create_table_sql: a CREATE TABLE statement
     """
     try:
         cursor = conn.cursor()
@@ -13,6 +18,7 @@ def create_table(conn, create_table_sql):
         conn.commit()
     except Error as error:
         print(error)
+
 
 def create_tables(conn):
     """ Create tables.
@@ -55,6 +61,7 @@ def create_tables(conn):
     else:
         print("Error! Cannot create the database connection.")
 
+
 def initialise_database():
     # Create a database connection
     print("Creating database connection")
@@ -62,6 +69,7 @@ def initialise_database():
 
     # Create tables
     create_tables(connection)
+
 
 if __name__ == '__main__':
     initialise_database()
