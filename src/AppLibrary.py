@@ -13,15 +13,3 @@ class AppLibrary:
         }
 
         requests.post(f"{self._base_url}/register", data=data)
-
-    def login(self, username, password):
-        data = {
-            "username": username,
-            "password": password,
-        }
-
-        requests.post(f"{self._base_url}/login", data=data)
-
-    def choose_media(self, media):
-        data = {"media": media}
-        requests.post(f"{self._base_url}/choose_media", data=data)
