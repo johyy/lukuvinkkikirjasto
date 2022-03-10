@@ -12,7 +12,6 @@ ${LOGIN URL}  http://${SERVER}/login
 ${REGISTER URL}  http://${SERVER}/register
 ${ADD URL}  http://${SERVER}/add_recommendation
 
-
 *** Keywords ***
 Open And Configure Browser
     Open Browser  browser=${BROWSER}
