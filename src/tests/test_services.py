@@ -38,6 +38,11 @@ class TestUserService(unittest.TestCase):
     def test_login_with_empty_user_and_empty_password(self):
         self.assertEqual(self.us.login("", ""), (False, 'Käyttäjänimi tai salasana virheellinen'))
 
+    def test_set_current_user(self):
+        testi = UserAccount("testi", "kayttaja123")
+        self.us.set_current_user(testi)
+        self.assertEqual(self.us.get_current_user(), testi)
+
 class TestRecommendationService(unittest.TestCase):
     def setUp(self):
         user_repo_mock = Mock()
