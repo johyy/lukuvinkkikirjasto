@@ -53,7 +53,7 @@ class UserService:
         Returns:
             current user's row id
         """
-        
+
         user = self._user_repository.get_user(self._current_user.get_username())
         user_id = user[3]
         return user_id
