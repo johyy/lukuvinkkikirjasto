@@ -81,18 +81,18 @@ class TestRecommendationRepository(unittest.TestCase):
         self.assertEqual("one", fetch_all_oldest[1][1])
 
     def test_test_like_to_add_true(self):
-        self.assertTrue(recommendation_repository.test_like_to_add(3, 3))
+        self.assertTrue(recommendation_repository.test_like_to_add(10, 10))
 
     def test_test_like_to_add_false(self):
-        recommendation_repository.test_like_to_add(2, 2)
-        self.assertFalse(recommendation_repository.test_like_to_add(2, 2))
+        recommendation_repository.test_like_to_add(11, 11)
+        self.assertFalse(recommendation_repository.test_like_to_add(11, 11))
     
     def test_test_like_to_remove_true(self):
-        recommendation_repository.test_like_to_add(3, 3)
-        self.assertTrue(recommendation_repository.test_like_to_remove(3, 3))
+        recommendation_repository.test_like_to_add(12, 12)
+        self.assertTrue(recommendation_repository.test_like_to_remove(12, 12))
     
     def test_test_like_to_remove_false(self):
-        self.assertFalse(recommendation_repository.test_like_to_remove(4, 4))
+        self.assertFalse(recommendation_repository.test_like_to_remove(15, 15))
 
     def test_add_like(self):
         recommendation_repository.add_like(1, 15)
