@@ -5,11 +5,12 @@ from services.user_service import UserService
 from services.recommendation_service import RecommendationService
 from entities.user import UserAccount
 from create_application import create_app
+from repositories.user_repository import user_repository
 
 
 class TestUserService(unittest.TestCase):
     def setUp(self):
-        
+        user_repository.delete_all()
         app = create_app()
         app.app_context().push()
         self.us = UserService()
@@ -37,6 +38,17 @@ class TestUserService(unittest.TestCase):
     
     def test_login_with_empty_user_and_empty_password(self):
         self.assertEqual(self.us.login("", ""), (False, 'Käyttäjänimi tai salasana virheellinen'))
+
+    def test_set_current_user(self):
+        testi = UserAccount("testi", "kayttaja123")
+        self.us.set_current_user(testi)
+        self.assertEqual(self.us.get_current_user(), testi)
+
+    def test_nonexistent_user(self):
+        user = UserAccount("testi", "salasana123")
+        user_repository.add_a_new_user(user)
+        self.assertEqual(self.us.login("kayttaja", "testi123"), (False, 'Käyttäjänimi tai salasana virheellinen'))
+
 
 class TestRecommendationService(unittest.TestCase):
     def setUp(self):
@@ -73,3 +85,8 @@ class TestRecommendationService(unittest.TestCase):
         recs = self.rs.delete_recommendation(1)
         
         self.recommendation_repo_mock.delete_recommendation.assert_called_with(1)
+
+    def test_different_http_strings(self):
+        self.assertEqual(self.rs.add_recommendation("suositus", "http://aa", 1), (True, ''))
+        self.assertEqual(self.rs.add_recommendation("suositus", "https://aa", 1), (True, ''))
+
