@@ -5,11 +5,12 @@ from services.user_service import UserService
 from services.recommendation_service import RecommendationService
 from entities.user import UserAccount
 from create_application import create_app
+from repositories.user_repository import user_repository
 
 
 class TestUserService(unittest.TestCase):
     def setUp(self):
-        
+        user_repository.delete_all()
         app = create_app()
         app.app_context().push()
         self.us = UserService()
@@ -42,6 +43,12 @@ class TestUserService(unittest.TestCase):
         testi = UserAccount("testi", "kayttaja123")
         self.us.set_current_user(testi)
         self.assertEqual(self.us.get_current_user(), testi)
+
+    def test_nonexistent_user(self):
+        user = UserAccount("testi", "salasana123")
+        user_repository.add_a_new_user(user)
+        self.assertEqual(self.us.login("kayttaja", "testi123"), (False, 'Käyttäjänimi tai salasana virheellinen'))
+
 
 class TestRecommendationService(unittest.TestCase):
     def setUp(self):
