@@ -82,7 +82,8 @@ def add_recommendation():
         succes, error = recommendation_service.add_recommendation(
             title, link, user_id)
         if succes:
-            return render_template("add_recommendation.html", media_added=True)
+            recommendations_list = recommendation_service.list_all_recommendations()
+            return render_template("index.html", sort_option=1, media_added=True, recommendations_list=recommendations_list)
         return render_template("add_recommendation.html", media=media, input_error=error)
 
 

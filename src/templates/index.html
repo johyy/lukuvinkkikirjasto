@@ -9,6 +9,9 @@
     {% else %}
         Kirjautuneena käyttäjänä voit lisätä lisätä lukuvinnkejä ja tallettaa omat suosikit.
     {% endif %}
+    {% if media_added %}
+    <p class="text-success" style="font-size: large;">Vinkki lisätty kirjastoon!</p>
+    {% endif %}
 <p>
 
 {%if recommendations_list%}
