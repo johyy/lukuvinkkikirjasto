@@ -69,7 +69,7 @@ class RecommendationRepository:
         result = db.session.execute(sql)
         return result.fetchall()
 
-    def test_like(self, user_id, recommendation_id):
+    def test_like_to_add(self, user_id, recommendation_id):
         sql = "SELECT * FROM likes WHERE user_id =:user_id AND recommendation_id =:recommendation_id"
         result = db.session.execute(
             sql, {"user_id": user_id, "recommendation_id": recommendation_id})
@@ -81,11 +81,28 @@ class RecommendationRepository:
             db.session.commit()
             return True
         return False
+    
+    def test_like_to_remove(self, user_id, recommendation_id):
+        sql = "SELECT * FROM likes WHERE user_id =:user_id AND recommendation_id =:recommendation_id"
+        result = db.session.execute(
+            sql, {"user_id": user_id, "recommendation_id": recommendation_id})
+        if result.fetchone() is not None:
+            sql2 = "DELETE FROM likes WHERE user_id=:user_id AND recommendation_id=:recommendation_id"
+            db.session.execute(
+                sql2, {"user_id": user_id, "recommendation_id": recommendation_id})
+            db.session.commit()
+            return True
+        return False
 
     def add_like(self, like_id, likes):
         sql = "UPDATE recommendations SET like_amount = :likes WHERE id = :id"
         db.session.execute(sql, {"likes": likes, "id": like_id})
         db.session.commit()
+    
+    def fetch_recommendations_liked_by_user_id(self, user_id):
+        sql = "SELECT recommendation_id FROM likes WHERE user_id=:user_id"
+        result = db.session.execute(sql, {"user_id": user_id})
+        return result.fetchall()
 
     def delete_recommendation(self, rec_id):
         sql = "DELETE FROM recommendations WHERE id = :id"

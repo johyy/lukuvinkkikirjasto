@@ -81,11 +81,11 @@ class TestRecommendationRepository(unittest.TestCase):
         self.assertEqual("one", fetch_all_oldest[1][1])
 
     def test_test_like_true(self):
-        self.assertTrue(recommendation_repository.test_like(3, 3))
+        self.assertTrue(recommendation_repository.test_like_to_add(3, 3))
 
     def test_test_like_false(self):
-        recommendation_repository.test_like(2, 2)
-        self.assertFalse(recommendation_repository.test_like(2, 2))
+        recommendation_repository.test_like_to_add(2, 2)
+        self.assertFalse(recommendation_repository.test_like_to_add(2, 2))
 
     def test_add_like(self):
         recommendation_repository.add_like(1, 15)
