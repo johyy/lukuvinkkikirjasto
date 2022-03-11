@@ -89,4 +89,9 @@ class TestRecommendationService(unittest.TestCase):
     def test_different_http_strings(self):
         self.assertEqual(self.rs.add_recommendation("suositus", "http://aa", 1), (True, ''))
         self.assertEqual(self.rs.add_recommendation("suositus", "https://aa", 1), (True, ''))
+    
+    def test_test_like_to_add_true(self):
+        self.assertTrue(self.rs.test_like_to_add(1, 1))
 
+    def test_test_like_to_remove_true(self):
+        self.assertTrue(self.rs.test_like_to_remove(1, 1))

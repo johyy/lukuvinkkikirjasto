@@ -1,4 +1,3 @@
-
 *** Settings ***
 Library  SeleniumLibrary
 Library  ../AppLibrary.py
