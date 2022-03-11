@@ -1,6 +1,9 @@
 import unittest
 from repositories.recommendation_repository import recommendation_repository
+from repositories.user_repository import user_repository
 from entities.recommendation import Recommendation
+from entities.user import UserAccount
+
 
 
 class TestRecommendationRepository(unittest.TestCase):
@@ -8,9 +11,12 @@ class TestRecommendationRepository(unittest.TestCase):
     def setUp(self):
         recommendation_repository.delete_all_recommendations()
         recommendation_repository.delete_all_likes()
+        user_repository.delete_all()
         self.test_recom = Recommendation(
-            title="Harry Potter", link="http://www.harrypotter.com", user_id=3)
+            title="Harry Potter", link="http://www.harrypotter.com", user_id=1)
+        self.test_user = UserAccount("testi", "kayttaja123")
         recommendation_repository.add_new_recommendation(self.test_recom)
+        user_repository.add_a_new_user(self.test_user)
 
     def test_fetch_first(self):
         test_recom = (Recommendation(
@@ -84,6 +90,7 @@ class TestRecommendationRepository(unittest.TestCase):
     def test_add_like(self):
         recommendation_repository.add_like(1, 15)
         fetch_all = recommendation_repository.fetch_all_recommendations()
+        print(fetch_all)
         self.assertEqual(15, fetch_all[0][5])
 
     def test_delete_recommendation(self):
@@ -93,7 +100,7 @@ class TestRecommendationRepository(unittest.TestCase):
 
     def test_get_recommendation_by_user_id(self):
         test_recom = Recommendation(
-            title="Porri Hatter", link="http://www.porrihatter.com", user_id=1)
+            title="Porri Hatter", link="http://www.porrihatter.com", user_id=2)
         recommendation_repository.add_new_recommendation(test_recom)
         test_recom = Recommendation(
             title="Kirja", link="http://www.kirja.kirja", user_id=3)
@@ -103,5 +110,5 @@ class TestRecommendationRepository(unittest.TestCase):
         recommendation_repository.add_new_recommendation(test_recom)
         fetch_all = recommendation_repository.fetch_recommendation_by_user_id(1)
 
+        self.assertEqual(fetch_all[0][1], "Harry Potter")
         self.assertEqual(fetch_all[1][1], "Testi")
-        self.assertEqual(fetch_all[0][1], "Porri Hatter")
