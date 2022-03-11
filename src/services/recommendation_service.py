@@ -41,7 +41,14 @@ class RecommendationService:
 
     def delete_recommendation(self, recommendation_id):
         """ Deletes recommendation."""
-        self._recommendation_repository.delete_recommendation(recommendation_id)
+        self._recommendation_repository.delete_recommendation(
+            recommendation_id)
+
+    def delete_all_recommendations(self):
+        self._recommendation_repository.delete_all_recommendations()
+
+    def delete_all_likes(self):
+        self._recommendation_repository.delete_all_likes()
 
     def test_like(self, user_id, recommendation_id):
         return self._recommendation_repository.test_like(user_id, recommendation_id)

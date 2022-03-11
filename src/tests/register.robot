@@ -2,10 +2,11 @@
 Resource  resource.robot
 Suite Setup  Open And Configure Browser
 Suite Teardown  Close Browser
-Test Setup  Go To Register Page
+Test Setup  Reset Database And Go To Register Page
 
 ***Test Cases ***
 Register With Valid Username And Password
+    Reset Databases
     Set Username  maissi
     Set Password  salasana1234
     Set Password Confirmation  salasana1234
@@ -53,7 +54,8 @@ Login After Failed Registration
     Login Should Fail With Message  Käyttäjänimi tai salasana virheellinen
 
 *** Keywords ***
-Go To Register Page
+Reset Database And Go To Register Page
+    Reset Databases
     Go To Registering Page
 
 Set Username

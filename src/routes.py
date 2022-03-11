@@ -123,3 +123,9 @@ def own_page():
     user_id = session.get("user_id")
     recommendations = recommendation_service.list_recommendations_by_user(user_id)
     return render_template("own_page.html", recommendations=recommendations)
+
+@app.route("/reset_databases", methods=["get"])
+def reset_databases():
+    recommendation_service.delete_all_recommendations()
+    recommendation_service.delete_all_likes()
+    user_service.delete_all()
