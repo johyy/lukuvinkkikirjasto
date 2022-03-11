@@ -54,16 +54,16 @@ class RecommendationRepository:
     def fetch_recommendation_by_user_id(self, user_id):
         user_id_sql = (user_id,)
         print(user_id_sql)
-        sql = """SELECT id, title, author, description, link, like_amount,
-                 datetime(creation_time), date(creation_time) as date, time(creation_time) as time
-		         FROM recommendations WHERE user_id =:user_id"""
+        sql = """SELECT R.id, R.title, R.author, R.description, R.link, R.like_amount,
+                 datetime(R.creation_time), date(R.creation_time) as date, time(R.creation_time) as time, U.username
+		         FROM recommendations as R JOIN users as U WHERE R.user_id =:user_id AND R.user_id = U.id"""
         result = db.session.execute(sql, {"user_id": user_id})
         return result.fetchall()
 
     def fetch_all_recommendations(self, sort_option="1"):
-        sql = """SELECT id, title, author, description, link,
-                like_amount, datetime(creation_time), date(creation_time) as date, time(creation_time) as time, visibility, user_id
-                FROM recommendations R WHERE visibility=1"""
+        sql = """SELECT R.id, R.title, R.author, R.description, R.link,
+                R.like_amount, datetime(R.creation_time), date(R.creation_time) as date, time(R.creation_time) as time, R.visibility, R.user_id, U.username
+                FROM recommendations as R JOIN users as U WHERE visibility=1 AND R.user_id=U.id"""
 
         sql += " " + self.order_by(sort_option)
         result = db.session.execute(sql)

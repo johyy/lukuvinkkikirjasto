@@ -38,7 +38,7 @@
               <tr>
                 <th scope="row">{{loop.index}}</th>
                   <td><a href=//{{ recommendation.link }}>{{recommendation.title}}</a></td>
-                <td>Vinkin lisääjä</td>
+                <td>{{recommendation.username}}</td>
                 <td>{{recommendation.time}} {{recommendation.date}}</td>    
                 {% if session.user_id %}
                 <td> <form action="/likes" method="post">

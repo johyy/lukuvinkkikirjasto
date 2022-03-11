@@ -17,7 +17,6 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Otsikko</th>
-              <th scope="col">URL</th>
               <th scope="col">Vinkin lisääjä</th>
               <th scope="col">Lisätty</th>
             </tr>
@@ -26,9 +25,8 @@
             {%for recommendation in recommendations%}
               <tr>
                 <th scope="row">{{loop.index}}</th>
-                <td>{{recommendation.title}}</td>
-                <td><a href="{{recommendation.link}}"> {{recommendation.link}} </a></td>
-                <td>Vinkin lisääjä</td>
+                  <td><a href=//{{ recommendation.link }}>{{recommendation.title}}</a></td>
+                <td>{{ recommendation.username }}</td>
                 <td>{{recommendation.time}} {{recommendation.date}}</td>
                 <td>♥ {{recommendation.like_amount}}</td>
                     <td> <form action="/delete_recommendation" method="post">
