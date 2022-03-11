@@ -437,14 +437,6 @@ use_chardet_on_py3 = ["chardet (>=3.0.2,<5)"]
 socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 
 [[package]]
-name = "robot"
-version = "20071211"
-description = "Django application for Request Tracking"
-category = "main"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "robotframework"
 version = "4.1.3"
 description = "Generic automation framework for acceptance testing and robotic process automation (RPA)"
@@ -1041,9 +1033,6 @@ python-dotenv = [
 requests = [
     {file = "requests-2.27.1-py2.py3-none-any.whl", hash = "sha256:f22fa1e554c9ddfd16e6e41ac79759e17be9e492b3587efa038054674760e72d"},
     {file = "requests-2.27.1.tar.gz", hash = "sha256:68d7c56fd5a8999887728ef304a6d12edc7be74f1cfa47714fc8b414525c9a61"},
-]
-robot = [
-    {file = "robot-20071211.tar.gz", hash = "sha256:b8f040c5a319c4ac6a2ecc09f4c1b6578be9bf3db74a1441534b08336088d406"},
 ]
 robotframework = [
     {file = "robotframework-4.1.3-py2.py3-none-any.whl", hash = "sha256:06c025e5b640a378d372292921f49c28f7d025e4876b7b8f98ecc56a3def9dc0"},
