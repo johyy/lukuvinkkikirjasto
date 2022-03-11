@@ -44,13 +44,23 @@
                 <td>{{recommendation.username}}</td>
                 <td>{{recommendation.time}} {{recommendation.date}}</td>    
                 {% if session.user_id %}
-                <td> <form action="/likes" method="post">
-                    <input type ="hidden" value={{recommendation.id}} name="recommendation_id">
-                    <input type ="hidden" value={{recommendation.like_amount}} name="recommendation_like_amount">
-                    <input type ="hidden" value={{session.user_id}} name="user_id">
-                    <input type ="submit" value="Tykkää">
-                </td>
-                </form>
+                    {% if recommendation.id not in liked_recommendations %}
+                    <td> <form action="/add_likes" method="post">
+                        <input type ="hidden" value={{recommendation.id}} name="recommendation_id">
+                        <input type ="hidden" value={{recommendation.like_amount}} name="recommendation_like_amount">
+                        <input type ="hidden" value={{session.user_id}} name="user_id">
+                        <input type ="submit" value="Tykkää">
+                        </td>
+                        </form>
+                    {% else %}
+                    <td> <form action="/remove_likes" method="post">
+                        <input type ="hidden" value={{recommendation.id}} name="recommendation_id">
+                        <input type ="hidden" value={{recommendation.like_amount}} name="recommendation_like_amount">
+                        <input type ="hidden" value={{session.user_id}} name="user_id">
+                        <input type ="submit" value="Enpäs tykkääkään">
+                        </td>
+                        </form>
+                    {% endif %}
                 {% endif %}
                 <td>♥ {{recommendation.like_amount}}</td>
                 <td></td>
