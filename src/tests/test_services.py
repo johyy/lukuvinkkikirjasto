@@ -78,3 +78,8 @@ class TestRecommendationService(unittest.TestCase):
         recs = self.rs.delete_recommendation(1)
         
         self.recommendation_repo_mock.delete_recommendation.assert_called_with(1)
+
+    def test_different_http_strings(self):
+        self.assertEqual(self.rs.add_recommendation("suositus", "http://aa", 1), (True, ''))
+        self.assertEqual(self.rs.add_recommendation("suositus", "https://aa", 1), (True, ''))
+
