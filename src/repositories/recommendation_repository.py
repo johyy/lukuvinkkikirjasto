@@ -98,7 +98,7 @@ class RecommendationRepository:
         db.session.execute(sql, {"likes": likes, "id": like_id})
         db.session.commit()
 
-    def fetch_recommendations_liked_by_user_id(self, user_id):
+    def fetch_recommendations_liked_by_user(self, user_id):
         sql = "SELECT recommendation_id FROM likes WHERE user_id=:user_id"
         result = db.session.execute(sql, {"user_id": user_id})
         return result.fetchall()

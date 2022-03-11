@@ -62,7 +62,7 @@ class RecommendationService:
     def list_recommendations_liked_by_user(self, user_id):
         list_of_liked = []
         string = ""
-        list_of_liked_recommendations = self._recommendation_repository.fetch_recommendations_liked_by_user_id(user_id)
+        list_of_liked_recommendations = self._recommendation_repository.fetch_recommendations_liked_by_user(user_id)
         for liked in list_of_liked_recommendations:
             string = str(liked)
             string = string.replace(",", "")

@@ -80,18 +80,28 @@ class TestRecommendationRepository(unittest.TestCase):
         self.assertEqual("three", fetch_all_oldest[3][1])
         self.assertEqual("one", fetch_all_oldest[1][1])
 
-    def test_test_like_true(self):
+    def test_test_like_to_add_true(self):
         self.assertTrue(recommendation_repository.test_like_to_add(3, 3))
 
-    def test_test_like_false(self):
+    def test_test_like_to_add_false(self):
         recommendation_repository.test_like_to_add(2, 2)
         self.assertFalse(recommendation_repository.test_like_to_add(2, 2))
+    
+    def test_test_like_to_remove_true(self):
+        recommendation_repository.test_like_to_add(3, 3)
+        self.assertTrue(recommendation_repository.test_like_to_remove(3, 3))
+    
+    def test_test_like_to_remove_false(self):
+        self.assertFalse(recommendation_repository.test_like_to_remove(4, 4))
 
     def test_add_like(self):
         recommendation_repository.add_like(1, 15)
         fetch_all = recommendation_repository.fetch_all_recommendations()
         print(fetch_all)
         self.assertEqual(15, fetch_all[0][5])
+    
+    def test_fetch_recommendations_liked_by_user_no_likes(self):
+        self.assertEqual(recommendation_repository.fetch_recommendations_liked_by_user(1), [])
 
     def test_delete_recommendation(self):
         recommendation_repository.delete_recommendation(1)
