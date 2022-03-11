@@ -18,9 +18,11 @@ def sort_by():
 
 @app.route("/<sort_option>")
 def index_sorted(sort_option):
+    user_id = session.get("user_id")
+    liked_recommendations = recommendation_service.list_recommendations_liked_by_user(user_id)
     recommendations_list = recommendation_service.list_all_recommendations(
         sort_option)
-    return render_template("index.html", sort_option=sort_option, recommendations_list=recommendations_list)
+    return render_template("index.html", sort_option=sort_option, recommendations_list=recommendations_list, liked_recommendations=liked_recommendations)
 
 @app.route("/login", methods=["get", "post"])
 def login():
@@ -79,8 +81,10 @@ def add_recommendation():
         succes, error = recommendation_service.add_recommendation(
             title, link, user_id)
         if succes:
+            user_id = session.get("user_id")
+            liked_recommendations = recommendation_service.list_recommendations_liked_by_user(user_id)
             recommendations_list = recommendation_service.list_all_recommendations()
-            return render_template("index.html", sort_option=1, media_added=True, recommendations_list=recommendations_list)
+            return render_template("index.html", sort_option=1, media_added=True, recommendations_list=recommendations_list, liked_recommendations=liked_recommendations)
         return render_template("add_recommendation.html", media=media, input_error=error)
 
 @app.route("/delete_recommendation", methods=["post"])
