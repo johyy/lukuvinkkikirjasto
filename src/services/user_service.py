@@ -86,5 +86,8 @@ class UserService:
             return False
         return True
 
+    def delete_all(self):
+        self._user_repository.delete_all()
+
 
 user_service = UserService()

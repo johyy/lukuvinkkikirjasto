@@ -45,6 +45,7 @@ Set Password
     Input Password  password  ${password}
 
 Create User And Go To Login Page
+    Reset Databases
     Create User  kurpitsa  salasana1234
     Go To Login Page
     Login Page Should Be Open

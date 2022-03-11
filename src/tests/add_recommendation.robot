@@ -3,11 +3,10 @@
 Resource  resource.robot
 Suite Setup  Open And Configure Browser
 Suite Teardown  Close Browser
-Test Setup  Create User And Go To Add Recommendation Page
+Test Setup  Reset Databases And Create User
 
 *** Test Cases ***
 Access to Add Recommendation Page Denied Without Login
-    Create User  kurppa  sanasala1234
     Go To Add Recommendation Page
     Add Recommendation Page Should Be Open
     Accessing Should Fail With Message  Ei oikeutta sivulle!
@@ -67,6 +66,7 @@ Add Recommendation With Already Existing Title
     Set Link  https://www.a.fi/
     Add Recommendation
     Adding Should Succeed With Message  Vinkki lisätty kirjastoon!
+    Go To Add Recommendation Page
     Select From List By Label  media  Kirja
     Click Button  Valitse
     Set Title  Awesome Book
@@ -85,7 +85,7 @@ Adding Should Fail With Message
 
 Adding Should Succeed With Message
     [Arguments]  ${message}
-    Add Recommendation Page Should Be Open
+    Home Page Should Be Open
     Page Should Contain  ${message}
 
 Accessing Should Fail With Message
@@ -115,8 +115,9 @@ Set Password
     [Arguments]  ${password}
     Input Password  password  ${password}
 
-Create User And Go To Add Recommendation Page
-    Go To Starting Page
+Reset Databases And Create User
+    Reset Databases
+    Create User  kurppa  sanasala1234
     
     
     
