@@ -36,7 +36,7 @@ class RecommendationService:
         if self._recommendation_repository.add_new_recommendation(self._recommendation):
             return True, message
 
-        message = f"{title} löytyy jo kirjastosta"
+        message = f"{title} löytyy jo kirjastosta."
         return False, message
 
     def delete_recommendation(self, recommendation_id):

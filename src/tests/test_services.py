@@ -32,11 +32,22 @@ class TestUserService(unittest.TestCase):
     def test_register_with_nonmatchin_passwords(self):
         self.assertEqual(self.us.register("nimi3", "salasana333", "salasana334"), (None, 'Salasanat eivät täsmää'))
 
+    def test_register_with_existing_user(self):
+        self.user_repo_mock.add_a_new_user.return_value = False
+        self.us = UserService(self.user_repo_mock)
+        return_value = self.us.register("nimi3", "salasana333", "salasana333")
+        self.assertEqual(return_value, (False, 'Tunnus on jo olemassa.'))
+
     def test_valid_login_with_correct_user(self):
         self.user_repo_mock.get_user.return_value = ("nimi1", generate_password_hash("salasana123"), 0, 0)
         self.us = UserService(self.user_repo_mock)
         return_value = self.us.login("nimi1", "salasana123")
         self.assertEqual(return_value, (True, ''))
+
+    def test_login_with_nonexistent_user(self):
+        self.user_repo_mock.get_user.return_value = False
+        self.us = UserService(self.user_repo_mock)
+        self.assertEqual(self.us.login("kayttaja", "testi123"), (False, 'Käyttäjänimi tai salasana virheellinen'))
 
     def test_login_with_empty_user(self):
         self.assertEqual(self.us.login("", "salasana456"), (False, 'Käyttäjänimi tai salasana virheellinen'))
@@ -52,30 +63,43 @@ class TestUserService(unittest.TestCase):
         self.us.set_current_user(testi)
         self.assertEqual(self.us.get_current_user(), testi)
 
-    def test_nonexistent_user(self):
-        self.user_repo_mock.get_user.return_value = False
+    def test_get_current_user_id(self):
+        self.user_repo_mock.get_user.return_value = ("testi", generate_password_hash("1122qqq3F"), 0, 4)
         self.us = UserService(self.user_repo_mock)
-        self.assertEqual(self.us.login("kayttaja", "testi123"), (False, 'Käyttäjänimi tai salasana virheellinen'))
+        testi = UserAccount("testi", "1122qqq3F")
+        self.us.set_current_user(testi)
+        self.us.get_current_user_id()
+        self.assertEqual(self.us.get_current_user_id(), 4)
+
+    def test_delete_all(self):
+        self.us.delete_all()
+        self.user_repo_mock.delete_all.assert_called()
 
 
 class TestRecommendationService(unittest.TestCase):
     def setUp(self):
         self.recommendation_repo_mock = Mock()
-        self.user = UserAccount(username="nimi1", password="salasana456")
         self.rs = RecommendationService(self.recommendation_repo_mock)
+        self.user = UserAccount(username="nimi1", password="salasana456")
 
-    def test_user_adds_recommendation(self):
+    def test_add_recommendation(self):
         self.rs.add_recommendation("Otsake", "https://linkki", 1)
 #        self.assertEqual(self.user.get_recommendations()[0].get_title(), "Otsake") IndexError: list index out of range
 #        self.assertEqual(self.user.get_recommendations()[0].get_link(), "linkki")
 
-    def test_user_adds_recommendation_without_title(self):
+    def test_add_recommendation_without_title(self):
         self.rs.add_recommendation("", "https://linkki", 1)
         self.assertEqual(self.user.get_recommendations(), [])
 
-    def test_user_adds_recommendation_without_link(self):
+    def test_add_recommendation_without_link(self):
         self.rs.add_recommendation("Otsake", "", 1)
         self.assertEqual(self.user.get_recommendations(), [])
+
+    def test_add_recommendation_with_already_existing_title(self):
+        self.recommendation_repo_mock.add_new_recommendation.return_value = False
+        self.rs = RecommendationService(self.recommendation_repo_mock)
+        return_value = self.rs.add_recommendation("Otsake", "http://otsake.org", 1)
+        self.assertEqual(return_value, (False, "Otsake löytyy jo kirjastosta."))
 
     def test_list_all_recommendations(self):
         recs = self.rs.list_all_recommendations()
@@ -92,6 +116,21 @@ class TestRecommendationService(unittest.TestCase):
         recs = self.rs.delete_recommendation(1)
         
         self.recommendation_repo_mock.delete_recommendation.assert_called_with(1)
+
+    def test_delete_all_recommendations(self):
+        self.rs.delete_all_recommendations()
+        
+        self.recommendation_repo_mock.delete_all_recommendations.assert_called()
+
+    def test_delete_all_likes(self):
+        self.rs.delete_all_likes()
+        
+        self.recommendation_repo_mock.delete_all_likes.assert_called()
+
+    def test_add_like(self):
+        self.rs.add_like(66, 700)
+        
+        self.recommendation_repo_mock.add_like.assert_called_with(66, 700)
 
     def test_different_http_strings(self):
         self.assertEqual(self.rs.add_recommendation("suositus", "http://aa", 1), (True, ''))
