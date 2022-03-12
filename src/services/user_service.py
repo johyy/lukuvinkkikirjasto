@@ -17,20 +17,35 @@ class UserService:
 
     def login(self, username, password):
         """ Log in user."""
+
         if username == "" or password == "":
             return False, "Käyttäjänimi tai salasana virheellinen"
+
         new_user = self._user_repository.get_user(username)
-        if new_user is not False:
+        if self._valid_login(new_user, username, password):
+            return True, ""
 
-            if check_password_hash(new_user[1], password):
-
-                self.set_current_user(UserAccount(
-                    username=username, password=new_user[1]))
-                session["csrf_token"] = os.urandom(16).hex()
-                session["user_id"] = new_user[3]
-                session["user_name"] = username
-                return True, ""
         return False, "Käyttäjänimi tai salasana virheellinen"
+
+    def _valid_login(self, user, username, password):
+        """ Check that login with given credentials is valid.
+        """
+
+        if user is not False:
+            if check_password_hash(user[1], password):
+                self.set_current_user(UserAccount(
+                    username=username, password=user[1]))
+                self._set_session(user)
+                return True
+        return False
+
+    def _set_session(self, user):
+        """ Sets the session parameters.
+        """
+
+        session["csrf_token"] = os.urandom(16).hex()
+        session["user_id"] = user[3]
+        session["user_name"] = user[0]
 
     def logout(self):
         """ Sets the current user as None.
@@ -77,7 +92,8 @@ class UserService:
                 return True, ""
             message = "Tunnus on jo olemassa."
         else:
-            message = "Tunnuksessa oltava vähintään 3 merkkiä ja salasanassa vähintään 8 merkkiä ja vähintään yksi numero tai erikoismerkki."
+            message = "Tunnuksessa oltava vähintään 3 merkkiä ja salasanassa " \
+                       "vähintään 8 merkkiä ja vähintään yksi numero tai erikoismerkki."
         return False, message
 
     def check_csrf(self):

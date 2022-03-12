@@ -10,16 +10,10 @@ class UserAccount():
             _password: [String] Password of the user profile.
         """
 
-        self._id = uuid.uuid1()
         self._username = username
         self._password = password
         self._recommendations = []
         self._admin = False
-
-    def get_id(self):
-        """ Gets the id of the user."""
-
-        return self._id
 
     def get_username(self):
         """ Gets the name of the user."""

@@ -1,3 +1,3 @@
 [run]
 source = src
-omit = src/**/__init__.py,src/tests/**,src/AppLibrary.py,src/app.py,src/config.py,src/create_application.py,src/database_connection.py,src/db.py,src/initialise_database.py,src/routes.py
+omit = src/**/__init__.py,src/tests/**,src/AppLibrary.py,src/app.py,src/config.py,src/create_application.py,src/database_connection.py,src/db.py,src/initialise_database.py,src/routes.py,src/build.py

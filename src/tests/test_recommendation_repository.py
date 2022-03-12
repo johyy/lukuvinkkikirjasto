@@ -18,6 +18,20 @@ class TestRecommendationRepository(unittest.TestCase):
         recommendation_repository.add_new_recommendation(self.test_recom)
         user_repository.add_a_new_user(self.test_user)
 
+    def test_add_recommendation(self):
+        test_recom = (Recommendation(
+            title="Kirja", link="https://linkki", user_id=1))
+        recommendation_repository.add_new_recommendation(test_recom)
+        fetch_all = recommendation_repository.fetch_all_recommendations()
+        self.assertEqual("Kirja", fetch_all[1][1])
+
+    def test_add_existing_recommendation(self):
+        test_recom = (Recommendation(
+            title="Harry Potter", link="https://linkki", user_id=1))
+        recommendation_repository.add_new_recommendation(test_recom)
+        fetch_all = recommendation_repository.fetch_all_recommendations()
+        self.assertEqual(1, len(fetch_all))
+
     def test_fetch_first(self):
         test_recom = (Recommendation(
             title="Kirja", link="https://linkki", user_id=1))

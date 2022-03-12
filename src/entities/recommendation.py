@@ -101,6 +101,3 @@ class Recommendation():
 
     def set_user_id(self, user_id):
         self._user_id=user_id
-
-    def set_id(self, recommendation_id):
-        self._id = recommendation_id
