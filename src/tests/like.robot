@@ -2,11 +2,12 @@
 Resource  resource.robot
 Suite Setup  Open And Configure Browser
 Suite Teardown  Close Browser
-Test Setup  Create User And Login
+Test Setup  Reset Databases
 
 *** Test Cases ***
 Add like
-    Home Page Should Be Open
+    Create User and Login
+    Add Recommendation
     Page Should Contain  ♥ 0
     Page Should Contain Button  Tykkään!
     Page Should Not Contain Button  Enpäs tykkääkään.
@@ -15,8 +16,10 @@ Add like
     Page Should Contain Button  Enpäs tykkääkään.
     Page Should Contain  ♥ 1
 
-Remove like
-    Home Page Should Be Open
+Remove like    
+    Create User and Login
+    Add Recommendation
+    Click Button  Tykkään!
     Page Should Contain  ♥ 1
     Page Should Contain Button  Enpäs tykkääkään.
     Page Should Not Contain Button  Tykkään!
@@ -36,6 +39,16 @@ Create User And Login
 Submit Credentials
     Click Button  Kirjaudu sisään
 
+Add Recommendation
+    Go To Add Recommendation Page
+    Add Recommendation Page Should Be Open
+    Select From List By Label  media  Kirja
+    Click Button  Valitse
+    Set Title  Great Book
+    Set Link  https://www.a.fi/
+    Click Button  Lisää
+    Home Page Should Be Open
+
 Set Username
     [Arguments]  ${username}
     Input Text  username  ${username}
@@ -43,3 +56,11 @@ Set Username
 Set Password
     [Arguments]  ${password}
     Input Password  password  ${password}
+
+Set Title
+    [Arguments]  ${title}
+    Input Text  title  ${title}
+
+Set Link
+    [Arguments]  ${url}
+    Input Text  url  ${url}
