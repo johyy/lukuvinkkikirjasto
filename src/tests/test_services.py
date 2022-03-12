@@ -1,6 +1,7 @@
 
 import unittest
-from unittest.mock import Mock, ANY
+from unittest.mock import Mock, ANY, MagicMock
+from werkzeug.security import generate_password_hash
 from services.user_service import UserService
 from services.recommendation_service import RecommendationService
 from entities.user import UserAccount
@@ -13,7 +14,8 @@ class TestUserService(unittest.TestCase):
         user_repository.delete_all()
         app = create_app()
         app.app_context().push()
-        self.us = UserService()
+        self.user_repo_mock = Mock()
+        self.us = UserService(self.user_repo_mock)
 
     def test_register(self):
         self.assertTrue(self.us.register("nimi1", "salasana123", "salasana123"))
@@ -30,6 +32,12 @@ class TestUserService(unittest.TestCase):
     def test_register_with_nonmatchin_passwords(self):
         self.assertEqual(self.us.register("nimi3", "salasana333", "salasana334"), (None, 'Salasanat eivät täsmää'))
 
+    def test_valid_login_with_correct_user(self):
+        self.user_repo_mock.get_user.return_value = ("nimi1", generate_password_hash("salasana123"), 0, 0)
+        self.us = UserService(self.user_repo_mock)
+        return_value = self.us.login("nimi1", "salasana123")
+        self.assertEqual(return_value, (True, ''))
+
     def test_login_with_empty_user(self):
         self.assertEqual(self.us.login("", "salasana456"), (False, 'Käyttäjänimi tai salasana virheellinen'))
     
@@ -45,14 +53,13 @@ class TestUserService(unittest.TestCase):
         self.assertEqual(self.us.get_current_user(), testi)
 
     def test_nonexistent_user(self):
-        user = UserAccount("testi", "salasana123")
-        user_repository.add_a_new_user(user)
+        self.user_repo_mock.get_user.return_value = False
+        self.us = UserService(self.user_repo_mock)
         self.assertEqual(self.us.login("kayttaja", "testi123"), (False, 'Käyttäjänimi tai salasana virheellinen'))
 
 
 class TestRecommendationService(unittest.TestCase):
     def setUp(self):
-        user_repo_mock = Mock()
         self.recommendation_repo_mock = Mock()
         self.user = UserAccount(username="nimi1", password="salasana456")
         self.rs = RecommendationService(self.recommendation_repo_mock)

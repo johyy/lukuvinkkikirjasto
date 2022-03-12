@@ -32,20 +32,22 @@ class UserService:
         """
 
         if user is not False:
-            if check_password_hash(user[1], password):
+            db_password = user[1]
+            if check_password_hash(db_password, password):
                 self.set_current_user(UserAccount(
-                    username=username, password=user[1]))
-                self._set_session(user)
+                    username=username, password=db_password))
                 return True
         return False
 
-    def _set_session(self, user):
+    def set_session(self, username):
         """ Sets the session parameters.
         """
 
+        user = self._user_repository.get_user(username)
+        user_id = user[3]
         session["csrf_token"] = os.urandom(16).hex()
-        session["user_id"] = user[3]
-        session["user_name"] = user[0]
+        session["user_id"] = user_id
+        session["user_name"] = username
 
     def logout(self):
         """ Sets the current user as None.

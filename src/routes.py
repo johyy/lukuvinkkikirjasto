@@ -34,7 +34,9 @@ def login():
         password = request.form["password"]
 
         success, error = user_service.login(username, password)
-        if not success:
+        if success:
+            user_service.set_session(username)
+        else:
             return render_template("login.html", error=error)
         return redirect("/")
 
@@ -58,6 +60,7 @@ def register():
         if not valid:
             return render_template("register.html", error=error)
         user_service.login(username, password)
+        user_service.set_session(username)
         return redirect("/")
 
 @app.route("/add_recommendation", methods=["get", "post"])
