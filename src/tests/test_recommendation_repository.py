@@ -68,6 +68,7 @@ class TestRecommendationRepository(unittest.TestCase):
         recommendation_repository.add_like(3, 2)
         fetch_all = recommendation_repository.fetch_all_recommendations(
             sort_option="2")
+        print(fetch_all)
         self.assertEqual("three", fetch_all[2][1])
         self.assertEqual("one", fetch_all[1][1])
 
