@@ -21,16 +21,12 @@ class RecommendationService:
 
     def add_recommendation(self, title, link, user_id):
         """ Adds new recommendation."""
-        http = "http://"
-        https = "https://"
+
+        message = ""
         if title == "" or link == "":
             return False, "Täytä kaikki tiedot"
 
-        message = ""
-        if http in link:
-            fixed_link = link.replace(http, "")
-        if https in link:
-            fixed_link = link.replace(https, "")
+        fixed_link = self._fix_link(link)
         self._recommendation = Recommendation(title, fixed_link, user_id)
 
         if self._recommendation_repository.add_new_recommendation(self._recommendation):
@@ -38,6 +34,15 @@ class RecommendationService:
 
         message = f"{title} löytyy jo kirjastosta."
         return False, message
+
+    def _fix_link(self, link):
+        http = "http://"
+        https = "https://"
+        if http in link:
+            fixed_link = link.replace(http, "")
+        if https in link:
+            fixed_link = link.replace(https, "")
+        return fixed_link
 
     def delete_recommendation(self, recommendation_id):
         """ Deletes recommendation."""
