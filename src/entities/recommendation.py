@@ -2,6 +2,7 @@
 
 class Recommendation():
     """ Class that represents a single reading recommendation. """
+
     def __init__(self, title, link, user_id):
         """ Class constructor. Creates a new reading recommendation.
         Attributes:
@@ -100,4 +101,4 @@ class Recommendation():
         self._isbn = isbn
 
     def set_user_id(self, user_id):
-        self._user_id=user_id
+        self._user_id = user_id

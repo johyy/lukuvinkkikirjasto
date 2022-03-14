@@ -4,25 +4,31 @@ from app import app
 from services.user_service import user_service
 from services.recommendation_service import recommendation_service
 
+
 @app.route("/")
 def index():
     user_id = session.get("user_id")
-    liked_recommendations = recommendation_service.list_recommendations_liked_by_user(user_id)
+    liked_recommendations = recommendation_service.list_recommendations_liked_by_user(
+        user_id)
     recommendations_list = recommendation_service.list_all_recommendations()
     return render_template("index.html", sort_option="1", recommendations_list=recommendations_list, liked_recommendations=liked_recommendations)
+
 
 @app.route("/sort_by", methods=["POST"])
 def sort_by():
     sort_option = request.form["sort_option"]
     return redirect(url_for("index_sorted", sort_option=sort_option))
 
+
 @app.route("/<sort_option>")
 def index_sorted(sort_option):
     user_id = session.get("user_id")
-    liked_recommendations = recommendation_service.list_recommendations_liked_by_user(user_id)
+    liked_recommendations = recommendation_service.list_recommendations_liked_by_user(
+        user_id)
     recommendations_list = recommendation_service.list_all_recommendations(
         sort_option)
     return render_template("index.html", sort_option=sort_option, recommendations_list=recommendations_list, liked_recommendations=liked_recommendations)
+
 
 @app.route("/login", methods=["get", "post"])
 def login():
@@ -40,10 +46,12 @@ def login():
             return render_template("login.html", error=error)
         return redirect("/")
 
+
 @app.route("/logout")
 def logout():
     user_service.logout()
     return redirect("/")
+
 
 @app.route("/register", methods=["get", "post"])
 def register():
@@ -62,6 +70,7 @@ def register():
         user_service.login(username, password)
         user_service.set_session(username)
         return redirect("/")
+
 
 @app.route("/add_recommendation", methods=["get", "post"])
 def add_recommendation():
@@ -85,16 +94,19 @@ def add_recommendation():
             title, link, user_id)
         if succes:
             user_id = session.get("user_id")
-            liked_recommendations = recommendation_service.list_recommendations_liked_by_user(user_id)
+            liked_recommendations = recommendation_service.list_recommendations_liked_by_user(
+                user_id)
             recommendations_list = recommendation_service.list_all_recommendations()
             return render_template("index.html", sort_option=1, media_added=True, recommendations_list=recommendations_list, liked_recommendations=liked_recommendations)
         return render_template("add_recommendation.html", media=media, input_error=error)
+
 
 @app.route("/delete_recommendation", methods=["post"])
 def delete_recommendation():
     recommendation_id = int(request.form['recommendation_id'])
     recommendation_service.delete_recommendation(recommendation_id)
     return redirect('/')
+
 
 @app.route("/choose_media", methods=["post"])
 def choose_media():
@@ -108,6 +120,7 @@ def choose_media():
 
         return render_template("add_recommendation.html", media=media)
 
+
 @app.route("/add_likes", methods=["post"])
 def add_like():
     recommendation_id = request.form['recommendation_id']
@@ -118,6 +131,7 @@ def add_like():
         recommendation_service.add_like(recommendation_id, total_likes)
 
     return redirect('/')
+
 
 @app.route("/remove_likes", methods=["post"])
 def remove_like():
@@ -130,11 +144,14 @@ def remove_like():
 
     return redirect('/')
 
+
 @app.route("/own_page", methods=["get"])
 def own_page():
     user_id = session.get("user_id")
-    recommendations = recommendation_service.list_recommendations_by_user(user_id)
+    recommendations = recommendation_service.list_recommendations_by_user(
+        user_id)
     return render_template("own_page.html", recommendations=recommendations)
+
 
 @app.route("/reset_databases", methods=["get"])
 def reset_databases():

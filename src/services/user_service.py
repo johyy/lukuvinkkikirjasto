@@ -71,7 +71,8 @@ class UserService:
             current user's row id
         """
 
-        user = self._user_repository.get_user(self._current_user.get_username())
+        user = self._user_repository.get_user(
+            self._current_user.get_username())
         user_id = user[3]
         return user_id
 
@@ -95,7 +96,7 @@ class UserService:
             message = "Tunnus on jo olemassa."
         else:
             message = "Tunnuksessa oltava vähintään 3 merkkiä ja salasanassa " \
-                       "vähintään 8 merkkiä ja vähintään yksi numero tai erikoismerkki."
+                "vähintään 8 merkkiä ja vähintään yksi numero tai erikoismerkki."
         return False, message
 
     def check_csrf(self):

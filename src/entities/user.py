@@ -1,8 +1,8 @@
 # pylint: disable=no-member
-import uuid
 
 class UserAccount():
     """ Class that represents a single user. """
+
     def __init__(self, username, password):
         """ Class constructor. Creates a new user.
         Attributes:
