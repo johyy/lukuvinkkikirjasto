@@ -74,6 +74,41 @@ Add Recommendation With Already Existing Title
     Add Recommendation
     Adding Should Fail With Message  Awesome Book löytyy jo kirjastosta
 
+Front Page Shows Names Of Users Who Added Recommendations
+    Go To Login Page
+    Set Username  kurppa
+    Set Password  sanasala1234
+    Submit Credentials
+    Go To Add Recommendation Page
+    Add Recommendation Page Should Be Open
+    Select From List By Label  media  Kirja
+    Click Button  Valitse
+    Set Title  Awesome Book
+    Set Link  https://www.a.fi/
+    Add Recommendation
+    Logout
+    Go To Login Page
+    Set Username  appruk
+    Set Password  1234salasana
+    Submit Credentials
+    Front Page Should Contain Name  kurppa
+
+Added Recommendation Link Opens When Name Clicked
+    Go To Login Page
+    Set Username  kurppa
+    Set Password  sanasala1234
+    Submit Credentials
+    Go To Add Recommendation Page
+    Add Recommendation Page Should Be Open
+    Select From List By Label  media  Kirja
+    Click Button  Valitse
+    Set Title  Binäärijärjestelmä
+    Set Link  https://fi.wikipedia.org/wiki/Bin%C3%A4%C3%A4rij%C3%A4rjestelm%C3%A4
+    Add Recommendation
+    Click Link  Binäärijärjestelmä
+    New Page Should Be Open  Binäärijärjestelmä – Wikipedia
+
+
 *** Keywords ***
 Adding Should Succeed
     Add Recommendation Page Should Be Open
@@ -93,8 +128,20 @@ Accessing Should Fail With Message
     Add Recommendation Page Should Be Open
     Page Should Contain  ${message}
 
+Front Page Should Contain Name
+    [Arguments]  ${message}
+    Home Page Should Be Open
+    Page Should Contain  ${message}
+
+New Page Should Be Open
+    [Arguments]  ${message}
+    Page Should Contain  ${message}
+
 Add Recommendation
     Click Button  Lisää
+
+Log Out
+    Click Link  Kirjaudu ulos
 
 Set Title
     [Arguments]  ${title}
@@ -118,6 +165,7 @@ Set Password
 Reset Databases And Create User
     Reset Databases
     Create User  kurppa  sanasala1234
+    Create User  appruk  1234salasana
     
     
     
