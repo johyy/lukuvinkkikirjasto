@@ -57,14 +57,32 @@ http://127.0.0.1:5000/
 
 ### Testien suorittaminen
 
-Testit suoritetaan juurikansiossa komennoilla:
+Kaikki testit ja tyylitarkistus suoritetaan juurikansiossa komennoilla:
 
 ```
 poetry shell
 ```
 
 ```
+invoke test
+```
+
+Pelkät yksikkötestit, Robot Framework -testit tai Pylint-tyylitarkastus suoritetaan juurikansiossa komennoilla:
+
+```
 pytest
+```
+```
+invoke robot
+```
+```
+invoke lint
+```
+
+Testikattavuuden saa ajamalla komennon:
+
+```
+invoke coverage-report
 ```
 
 ## Definition of Done
