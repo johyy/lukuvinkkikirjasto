@@ -66,16 +66,10 @@ class RecommendationService:
 
     def list_recommendations_liked_by_user(self, user_id):
         list_of_liked = []
-        string = ""
         list_of_liked_recommendations = self._recommendation_repository.fetch_recommendations_liked_by_user(
             user_id)
         for liked in list_of_liked_recommendations:
-            string = str(liked)
-            string = string.replace(",", "")
-            string = string.replace("(", "")
-            string = string.replace(")", "")
-            final_string = int(string)
-            list_of_liked.append(final_string)
+            list_of_liked.append(liked[0])
         return list_of_liked
 
 

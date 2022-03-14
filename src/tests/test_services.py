@@ -141,3 +141,16 @@ class TestRecommendationService(unittest.TestCase):
 
     def test_test_like_to_remove_true(self):
         self.assertTrue(self.rs.test_like_to_remove(1, 1))
+
+    def test_list_recommendations_liked_by_user(self):
+        self.recommendation_repo_mock.fetch_recommendations_liked_by_user.return_value = [(7,), (4,)]
+        self.rs = RecommendationService(self.recommendation_repo_mock)
+        return_value = self.rs.list_recommendations_liked_by_user(23)
+        self.assertEqual(return_value, [7,4])
+
+    def test_list_recommendations_liked_by_user_with_no_likes(self):
+        self.recommendation_repo_mock.fetch_recommendations_liked_by_user.return_value = []
+        self.rs = RecommendationService(self.recommendation_repo_mock)
+        return_value = self.rs.list_recommendations_liked_by_user(23)
+        self.assertEqual(return_value, [])
+        
