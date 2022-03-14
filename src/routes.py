@@ -158,3 +158,4 @@ def reset_databases():
     recommendation_service.delete_all_recommendations()
     recommendation_service.delete_all_likes()
     user_service.delete_all()
+    return redirect("/")
