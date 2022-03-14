@@ -1,5 +1,5 @@
 ## Sovelluksen rakenne
-![alt text](https://github.com/johyy/lukuvinkkikirjasto/blob/main/dokumentaatio/kuvat/readtip_structure.png)
+![alt text](https://github.com/johyy/lukuvinkkikirjasto/blob/main/dokumentaatio/kuvat/structure.png)
 
 
 ## Tietokannan sprinttikohtainen luokkakaavio
