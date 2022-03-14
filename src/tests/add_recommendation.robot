@@ -110,9 +110,6 @@ Added Recommendation Link Opens When Name Clicked
 
 
 *** Keywords ***
-Adding Should Succeed
-    Add Recommendation Page Should Be Open
-
 Adding Should Fail With Message
     [Arguments]  ${message}
     Add Recommendation Page Should Be Open
