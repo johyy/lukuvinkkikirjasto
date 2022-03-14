@@ -1,4 +1,4 @@
-Testauksen haarautumakattavuus on 80%
+Yksikkötestauksen haarautumakattavuus on 96%
 
 ![](./kuvat/testikattavuus.png)
 
