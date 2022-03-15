@@ -9,7 +9,7 @@
 
 [Testikattavuusraportti](https://github.com/johyy/lukuvinkkikirjasto/blob/main/dokumentaatio/testikattavuus.md)
 
-[Release](https://github.com/johyy/lukuvinkkikirjasto/releases/tag/sprint2)
+[Release](https://github.com/johyy/lukuvinkkikirjasto/releases/tag/sprint3)
 
 [Lisenssi](https://github.com/johyy/lukuvinkkikirjasto/blob/main/LICENSE)
 
