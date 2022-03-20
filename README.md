@@ -13,7 +13,7 @@
 
 [Lisenssi](https://github.com/johyy/lukuvinkkikirjasto/blob/main/LICENSE)
 
-[Loppuraportti](https://github.com/johyygithub.com/johyy/lukuvinkkikirjasto/blob/main/dokumentaatio/raportti.md)
+[Loppuraportti](https://github.com/johyy/lukuvinkkikirjasto/blob/main/dokumentaatio/raportti.md)
 
 ## Asennus
 
