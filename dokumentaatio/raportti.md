@@ -2,7 +2,7 @@
 
 <i>Katja Kerkkänen, Tuukka Puonti, Noora Matilainen, Mingchen Li, Jonna Hyypiä</i>
 
-<h2>Sprintti 1<h2>
+<h2>Sprintti 1</h2>
 
 Aloitustapaamisen jälkeen ensimmäiseen sprinttiin lähdettiin innolla. Tarkoituksenamme oli tehdä lukuvinkkikirjasto, jossa datan talletus ja haku hoidettaisiin Postgre-SQL -tietokannassa ja itse applikaation toteutus vietäisiin lopulta Herokuun, jossa se olisi vapaasti kenen tahansa nähtävissä ja käytettävissä. Sovimme, että ensin hoidettaisiin tarvittavien elementtien konfiguraatiot sekä toteutuksen pohja GitHubiin ja vasta sitten rupeaisimme tekemään varsinaisia toiminnallisuuksia. 
 
