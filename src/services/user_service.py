@@ -81,10 +81,13 @@ class UserService:
 
         self._current_user = user
 
+    def _is_inputs_valid(self, username, password):
+        return len(username) >= 3 and len(password) >= 8 and any(not c.isalpha() for c in password)
+
     def register(self, username, password, password_confirmation):
         """ Registers a new user."""
 
-        if len(username) >= 3 and len(password) >= 8 and any(not c.isalpha() for c in password):
+        if self._is_inputs_valid(username, password):
             if not password == password_confirmation:
                 message = "Salasanat eivät täsmää"
                 return None, message

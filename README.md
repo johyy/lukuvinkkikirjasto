@@ -95,3 +95,4 @@ User Story katsotaan valmistuneeksi, kun:
 - Koodin staattinen analyysi on kunnossa, Pylint arvo > 8
 - Koodi on puskettu tuotantoympäristöön
 - Koodi on integroitu aikaisempaan työhön ja kokonaisuus on toimiva
+
