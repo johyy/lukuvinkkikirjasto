@@ -1,1 +1,0 @@
-/home/jonhyypi/lukuvinkkikirjasto/lukuvinkkikirjasto/src/.env
